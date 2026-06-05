@@ -1,0 +1,128 @@
+[
+  {
+    "id": "semiconductor",
+    "slug": "semiconductor",
+    "name": "반도체·디스플레이",
+    "nameEn": "Semiconductor & Display",
+    "icon": "Cpu",
+    "color": "#0ea5e9",
+    "bgColor": "bg-blue-50",
+    "description": "초고순도 화학물질 이송에 요구되는 극한의 내식성과 청정도를 티타늄 주름관이 충족합니다.",
+    "keyBenefits": [
+      "불산(HF), 황산 등 강산성 약품 이송",
+      "파티클 발생 Zero",
+      "클린룸 대응 표면처리",
+      "고순도 Grade 1 적용"
+    ],
+    "cases": [
+      { "client": "국내 반도체 FAB", "content": "세정 공정 불산 이송 배관 500m 공급", "year": "2023" },
+      { "client": "디스플레이 제조사", "content": "증착 공정 화학배관 교체", "year": "2022" }
+    ],
+    "image": "/images/industries/semiconductor.jpg"
+  },
+  {
+    "id": "chemical",
+    "slug": "chemical",
+    "name": "석유화학·플랜트",
+    "nameEn": "Petrochemical & Plant",
+    "icon": "Factory",
+    "color": "#f59e0b",
+    "bgColor": "bg-amber-50",
+    "description": "고온·고압·강부식 환경의 석유화학 플랜트에서 일반 스테인리스를 완전히 대체합니다.",
+    "keyBenefits": [
+      "염산(HCl) 이송: Grade 7 (Pd 합금) 적용",
+      "고온고압 스팀 배관",
+      "해수 냉각수 계통",
+      "ASME/KS 인증 대응"
+    ],
+    "cases": [
+      { "client": "국내 화학 플랜트", "content": "염산 이송 배관 전면 교체 (SUS→Ti)", "year": "2023" },
+      { "client": "정유사 플랜트", "content": "해수 냉각수 계통 주름관 공급", "year": "2021" }
+    ],
+    "image": "/images/industries/chemical.jpg"
+  },
+  {
+    "id": "aerospace",
+    "slug": "aerospace",
+    "name": "항공우주·방산",
+    "nameEn": "Aerospace & Defense",
+    "icon": "Rocket",
+    "color": "#8b5cf6",
+    "bgColor": "bg-purple-50",
+    "description": "초경량·고강도가 요구되는 항공우주 분야의 연료·유압 계통에 적용됩니다.",
+    "keyBenefits": [
+      "SUS 대비 40% 경량화",
+      "극저온(-196°C) 극고온(300°C) 대응",
+      "고압 연료·유압 계통",
+      "군수 인증(MIL 규격) 대응"
+    ],
+    "cases": [
+      { "client": "항공기 부품 제조사", "content": "기체 연료 이송 플렉시블 호스 공급", "year": "2022" },
+      { "client": "방산 업체", "content": "군용 장비 고압 유압 호스 공급", "year": "2023" }
+    ],
+    "image": "/images/industries/aerospace.jpg"
+  },
+  {
+    "id": "medical",
+    "slug": "medical",
+    "name": "의료기기",
+    "nameEn": "Medical Device",
+    "icon": "HeartPulse",
+    "color": "#ef4444",
+    "bgColor": "bg-red-50",
+    "description": "생체 친화성과 무독성이 인정된 티타늄으로 의료 기기 및 제약 배관에 사용됩니다.",
+    "keyBenefits": [
+      "생체 친화성 (ASTM F136)",
+      "멸균 프로세스 대응",
+      "약품 이송 청정 배관",
+      "FDA 규제 대응 소재"
+    ],
+    "cases": [
+      { "client": "제약회사", "content": "의약품 이송 청정 배관 시스템 구축", "year": "2023" },
+      { "client": "의료기기 제조사", "content": "투석 장비용 연결 호스 공급", "year": "2022" }
+    ],
+    "image": "/images/industries/medical.jpg"
+  },
+  {
+    "id": "marine",
+    "slug": "marine",
+    "name": "해양·선박",
+    "nameEn": "Marine & Offshore",
+    "icon": "Ship",
+    "color": "#06b6d4",
+    "bgColor": "bg-cyan-50",
+    "description": "최강의 내해수성을 지닌 티타늄 주름관으로 선박 엔진룸부터 해양플랜트까지 적용됩니다.",
+    "keyBenefits": [
+      "탁월한 내해수·내염수 내식성",
+      "해수 냉각 시스템",
+      "LNG 선박 극저온 배관",
+      "진동 흡수 브레이드형"
+    ],
+    "cases": [
+      { "client": "조선소", "content": "LNG 운반선 극저온 배관 공급", "year": "2023" },
+      { "client": "해양플랜트 업체", "content": "해수 처리 시스템 주름관 공급", "year": "2022" }
+    ],
+    "image": "/images/industries/marine.jpg"
+  },
+  {
+    "id": "aquaculture",
+    "slug": "aquaculture",
+    "name": "수산양식·식품",
+    "nameEn": "Aquaculture & Food",
+    "icon": "Fish",
+    "color": "#10b981",
+    "bgColor": "bg-emerald-50",
+    "description": "해수·양식용 온도조절 시스템에 폐열 회수 열교환기로 에너지 효율을 극대화합니다.",
+    "keyBenefits": [
+      "해수 직접 접촉 배관",
+      "폐열 회수 열교환기",
+      "식품 위생 기준 대응",
+      "양식장 에너지 절감"
+    ],
+    "cases": [
+      { "client": "활어 운반차 업체", "content": "해수 순환 열교환기 주름관 공급", "year": "2024" },
+      { "client": "해수 사우나", "content": "해수 가열 열교환기 시스템 구축", "year": "2023" }
+    ],
+    "image": "/images/industries/aquaculture.jpg"
+  }
+]
