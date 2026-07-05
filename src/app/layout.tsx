@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -15,6 +13,13 @@ export const metadata: Metadata = {
   title: {
     default: "ATX 티타늄 주름관 | 티타늄 플렉시블 호스 전문 제조",
     template: "%s | ATX 티타늄 주름관",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/images/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/images/favicon-512.png",
   },
   description:
     "반도체·화학·항공·해양 산업을 위한 고품질 티타늄 주름관(Corrugated Tube) 및 플렉시블 호스 전문 제조사. Grade 1/2/7 티타늄, ISO 9001 인증.",
@@ -58,9 +63,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={notoSansKR.variable}>
       <body className="antialiased font-sans">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
