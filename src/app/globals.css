@@ -194,3 +194,33 @@ body {
   color: var(--accent);
   text-shadow: 0 0 20px rgba(91,141,184,0.3);
 }
+
+/* ── 계산기 인풋 */
+.calc-input {
+  display: block;
+  width: 100%;
+  background-color: var(--ti-950);
+  border: 1px solid var(--ti-700);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+.calc-input::-webkit-outer-spin-button,
+.calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.calc-input:focus { border-color: var(--accent); }
+.calc-input option { background: var(--ti-900); color: #fff; }
+.calc-unit {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: var(--silver-500);
+  pointer-events: none;
+  white-space: nowrap;
+}

@@ -21,11 +21,11 @@ export default function CTASection() {
               <span className="w-6 h-px bg-accent" />
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-silver-200 mb-5 leading-tight tracking-tight">
-              배관 문제,<br />
+              고부식 환경 열교환,<br />
               <span className="text-accent">전문가와 상담</span>하세요
             </h2>
             <p className="text-silver-500 text-lg leading-relaxed">
-              규격 선택부터 설치까지 — 20년 경험의 티타늄 배관 전문가가<br className="hidden md:block" />
+              규격 선택부터 설치까지 — 20년 경험의 티타늄 열교환기 전문가가<br className="hidden md:block" />
               최적의 솔루션을 제안해 드립니다. 도면 검토 및 기술 상담 무료.
             </p>
           </div>
@@ -47,13 +47,13 @@ export default function CTASection() {
 
             {/* Phone */}
             <a
-              href="tel:031-000-0000"
+              href="tel:1544-1909"
               className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-ti-900 hover:bg-ti-800 border border-ti-800 hover:border-ti-700 transition-all duration-300 hover:-translate-y-1"
             >
               <Phone className="w-9 h-9 text-accent" />
               <h3 className="text-silver-200 font-bold text-xl">전화 상담</h3>
               <p className="text-silver-500 text-sm text-center leading-relaxed">
-                031-000-0000<br />평일 09:00 ~ 18:00
+                1544-1909<br />평일 09:00 ~ 18:00
               </p>
             </a>
 
@@ -75,11 +75,11 @@ export default function CTASection() {
         <ScrollReveal delay={250}>
           <div className="text-center mt-10">
             <a
-              href="mailto:info@atx-titanium.co.kr"
+              href="mailto:777@atx.kr"
               className="inline-flex items-center gap-2 text-silver-600 hover:text-silver-300 text-sm transition-colors"
             >
               <Mail className="w-4 h-4" />
-              info@atx-titanium.co.kr
+              777@atx.kr
             </a>
           </div>
         </ScrollReveal>

@@ -1,96 +1,158 @@
 [
   {
-    "id": "tube-10a",
-    "slug": "tube-10a",
+    "id": "tube",
+    "slug": "tube",
     "category": "tube",
     "categoryLabel": "티타늄 주름관",
-    "name": "티타늄 주름관 10A",
-    "nameEn": "Titanium Corrugated Tube 10A",
-    "description": "반도체·화학 배관용 고내식성 티타늄 주름관. 고순도 Grade 1/2 티타늄으로 제작되어 부식성 화학물질에 탁월한 내성을 발휘합니다.",
-    "image": "/images/products/tube-1.jpg",
-    "images": ["/images/products/tube-1.jpg", "/images/products/tube-cutout.png", "/images/products/tube-drawing.png"],
-    "grade": "Grade 1 / Grade 2",
+    "name": "티타늄 주름관",
+    "nameEn": "Titanium Corrugated Tube",
+    "description": "고순도 Grade 2 티타늄으로 제작한 플렉시블 주름관. 10A·15A 규격으로 반도체·화학·해수 배관 등 강부식성 환경에 사용됩니다.",
+    "image": "/images/products/a1.jpg",
+    "images": [
+      "/images/products/a1.jpg",
+      "/images/products/a5.jpg",
+      "/images/products/a4.jpg",
+      "/images/products/a2.jpg",
+      "/images/products/a3.jpg"
+    ],
+    "grade": "Grade 2",
     "specs": {
-      "nominalSize": "10A (3/8\")",
-      "outerDiameter": "17.3mm",
-      "innerDiameter": "13.9mm",
-      "wallThickness": "0.4mm",
-      "bendRadius": "35mm",
-      "workingPressure": "10 MPa",
-      "testPressure": "15 MPa",
-      "temperatureRange": "-196°C ~ 280°C",
-      "material": "Ti Gr.1 / Ti Gr.2",
-      "standardLength": "500~5,000mm",
-      "endFitting": "Socket / Flange / NPT / BSPT"
+      "nominalSize": "10A / 15A / 20A",
+      "outerDiameter": "16.4 / 19.4 / 25.2mm",
+      "innerDiameter": "11.7 / 15.4 / 22.5mm",
+      "wallThickness": "0.3mm (10A·15A) / 0.35mm (20A)",
+      "bendRadius": "±0.3mm",
+      "workingPressure": "-",
+      "testPressure": "-",
+      "temperatureRange": "-",
+      "material": "Ti Grade 2",
+      "standardLength": "1~100m",
+      "endFitting": "소켓 (티타늄·황동) / NPT / BSPT"
     },
-    "applications": ["반도체 세정라인", "화학약품 이송", "정밀 계측배관"],
-    "features": ["고내식성", "경량", "고순도 유지"]
+    "variants": [
+      {
+        "size": "10A",
+        "nominalSize": "10A",
+        "outerDiameter": "OD 16.4mm",
+        "innerDiameter": "11.7mm",
+        "wallThickness": "0.3mm",
+        "bendRadius": "±0.3mm",
+        "workingPressure": "-",
+        "testPressure": "-",
+        "temperatureRange": "-",
+        "material": "Ti Grade 2",
+        "standardLength": "1~100m",
+        "endFitting": "소켓 (티타늄·황동)"
+      },
+      {
+        "size": "15A",
+        "nominalSize": "15A",
+        "outerDiameter": "OD 19.4mm",
+        "innerDiameter": "15.4mm",
+        "wallThickness": "0.3mm",
+        "bendRadius": "±0.3mm",
+        "workingPressure": "-",
+        "testPressure": "-",
+        "temperatureRange": "-",
+        "material": "Ti Grade 2",
+        "standardLength": "1~100m",
+        "endFitting": "소켓 (티타늄·황동)"
+      },
+      {
+        "size": "20A",
+        "nominalSize": "20A",
+        "outerDiameter": "OD 25.2mm",
+        "innerDiameter": "22.5mm",
+        "wallThickness": "0.35mm",
+        "bendRadius": "±0.3mm",
+        "workingPressure": "-",
+        "testPressure": "-",
+        "temperatureRange": "-",
+        "material": "Ti Grade 2",
+        "standardLength": "1~100m",
+        "endFitting": "소켓 (티타늄·황동)"
+      }
+    ],
+    "applications": [
+      "해수 양식장",
+      "반도체 세정라인",
+      "화학약품 이송",
+      "범용 화학배관",
+      "의료기기 배관",
+      "선박 해수 배관",
+      "정밀 계측배관"
+    ],
+    "features": [
+      "고내식성",
+      "경량·고유연성",
+      "내해수성",
+      "생체친화성",
+      "고순도 유지"
+    ]
   },
   {
-    "id": "tube-15a",
-    "slug": "tube-15a",
+    "id": "tube-standard",
+    "slug": "tube-standard",
     "category": "tube",
     "categoryLabel": "티타늄 주름관",
-    "name": "티타늄 주름관 15A",
-    "nameEn": "Titanium Corrugated Tube 15A",
-    "description": "범용 배관용 티타늄 주름관. 유연성이 뛰어나 좁은 공간 배관에 최적화된 제품입니다.",
-    "image": "/images/products/tube-2.jpg",
-    "images": ["/images/products/tube-2.jpg", "/images/products/tube-cutout.png", "/images/products/tube-drawing.png"],
-    "grade": "Grade 1 / Grade 2",
+    "name": "티타늄 주름관 표준품",
+    "nameEn": "Titanium Corrugated Tube Standard (Ready Stock)",
+    "description": "재고 보유로 즉시 납품 가능한 기성 표준품과, 외경·길이·코일 권수를 자유롭게 지정하는 완전 주문제작을 모두 지원합니다. 소켓 피팅 일체형으로 공급되어 별도 용접 없이 바로 배관 연결이 가능합니다.",
+    "image": "/images/products/ts-dual-outlet-front.jpg",
+    "images": [
+      "/images/products/ts-dual-outlet-front.jpg",
+      "/images/products/ts-single-outlet-front.jpg",
+      "/images/products/ts-coil-with-ruler.png",
+      "/images/products/ts-dual-outlet-side.jpg",
+      "/images/products/ts-socket-closeup.png",
+      "/images/products/ts-socket-fitting-closeup.jpg",
+      "/images/products/ts-coil-interior.jpg",
+      "/images/products/ts-coil-top-angled.jpg"
+    ],
+    "grade": "Grade 2",
     "specs": {
       "nominalSize": "15A (1/2\")",
-      "outerDiameter": "21.7mm",
+      "outerDiameter": "19.4mm",
       "innerDiameter": "17.9mm",
       "wallThickness": "0.4mm",
       "bendRadius": "45mm",
       "workingPressure": "10 MPa",
       "testPressure": "15 MPa",
       "temperatureRange": "-196°C ~ 280°C",
-      "material": "Ti Gr.1 / Ti Gr.2",
-      "standardLength": "500~5,000mm",
-      "endFitting": "Socket / Flange / NPT / BSPT"
+      "material": "Ti Gr.2",
+      "standardLength": "300mm / 500mm / 1,000mm (재고 보유)",
+      "endFitting": "3/8\" NPT (양쪽 수나사)"
     },
-    "applications": ["범용 화학배관", "의료기기 배관", "선박 해수 배관"],
-    "features": ["뛰어난 유연성", "내해수성", "생체친화성"]
+    "applications": [
+      "긴급 배관 교체",
+      "실험실 배관",
+      "소량 화학약품 이송",
+      "R&D 시험 배관"
+    ],
+    "features": [
+      "즉시 납품 가능",
+      "피팅 일체형 완성품",
+      "용접 불필요"
+    ]
   },
   {
-    "id": "tube-20a",
-    "slug": "tube-20a",
-    "category": "tube",
-    "categoryLabel": "티타늄 주름관",
-    "name": "티타늄 주름관 20A",
-    "nameEn": "Titanium Corrugated Tube 20A",
-    "description": "중압 유체 이송용 티타늄 주름관. 석유화학 플랜트 및 열교환기 연결배관에 적합합니다.",
-    "image": "/images/products/tube-3.jpg",
-    "images": ["/images/products/tube-3.jpg", "/images/products/tube-cutout.png"],
-    "grade": "Grade 2 / Grade 7",
-    "specs": {
-      "nominalSize": "20A (3/4\")",
-      "outerDiameter": "27.2mm",
-      "innerDiameter": "23.0mm",
-      "wallThickness": "0.4mm",
-      "bendRadius": "55mm",
-      "workingPressure": "10 MPa",
-      "testPressure": "15 MPa",
-      "temperatureRange": "-196°C ~ 280°C",
-      "material": "Ti Gr.2 / Ti Gr.7",
-      "standardLength": "500~5,000mm",
-      "endFitting": "Flange / Socket / Butt Weld"
-    },
-    "applications": ["석유화학 플랜트", "열교환기 연결", "해양플랜트"],
-    "features": ["중압 대응", "내HCl성 (Gr.7)", "용접 연결 가능"]
-  },
-  {
-    "id": "heat-exchanger",
-    "slug": "heat-exchanger",
+    "id": "heat-exchanger-corrugated",
+    "slug": "heat-exchanger-corrugated",
     "category": "heat-exchanger",
-    "categoryLabel": "코일형 열교환기",
-    "name": "티타늄 주름관 열교환기",
-    "nameEn": "Titanium Corrugated Tube Heat Exchanger",
-    "description": "주름관을 코일 형상으로 성형한 고효율 열교환기. 주름 구조가 난류를 형성하여 전열 효율을 극대화합니다. 원형·사각 등 다양한 형태로 맞춤 제작합니다.",
-    "image": "/images/products/heat-exchanger.jpg",
-    "images": ["/images/products/heat-exchanger.jpg", "/images/products/heat-exchanger-round.jpg", "/images/products/heat-exchanger-acrylic.jpg"],
-    "grade": "Grade 1 / Grade 2",
+    "categoryLabel": "열교환기 맞춤제작",
+    "name": "열교환기 맞춤제작 (주름관형)",
+    "nameEn": "Custom Heat Exchanger — Corrugated Tube Type",
+    "description": "티타늄 주름관을 코일 형상으로 성형한 고효율 맞춤 열교환기. 주름 구조가 난류를 형성해 전열 효율을 극대화하며, 원형·사각 프레임 등 다양한 형태로 제작합니다.",
+    "image": "/images/products/heat-exchanger-coil-single.jpg",
+    "images": [
+      "/images/products/heat-exchanger-coil-single.jpg",
+      "/images/products/heat-exchanger-coil-multi.jpg",
+      "/images/products/heat-exchanger-square-1.jpg",
+      "/images/products/heat-exchanger-square-2.jpg",
+      "/images/products/heat-exchanger-square-3.jpg",
+      "/images/products/heat-exchanger-square-4.jpg"
+    ],
+    "grade": "Grade 1 / Grade 2 / Grade 7",
     "specs": {
       "nominalSize": "고객 사양",
       "outerDiameter": "맞춤 제작",
@@ -104,7 +166,182 @@
       "standardLength": "맞춤 제작",
       "endFitting": "고객 도면 기준"
     },
-    "applications": ["폐열 회수 시스템", "양식장 해수 열교환기", "반도체 온도 조절"],
-    "features": ["높은 전열 효율", "완전 맞춤 제작", "다양한 형태 구현"]
+    "applications": [
+      "폐열 회수 시스템",
+      "양식장 해수 열교환기",
+      "반도체 온도 조절",
+      "화학 반응기 냉각"
+    ],
+    "features": [
+      "높은 전열 효율 (난류 촉진)",
+      "완전 맞춤 제작",
+      "원형·사각 등 다양한 형태"
+    ]
+  },
+  {
+    "id": "heat-exchanger-straight",
+    "slug": "heat-exchanger-straight",
+    "category": "heat-exchanger",
+    "categoryLabel": "열교환기 맞춤제작",
+    "name": "열교환기 맞춤제작 (직관형)",
+    "nameEn": "Custom Heat Exchanger — Straight Tube Type",
+    "description": "직선 티타늄 관을 다수 배열한 직관형 열교환기. 유로 저항이 낮고 세정·유지보수가 용이합니다. 플레이트 또는 하우징과 조합하여 대용량 열교환에 적합합니다.",
+    "image": "/images/products/heat-exchanger-acrylic.jpg",
+    "images": [
+      "/images/products/heat-exchanger-acrylic.jpg",
+      "/images/products/heat-exchanger-square-1.jpg"
+    ],
+    "grade": "Grade 1 / Grade 2 / Grade 7",
+    "specs": {
+      "nominalSize": "고객 사양",
+      "outerDiameter": "맞춤 제작",
+      "innerDiameter": "맞춤 제작",
+      "wallThickness": "0.4~1.0mm",
+      "bendRadius": "-",
+      "workingPressure": "최대 30 MPa",
+      "testPressure": "설계에 따름",
+      "temperatureRange": "-196°C ~ 350°C",
+      "material": "Ti Gr.1 / Gr.2 / Gr.7",
+      "standardLength": "맞춤 제작",
+      "endFitting": "고객 도면 기준"
+    },
+    "applications": [
+      "대용량 냉각 시스템",
+      "화학 플랜트 열교환",
+      "해수 담수화 설비"
+    ],
+    "features": [
+      "낮은 유로 저항",
+      "세정·유지보수 용이",
+      "대용량 대응"
+    ]
+  },
+  {
+    "id": "heat-exchanger-shell-tube",
+    "slug": "heat-exchanger-shell-tube",
+    "category": "heat-exchanger",
+    "categoryLabel": "열교환기 맞춤제작",
+    "name": "열교환기 맞춤제작 (쉘앤튜브형)",
+    "nameEn": "Custom Heat Exchanger — Shell & Tube Type",
+    "description": "티타늄 튜브를 쉘(외통) 내에 다수 배열한 쉘앤튜브 방식 열교환기. 고압·고유량 환경에서 신뢰성이 높으며 석유화학·발전 분야 표준 구조입니다.",
+    "image": "/images/products/heat-exchanger-square-2.jpg",
+    "images": [
+      "/images/products/heat-exchanger-square-2.jpg",
+      "/images/products/heat-exchanger-square-3.jpg"
+    ],
+    "grade": "Grade 1 / Grade 2 / Grade 7",
+    "specs": {
+      "nominalSize": "고객 사양",
+      "outerDiameter": "맞춤 제작",
+      "innerDiameter": "맞춤 제작",
+      "wallThickness": "0.4~2.0mm",
+      "bendRadius": "-",
+      "workingPressure": "최대 30 MPa",
+      "testPressure": "설계에 따름",
+      "temperatureRange": "-196°C ~ 350°C",
+      "material": "Ti Gr.1 / Gr.2 / Gr.7",
+      "standardLength": "맞춤 제작",
+      "endFitting": "플랜지 / 고객 도면 기준"
+    },
+    "applications": [
+      "석유화학 플랜트",
+      "발전소 냉각",
+      "해양플랜트",
+      "고압 공정 열교환"
+    ],
+    "features": [
+      "고압·고유량 대응",
+      "업계 표준 구조",
+      "쉘 재질 병행 선택 가능"
+    ]
+  },
+  {
+    "id": "socket",
+    "slug": "socket",
+    "category": "socket",
+    "categoryLabel": "주름관 소켓",
+    "name": "주름관 소켓",
+    "nameEn": "Corrugated Tube Socket",
+    "description": "티타늄 주름관 전용 소켓 피팅. 티타늄 소재는 완전 티타늄 계통 배관으로 이종금속 부식을 원천 차단하며, 황동 소재는 범용 배관 시스템과 경제적으로 연결할 수 있습니다.",
+    "image": "/images/products/socket-titanium-1.jpg",
+    "images": [
+      "/images/products/socket-titanium-1.jpg",
+      "/images/products/socket-titanium-2.jpg",
+      "/images/products/socket-brass-1.jpg",
+      "/images/products/socket-brass-2.jpg"
+    ],
+    "grade": "Ti Gr.2 / 황동 (Brass)",
+    "specs": {
+      "nominalSize": "10A (3/8\") / 15A (1/2\")",
+      "outerDiameter": "-",
+      "innerDiameter": "-",
+      "wallThickness": "-",
+      "bendRadius": "-",
+      "workingPressure": "10 MPa",
+      "testPressure": "15 MPa",
+      "temperatureRange": "Ti: -196°C ~ 280°C / 황동: -10°C ~ 120°C",
+      "material": "Ti Gr.2 / 황동 (Brass)",
+      "standardLength": "-",
+      "endFitting": "NPT / BSPT 수나사·암나사"
+    },
+    "applications": [
+      "반도체 순수 티타늄 계통 배관",
+      "강산·강알칼리 유체 라인",
+      "이종금속 부식 방지가 필요한 환경",
+      "일반 유체 배관 연결",
+      "범용 화학약품 이송"
+    ],
+    "features": [
+      "티타늄·황동 소재 선택 가능",
+      "NPT/BSPT 표준 규격",
+      "10A / 15A 호칭 대응"
+    ]
+  },
+  {
+    "id": "waste-heat-recovery",
+    "slug": "waste-heat-recovery",
+    "category": "waste-heat-recovery",
+    "categoryLabel": "폐열회수기",
+    "name": "무동력 티타늄 폐열회수기",
+    "nameEn": "Passively-driven Titanium Waste Heat Recovery Unit",
+    "description": "버려지는 배출수·폐수의 열에너지를 펌프 없이 자연 대류로 회수하는 ATX 독자 기술. 해양수산부 NET 신기술 인증(2024-0024호), 특허 등록(10-2832328호). 양식장·수산업체 전기요금 월 수백만 원 절감 실적.",
+    "image": "/images/products/whr/whr-exterior-nobg.png",
+    "images": [
+      "/images/products/whr/whr-exterior-nobg.png",
+      "/images/products/whr/whr-interior-tubes-1.jpg",
+      "/images/products/whr/whr-interior-tubes-2.jpg",
+      "/images/products/whr/whr-site-front.jpg",
+      "/images/products/whr/whr-install-1.jpg",
+      "/images/products/whr/whr-dimensions.jpg"
+    ],
+    "grade": "Grade 1 / Grade 2 / Grade 7",
+    "specs": {
+      "nominalSize": "고객 사양",
+      "outerDiameter": "맞춤 제작",
+      "innerDiameter": "맞춤 제작",
+      "wallThickness": "0.4~1.0mm",
+      "bendRadius": "설계에 따름",
+      "workingPressure": "최대 20 MPa",
+      "testPressure": "설계에 따름",
+      "temperatureRange": "-196°C ~ 350°C",
+      "material": "Ti Gr.1 / Gr.2 / Gr.7",
+      "standardLength": "맞춤 제작",
+      "endFitting": "고객 도면 기준"
+    },
+    "applications": [
+      "해수 양식장 배출수 열회수",
+      "활어차 냉각수 열회수",
+      "수산 가공장 폐수 열회수",
+      "냉각수 폐열 재활용",
+      "증기 응축 열회수",
+      "산업 공정 배기열 회수"
+    ],
+    "features": [
+      "NET 신기술 인증 (해양수산부 2024-0024호)",
+      "특허 등록 (10-2832328호)",
+      "무동력 — 펌프 전기요금 제로",
+      "월 수백만 원 전기요금 절감 실증",
+      "티타늄 주름관 고내식·고전열 효율"
+    ]
   }
 ]

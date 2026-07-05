@@ -19,9 +19,10 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, className }: ProductCardProps) {
   return (
-    <div
+    <Link
+      href={`/products/${product.slug}`}
       className={cn(
-        "bg-white border border-silver-100 rounded-xl shadow-ti-sm overflow-hidden group hover:-translate-y-0.5 transition-all duration-300",
+        "block bg-white border border-silver-100 rounded-xl shadow-ti-sm overflow-hidden group hover:-translate-y-0.5 transition-all duration-300",
         className
       )}
     >
@@ -61,13 +62,10 @@ export default function ProductCard({ product, className }: ProductCardProps) {
           </div>
         </div>
 
-        <Link
-          href={`/products/${product.slug}`}
-          className="flex items-center gap-1 text-accent text-sm font-semibold hover:gap-2 transition-all"
-        >
+        <span className="flex items-center gap-1 text-accent text-sm font-semibold group-hover:gap-2 transition-all">
           사양 보기 <ArrowRight className="w-4 h-4" />
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }

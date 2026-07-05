@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
 const quickLinks = [
@@ -30,31 +31,31 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-accent">
-                <span className="text-ti-950 font-black text-lg">T</span>
-              </div>
-              <div>
-                <div className="text-silver-200 font-black tracking-wider">ATX</div>
-                <div className="text-[10px] text-silver-600 tracking-[0.18em] uppercase">Titanium Tube</div>
-              </div>
+            <div className="mb-5">
+              <Image
+                src="/images/logo.png"
+                alt="ATX 티타늄 주름관"
+                width={100}
+                height={40}
+                className="h-9 w-auto object-contain"
+              />
             </div>
             <p className="text-sm leading-relaxed text-silver-600 mb-6">
-              티타늄 주름관·플렉시블 호스 전문 제조사.<br />
-              반도체·화학·항공·해양 산업에 최고 품질의 티타늄 배관 솔루션을 공급합니다.
+              티타늄, 특수비철 전문 기업.<br />
+              양식장 열교환 설비 관련 대응 경험 다수.
             </p>
             <div className="space-y-2.5 text-sm">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-accent flex-shrink-0" />
-                <span className="text-silver-400">031-000-0000</span>
+                <span className="text-silver-400">1544-1909</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent flex-shrink-0" />
-                <span className="text-silver-400">info@atx-titanium.co.kr</span>
+                <span className="text-silver-400">777@atx.kr</span>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-silver-400 leading-relaxed">경기도 OO시 OO구 OO로 000<br />OO산업단지 O-O</span>
+                <span className="text-silver-400 leading-relaxed">경기도 안산시 단원구 번영로 44번길 2</span>
               </div>
             </div>
           </div>

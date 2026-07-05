@@ -54,26 +54,31 @@ export default function WhyTitanium() {
 
         {/* Comparison Table */}
         <ScrollReveal delay={200}>
-          <div className="mt-16 bg-ti-900 rounded-2xl border border-ti-800 overflow-hidden">
+          <div className="mt-16 max-w-3xl mx-auto bg-ti-900 rounded-2xl border border-ti-800 overflow-hidden">
             <div className="px-6 py-4 border-b border-ti-800 flex items-center gap-3">
               <div className="metal-line w-6 h-px" />
               <h3 className="text-silver-200 font-bold text-lg">티타늄 vs 스테인리스(SUS 316L) 비교</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
+                <colgroup>
+                  <col className="w-1/4" />
+                  <col className="w-[37.5%]" />
+                  <col className="w-[37.5%]" />
+                </colgroup>
                 <thead>
                   <tr className="border-b border-ti-800">
-                    <th className="text-left py-3 px-6 text-silver-500 font-medium w-36">항목</th>
-                    <th className="text-left py-3 px-6 text-accent font-semibold">티타늄 주름관</th>
-                    <th className="text-left py-3 px-6 text-silver-600 font-medium">SUS 316L 주름관</th>
+                    <th className="text-center py-3 px-6 text-silver-500 font-medium bg-ti-950/50">항목</th>
+                    <th className="text-center py-3 px-6 text-accent font-semibold bg-accent/15 border-t-2 border-accent">티타늄 주름관</th>
+                    <th className="text-center py-3 px-6 text-silver-400 font-medium">SUS 316L 주름관</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonRows.map((row, i) => (
                     <tr key={row.property} className={`border-b border-ti-800/50 ${i % 2 === 0 ? "bg-ti-950/30" : ""}`}>
-                      <td className="py-3 px-6 text-silver-400 font-medium">{row.property}</td>
-                      <td className="py-3 px-6 text-silver-200">{row.titanium}</td>
-                      <td className="py-3 px-6 text-silver-600">{row.sus316}</td>
+                      <td className="py-3 px-6 text-center text-silver-400 font-medium bg-ti-950/50">{row.property}</td>
+                      <td className="py-3 px-6 text-center text-silver-200 bg-accent/10">{row.titanium}</td>
+                      <td className="py-3 px-6 text-center text-silver-400">{row.sus316}</td>
                     </tr>
                   ))}
                 </tbody>

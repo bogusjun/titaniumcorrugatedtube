@@ -3,9 +3,11 @@
 import { cn } from "@/lib/utils";
 
 const categories = [
-  { value: "all",            label: "전체" },
-  { value: "tube",           label: "티타늄 주름관" },
-  { value: "heat-exchanger", label: "코일형 열교환기" },
+  { value: "all",                  label: "전체" },
+  { value: "tube",                 label: "티타늄 주름관" },
+  { value: "heat-exchanger",       label: "열교환기 맞춤제작" },
+  { value: "waste-heat-recovery",  label: "폐열회수기" },
+  { value: "socket",               label: "주름관 소켓" },
 ];
 
 interface ProductFilterProps {

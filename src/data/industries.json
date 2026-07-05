@@ -1,5 +1,26 @@
 [
   {
+    "id": "aquaculture",
+    "slug": "aquaculture",
+    "name": "수산양식·식품",
+    "nameEn": "Aquaculture & Food",
+    "icon": "Fish",
+    "color": "#10b981",
+    "bgColor": "bg-emerald-50",
+    "description": "해수·양식용 온도조절 시스템에 폐열 회수 열교환기로 에너지 효율을 극대화합니다.",
+    "keyBenefits": [
+      "해수 직접 접촉 배관",
+      "폐열 회수 열교환기",
+      "식품 위생 기준 대응",
+      "양식장 에너지 절감"
+    ],
+    "cases": [
+      { "client": "활어 운반차 업체", "content": "해수 순환 열교환기 주름관 공급", "year": "2024" },
+      { "client": "해수 사우나", "content": "해수 가열 열교환기 시스템 구축", "year": "2023" }
+    ],
+    "image": "/images/industries/aquaculture.jpg"
+  },
+  {
     "id": "semiconductor",
     "slug": "semiconductor",
     "name": "반도체·디스플레이",
@@ -103,26 +124,5 @@
       { "client": "해양플랜트 업체", "content": "해수 처리 시스템 주름관 공급", "year": "2022" }
     ],
     "image": "/images/industries/marine.jpg"
-  },
-  {
-    "id": "aquaculture",
-    "slug": "aquaculture",
-    "name": "수산양식·식품",
-    "nameEn": "Aquaculture & Food",
-    "icon": "Fish",
-    "color": "#10b981",
-    "bgColor": "bg-emerald-50",
-    "description": "해수·양식용 온도조절 시스템에 폐열 회수 열교환기로 에너지 효율을 극대화합니다.",
-    "keyBenefits": [
-      "해수 직접 접촉 배관",
-      "폐열 회수 열교환기",
-      "식품 위생 기준 대응",
-      "양식장 에너지 절감"
-    ],
-    "cases": [
-      { "client": "활어 운반차 업체", "content": "해수 순환 열교환기 주름관 공급", "year": "2024" },
-      { "client": "해수 사우나", "content": "해수 가열 열교환기 시스템 구축", "year": "2023" }
-    ],
-    "image": "/images/industries/aquaculture.jpg"
   }
 ]

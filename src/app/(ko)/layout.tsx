@@ -1,0 +1,25 @@
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { headers } from "next/headers";
+
+export default async function KoLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") ?? "";
+  const isAdmin = pathname.startsWith("/admin");
+
+  if (isAdmin) {
+    return <>{children}</>;
+  }
+
+  return (
+    <>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
+}
