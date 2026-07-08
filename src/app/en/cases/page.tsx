@@ -47,7 +47,7 @@ export default function EnCasesPage() {
         </h1>
         <p className="text-silver-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-12">
           Chemical plants, semiconductor, electroplating, marine aquaculture, nuclear —<br className="hidden sm:block" />
-          ATX's technical capability has already been proven in environments where corrosion damages equipment.
+          ATX&apos;s technical capability has already been proven in environments where corrosion damages equipment.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-20">
           <div className="text-center">

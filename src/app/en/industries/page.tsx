@@ -313,7 +313,7 @@ export default function EnIndustriesPage() {
             Need a heat exchanger tailored to your environment?
           </h2>
           <p className="text-silver-500 text-base mb-8 max-w-xl mx-auto">
-            Tell us your application environment, fluid type, and temperature conditions — we'll recommend the optimal configuration and provide a quote.
+            Tell us your application environment, fluid type, and temperature conditions — we&apos;ll recommend the optimal configuration and provide a quote.
           </p>
           <Link href="/en/support" className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-base">
             Request a Free Quote <ArrowRight className="w-5 h-5" />

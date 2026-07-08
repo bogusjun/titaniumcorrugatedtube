@@ -120,7 +120,7 @@ export default function EnAboutPage() {
                 <div className="bg-ti-950 rounded-2xl px-6 py-5 flex flex-col gap-3">
                   <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since 1991</p>
                   <p className="text-silver-200 font-bold text-lg leading-snug">
-                    30+ Years of Pure Titanium Expertise —<br />Korea's Only Comprehensive Titanium Piping Specialist
+                    30+ Years of Pure Titanium Expertise —<br />Korea&apos;s Only Comprehensive Titanium Piping Specialist
                   </p>
                   <p className="text-silver-400 text-sm leading-relaxed">
                     All processes in-house: design, forming, welding, and inspection. Supplying to major domestic and international clients including POSCO, Korea Electric Power, and PETRONAS — our technical capability is proven.
