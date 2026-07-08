@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { checkAdminAuth } from '@/lib/admin-auth';
 import Anthropic from '@anthropic-ai/sdk';
