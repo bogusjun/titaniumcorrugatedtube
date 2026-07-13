@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 const cases = [
   {
     id: 1,
+    title: "NEX-REVO 향 티타늄 코일 열교환기",
+    location: "일본 · NEX-REVO(株式会社ネクスレボ)",
+    description: "고부식 유체 환경에서 사용되는 나선형 티타늄 주름관 열교환 코일. 도면 사양에 맞춘 다권·다열 코일 구조로 4대 세트 납품, 일본 현지 라인에 투입.",
+    image: "/images/products/case-nexrevo-japan-4.jpg",
+    tag: "해외 수출 · 일본",
+  },
+  {
+    id: 2,
     title: "육상 양식장 해수 배관 시스템",
     location: "전남 여수",
     description: "PVC 배관의 잦은 크랙과 해수 부식 문제를 티타늄 주름관으로 해결. 설치 후 3년 이상 무교체 운영 중.",
@@ -16,7 +24,7 @@ const cases = [
     tag: "수산·양식",
   },
   {
-    id: 2,
+    id: 3,
     title: "활어 운반차 수조 배관",
     location: "활어 운반 전문 업체",
     description: "이동 중 진동과 해수 부식이 동시에 작용하는 가혹한 환경. 주름관의 유연성과 티타늄의 내식성으로 문제 해결.",
@@ -24,7 +32,7 @@ const cases = [
     tag: "수산·물류",
   },
   {
-    id: 3,
+    id: 4,
     title: "해수 사우나 온수 배관",
     location: "해수 찜질 시설",
     description: "고온 해수가 순환하는 배관, 일반 스테인리스 교체 주기 6개월. 티타늄 전환 후 부식 문제 완전 해소.",
@@ -51,11 +59,11 @@ export default function CasesPage() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-20">
           <div className="text-center">
-            <span className="block text-3xl font-black text-accent mb-1">수산·양식</span>
+            <span className="block text-3xl font-black text-accent mb-1">일본 수출</span>
             <p className="text-silver-400 text-sm leading-relaxed">
-              해수 배관 전문
+              NEX-REVO 코일 열교환기
               <br />
-              <span className="text-silver-500 text-xs">양식장 · 활어차 · 해수시설</span>
+              <span className="text-silver-500 text-xs">해외 현지 라인 직납 실적</span>
             </p>
           </div>
           <div className="text-center">

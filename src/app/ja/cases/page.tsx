@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 const cases = [
   {
     id: 1,
+    title: "NEX-REVO様向け チタン製コイル熱交換器",
+    location: "日本・株式会社ネクスレボ",
+    description: "高腐食性の流体環境で使用されるスパイラル型チタン波管熱交コイル。図面仕様に沿った多巻・多列コイル構造で4基セット納入し、日本国内のラインに投入。",
+    image: "/images/products/case-nexrevo-japan-4.jpg",
+    tag: "海外輸出・日本",
+  },
+  {
+    id: 2,
     title: "陸上養殖場 海水配管システム",
     location: "韓国 全南 麗水",
     description: "PVC配管の頻繁なクラックと海水腐食問題をチタン波管で解決。設置後3年以上無交換で稼働中。",
@@ -16,7 +24,7 @@ const cases = [
     tag: "水産・養殖",
   },
   {
-    id: 2,
+    id: 3,
     title: "活魚運搬車 水槽配管",
     location: "活魚運搬専門業者",
     description: "移動中の振動と海水腐食が同時に作用する過酷な環境。波管の柔軟性とチタンの耐食性で問題を解決。",
@@ -24,7 +32,7 @@ const cases = [
     tag: "水産・物流",
   },
   {
-    id: 3,
+    id: 4,
     title: "海水サウナ 温水配管",
     location: "海水温浴施設",
     description: "高温海水が循環する配管で一般ステンレスの交換周期は6ヶ月。チタン転換後、腐食問題を完全解消。",
@@ -51,11 +59,11 @@ export default function JaCasesPage() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-20">
           <div className="text-center">
-            <span className="block text-3xl font-black text-accent mb-1">水産・養殖</span>
+            <span className="block text-3xl font-black text-accent mb-1">日本輸出</span>
             <p className="text-silver-400 text-sm leading-relaxed">
-              海水配管専門
+              NEX-REVO様コイル熱交換器
               <br />
-              <span className="text-silver-500 text-xs">養殖場 · 活魚車 · 海水施設</span>
+              <span className="text-silver-500 text-xs">海外現地ラインへ直接納入実績</span>
             </p>
           </div>
           <div className="text-center">

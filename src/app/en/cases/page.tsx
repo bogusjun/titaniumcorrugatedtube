@@ -9,6 +9,14 @@ export const metadata: Metadata = {
 const cases = [
   {
     id: 1,
+    title: "Titanium Coil Heat Exchanger for NEX-REVO",
+    location: "Japan · NEX-REVO Co., Ltd.",
+    description: "Spiral titanium corrugated coils built for a highly corrosive process fluid environment. Delivered as a four-unit set with multi-turn, multi-column geometry per customer drawing and deployed on a Japanese production line.",
+    image: "/images/products/case-nexrevo-japan-4.jpg",
+    tag: "Export · Japan",
+  },
+  {
+    id: 2,
     title: "Land-Based Aquaculture Seawater Piping System",
     location: "Yeosu, South Jeolla Province, Korea",
     description: "Frequent cracks and seawater corrosion issues with PVC piping resolved using titanium corrugated tubes. Operating for 3+ years without replacement since installation.",
@@ -16,7 +24,7 @@ const cases = [
     tag: "Aquaculture",
   },
   {
-    id: 2,
+    id: 3,
     title: "Live Fish Transport Tank Piping",
     location: "Live Fish Transport Specialist",
     description: "Harsh environment where vibration during transit and seawater corrosion act simultaneously. Problem resolved with corrugated tube flexibility and titanium's corrosion resistance.",
@@ -24,7 +32,7 @@ const cases = [
     tag: "Aquaculture & Logistics",
   },
   {
-    id: 3,
+    id: 4,
     title: "Seawater Sauna Hot Water Piping",
     location: "Seawater Thermal Bath Facility",
     description: "General stainless steel required replacement every 6 months in piping circulating high-temperature seawater. Corrosion issues completely eliminated after switching to titanium.",
@@ -51,11 +59,11 @@ export default function EnCasesPage() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-10 sm:gap-20">
           <div className="text-center">
-            <span className="block text-3xl font-black text-accent mb-1">Aquaculture</span>
+            <span className="block text-3xl font-black text-accent mb-1">Export to Japan</span>
             <p className="text-silver-400 text-sm leading-relaxed">
-              Seawater Piping Specialist
+              NEX-REVO Coil Heat Exchanger
               <br />
-              <span className="text-silver-500 text-xs">Farms · Transport Tanks · Seawater Facilities</span>
+              <span className="text-silver-500 text-xs">Direct delivery to overseas production line</span>
             </p>
           </div>
           <div className="text-center">
