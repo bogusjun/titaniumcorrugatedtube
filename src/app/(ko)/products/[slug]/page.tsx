@@ -821,6 +821,13 @@ function TubeInstallSection() {
 
 const installCases = [
   {
+    image: "/images/products/case-nexrevo-japan-4.jpg",
+    location: "일본 NEX-REVO(株式会社ネクスレボ)",
+    tag: "일본 수출",
+    tagColor: "bg-accent",
+    desc: "고부식 유체 라인에 적용되는 나선형 티타늄 코일 열교환기. 다권·다열 구조 4대 세트로 도면 사양에 맞춰 제작·직납.",
+  },
+  {
     image: "/images/products/case-fish-farm-yeosu.jpg",
     location: "여수 해수 양식장",
     tag: "양식장",
@@ -852,7 +859,7 @@ function HeatExchangerCaseSection() {
         <span className="ml-auto text-xs bg-accent/20 text-accent px-2.5 py-1 rounded-full font-semibold">실제 현장</span>
       </div>
       <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {installCases.map((c) => (
             <div key={c.location} className="rounded-2xl overflow-hidden border border-silver-100 bg-silver-50 flex flex-col">
               <div className="relative aspect-[4/3]">
@@ -1592,7 +1599,10 @@ export default function ProductDetailPage({ params }: Props) {
 
         {/* Spec Section */}
         {isStandard ? (
-          <TubeStandardSection />
+          <>
+            <TubeStandardSection />
+            <HeatExchangerCaseSection />
+          </>
         ) : isWasteHeatRecovery ? (
           <>
             <div className="bg-white rounded-2xl border border-silver-100 overflow-hidden mb-8">
