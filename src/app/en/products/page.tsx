@@ -35,10 +35,12 @@ export default function EnProductsPage({
 
       <div className="container-pad py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <ProductListClient
-            products={productsData}
-            initialCategory={searchParams.category || "all"}
-          />
+          <Suspense fallback={null}>
+            <ProductListClient
+              products={productsData}
+              initialCategory={searchParams.category || "all"}
+            />
+          </Suspense>
         </div>
       </div>
     </div>

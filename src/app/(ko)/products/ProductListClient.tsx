@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/product/ProductCard";
 import ProductFilter from "@/components/product/ProductFilter";
 
@@ -29,6 +30,11 @@ interface Props {
 export default function ProductListClient({ products, initialCategory = "all" }: Props) {
   const [category, setCategory] = useState(initialCategory);
   const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setCategory(searchParams.get("category") || "all");
+  }, [searchParams]);
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
