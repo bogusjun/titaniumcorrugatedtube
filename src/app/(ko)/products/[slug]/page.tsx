@@ -23,9 +23,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = productsData.find((p) => p.slug === params.slug);
   if (!product) return {};
+  const url = `https://www.atx-titanium.co.kr/products/${product.slug}`;
+  const ogImage = product.images?.[0]
+    ? { url: product.images[0], width: 1200, height: 630, alt: product.name }
+    : { url: "/images/og-image.jpg", width: 1200, height: 630, alt: product.name };
   return {
     title: product.name,
     description: product.description,
+    alternates: {
+      canonical: url,
+      languages: {
+        ko: url,
+        en: `https://www.atx-titanium.co.kr/en/products/${product.slug}`,
+        ja: `https://www.atx-titanium.co.kr/ja/products/${product.slug}`,
+      },
+    },
+    openGraph: {
+      title: `${product.name} | ATX 티타늄 주름관`,
+      description: product.description,
+      url,
+      images: [ogImage],
+    },
   };
 }
 
@@ -1450,8 +1468,41 @@ export default function ProductDetailPage({ params }: Props) {
     ? productsData.filter((p) => relatedSlugs[product.slug].includes(p.slug))
     : productsData.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, 3);
 
+  const productUrl = `https://www.atx-titanium.co.kr/products/${product.slug}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: product.images?.[0] ?? product.image,
+    url: productUrl,
+    brand: { "@type": "Brand", name: "ATX" },
+    manufacturer: {
+      "@type": "Organization",
+      name: "ATX Co., Ltd.",
+      url: "https://www.atx-titanium.co.kr",
+    },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "KRW",
+      seller: { "@type": "Organization", name: "ATX Co., Ltd." },
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "홈", item: "https://www.atx-titanium.co.kr" },
+      { "@type": "ListItem", position: 2, name: "제품 소개", item: "https://www.atx-titanium.co.kr/products" },
+      { "@type": "ListItem", position: 3, name: product.name, item: productUrl },
+    ],
+  };
+
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* Breadcrumb */}
       <div className="bg-white border-b border-silver-100">
         <div className="container-pad py-3">

@@ -10,6 +10,7 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.atx-titanium.co.kr"),
   title: {
     default: "ATX 티타늄 주름관 | 티타늄 플렉시블 호스 전문 제조",
     template: "%s | ATX 티타늄 주름관",
@@ -41,18 +42,43 @@ export const metadata: Metadata = {
     siteName: "ATX 티타늄 주름관",
     title: "ATX 티타늄 주름관 | 전문 제조사",
     description: "반도체·화학·항공·해양 산업용 고품질 티타늄 주름관 전문 제조",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX 티타늄 주름관 — 고부식 환경 열교환 전문 제조사" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "ATX 티타늄 주름관",
     description: "티타늄 주름관 전문 제조사",
   },
+  alternates: {
+    canonical: "https://www.atx-titanium.co.kr",
+    languages: {
+      ko: "https://www.atx-titanium.co.kr",
+      en: "https://www.atx-titanium.co.kr/en",
+      ja: "https://www.atx-titanium.co.kr/ja",
+    },
+  },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ATX Co., Ltd.",
+  alternateName: "ATX 티타늄 주름관",
+  url: "https://www.atx-titanium.co.kr",
+  logo: "https://www.atx-titanium.co.kr/images/logo.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+82-31-000-0000",
+    contactType: "sales",
+    areaServed: ["KR", "JP", "US"],
+    availableLanguage: ["Korean", "Japanese", "English"],
+  },
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -62,6 +88,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={notoSansKR.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+      </head>
       <body className="antialiased font-sans">
         {children}
       </body>
