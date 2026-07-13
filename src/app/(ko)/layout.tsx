@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { headers } from "next/headers";
@@ -17,7 +18,9 @@ export default async function KoLayout({
 
   return (
     <>
-      <Header />
+      <Suspense fallback={null}>
+        <Header />
+      </Suspense>
       <main>{children}</main>
       <Footer />
     </>

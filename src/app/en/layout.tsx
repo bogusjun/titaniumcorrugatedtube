@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import EnHeader from "@/components/layout/en/Header";
 import EnFooter from "@/components/layout/en/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.atx-titanium.co.kr"),
   title: {
     default: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
     template: "%s | ATX Titanium",
@@ -34,7 +36,15 @@ export const metadata: Metadata = {
     siteName: "ATX Titanium",
     title: "ATX Titanium Corrugated Tube | Manufacturer",
     description: "High-quality titanium corrugated tubes for semiconductor, chemical, aerospace & marine industries",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX Titanium Corrugated Tube — Corrosion-Resistant Heat Exchanger Manufacturer" }],
+  },
+  alternates: {
+    canonical: "https://www.atx-titanium.co.kr/en",
+    languages: {
+      ko: "https://www.atx-titanium.co.kr",
+      en: "https://www.atx-titanium.co.kr/en",
+      ja: "https://www.atx-titanium.co.kr/ja",
+    },
   },
   robots: {
     index: true,
@@ -50,7 +60,9 @@ export default function EnLayout({
 }) {
   return (
     <>
-      <EnHeader />
+      <Suspense fallback={null}>
+        <EnHeader />
+      </Suspense>
       <main>{children}</main>
       <EnFooter />
     </>
