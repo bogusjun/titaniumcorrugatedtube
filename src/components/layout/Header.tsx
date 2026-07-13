@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const productItems = [
   { label: "티타늄 주름관",   href: "/products?category=tube" },
@@ -112,6 +113,7 @@ export default function Header() {
             <Link href="/support" className="btn-primary text-sm py-2 px-5">
               견적 문의
             </Link>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Toggle */}
@@ -151,10 +153,13 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-ti-800">
+            <div className="pt-4 border-t border-ti-800 space-y-3">
               <Link href="/support" className="btn-primary w-full justify-center">
                 견적 문의
               </Link>
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </div>

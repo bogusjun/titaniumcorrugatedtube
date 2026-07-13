@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const productItems = [
   { label: "チタン波管",       href: "/ja/products?category=tube" },
@@ -110,6 +111,7 @@ export default function JaHeader() {
             <Link href="/ja/support" className="btn-primary text-sm py-2 px-5">
               お見積もり
             </Link>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Toggle */}
@@ -147,10 +149,13 @@ export default function JaHeader() {
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-ti-800">
+            <div className="pt-4 border-t border-ti-800 space-y-3">
               <Link href="/ja/support" className="btn-primary w-full justify-center">
                 お見積もり
               </Link>
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </div>
