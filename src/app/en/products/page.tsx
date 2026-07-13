@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import productsData from "@/data/products.json";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Titanium corrugated tube 10A · 15A · 20A specification tables and coil-type heat exchanger detailed specifications.",
+  description: "Titanium corrugated tube 10A · 15A specification tables and coil-type heat exchanger detailed specifications.",
 };
 
 interface SearchParams {

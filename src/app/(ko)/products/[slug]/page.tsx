@@ -150,7 +150,6 @@ const tubeEnSpecs = [
 const tubeSpecData = [
   { size: "10A", outerDiameter: "OD 16.4mm", innerDiameter: "11.7mm", wallThickness: "0.3mm", weight: "0.083 kg/m", bendRadius: "±0.3mm", standardLength: "1~100m", material: "Ti Grade 2" },
   { size: "15A", outerDiameter: "OD 19.4mm", innerDiameter: "15.4mm", wallThickness: "0.3mm", weight: "0.104 kg/m", bendRadius: "±0.3mm", standardLength: "1~100m", material: "Ti Grade 2" },
-  { size: "20A", outerDiameter: "OD 25.2mm", innerDiameter: "22.5mm", wallThickness: "0.35mm", weight: "0.160 kg/m", bendRadius: "±0.3mm", standardLength: "1~100m", material: "Ti Grade 2" },
 ];
 
 function TubeVariantTable({ variants }: { variants: Variant[] }) {

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import productsData from "@/data/products.json";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
 
 export const metadata: Metadata = {
   title: "製品紹介",
-  description: "チタン波管 10A・15A・20A 規格表およびコイル型熱交換器詳細仕様。",
+  description: "チタン波管 10A・15A 規格表およびコイル型熱交換器詳細仕様。",
 };
 
 interface SearchParams {
