@@ -17,21 +17,21 @@ export default function TabWrapper({ productContent }: { productContent: React.R
   return (
     <>
       {/* 탭 네비게이션 — sticky */}
-      <div className="sticky top-16 md:top-20 z-40 bg-ti-950/95 backdrop-blur-md border-b border-ti-800 shadow-ti-md">
+      <div className="sticky top-16 md:top-20 z-40 bg-ti-950/95 backdrop-blur-md border-b-2 border-accent/30 shadow-ti-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-1 h-12">
+          <div className="grid grid-cols-2 gap-2 md:gap-3 py-2 md:py-3">
             {TABS.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => setActiveTab(id)}
                 className={`
-                  flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-colors
+                  flex items-center justify-center gap-2 md:gap-3 px-4 py-3 md:py-4 rounded-lg text-sm md:text-base font-bold transition-all
                   ${activeTab === id
-                    ? "bg-accent text-white"
-                    : "text-silver-400 hover:text-silver-200 hover:bg-ti-800/60"}
+                    ? "bg-accent text-white shadow-lg shadow-accent/30 scale-[1.02]"
+                    : "bg-ti-900 border border-ti-700 text-silver-300 hover:text-white hover:border-accent/50 hover:bg-ti-800"}
                 `}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4 md:w-5 md:h-5" />
                 {label}
               </button>
             ))}
