@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+import SourceCapture from "@/components/analytics/SourceCapture";
+import Analytics from "@/components/analytics/Analytics";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -10,7 +12,7 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.atx-titanium.co.kr"),
+  metadataBase: new URL("https://tube.atx.kr"),
   title: {
     default: "ATX 티타늄 주름관 | 티타늄 플렉시블 호스 전문 제조",
     template: "%s | ATX 티타늄 주름관",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://www.atx-titanium.co.kr",
+    url: "https://tube.atx.kr",
     siteName: "ATX 티타늄 주름관",
     title: "ATX 티타늄 주름관 | 전문 제조사",
     description: "반도체·화학·항공·해양 산업용 고품질 티타늄 주름관 전문 제조",
@@ -50,11 +52,11 @@ export const metadata: Metadata = {
     description: "티타늄 주름관 전문 제조사",
   },
   alternates: {
-    canonical: "https://www.atx-titanium.co.kr",
+    canonical: "https://tube.atx.kr",
     languages: {
-      ko: "https://www.atx-titanium.co.kr",
-      en: "https://www.atx-titanium.co.kr/en",
-      ja: "https://www.atx-titanium.co.kr/ja",
+      ko: "https://tube.atx.kr",
+      en: "https://tube.atx.kr/en",
+      ja: "https://tube.atx.kr/ja",
     },
   },
   robots: {
@@ -69,11 +71,11 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "ATX Co., Ltd.",
   alternateName: "ATX 티타늄 주름관",
-  url: "https://www.atx-titanium.co.kr",
-  logo: "https://www.atx-titanium.co.kr/images/logo.png",
+  url: "https://tube.atx.kr",
+  logo: "https://tube.atx.kr/images/logo.png",
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+82-31-000-0000",
+    telephone: "+82-1544-1909",
     contactType: "sales",
     areaServed: ["KR", "JP", "US"],
     availableLanguage: ["Korean", "Japanese", "English"],
@@ -96,6 +98,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased font-sans">
         {children}
+        <SourceCapture />
+        <Analytics />
       </body>
     </html>
   );

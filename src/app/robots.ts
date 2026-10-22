@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/_next/"],
+      disallow: ["/api/", "/admin"],
     },
-    sitemap: "https://www.atx-titanium.co.kr/sitemap.xml",
+    sitemap: "https://tube.atx.kr/sitemap.xml",
   };
 }

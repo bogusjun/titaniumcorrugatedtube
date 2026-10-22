@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import productsData from "@/data/products.json";
 
-const baseUrl = "https://www.atx-titanium.co.kr";
+const baseUrl = "https://tube.atx.kr";
 
 const staticRoutes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },

@@ -4,7 +4,7 @@ import JaHeader from "@/components/layout/ja/Header";
 import JaFooter from "@/components/layout/ja/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.atx-titanium.co.kr"),
+  metadataBase: new URL("https://tube.atx.kr"),
   title: {
     default: "ATX チタン波管 | チタン製フレキシブルホース専門メーカー",
     template: "%s | ATX チタン波管",
@@ -32,18 +32,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: "https://www.atx-titanium.co.kr/ja",
+    url: "https://tube.atx.kr/ja",
     siteName: "ATX チタン波管",
     title: "ATX チタン波管 | 専門メーカー",
     description: "半導体・化学・航空・海洋産業向け高品質チタン波管専門メーカー",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX チタン波管 — 耐食性熱交換専門メーカー" }],
   },
   alternates: {
-    canonical: "https://www.atx-titanium.co.kr/ja",
+    canonical: "https://tube.atx.kr/ja",
     languages: {
-      ko: "https://www.atx-titanium.co.kr",
-      en: "https://www.atx-titanium.co.kr/en",
-      ja: "https://www.atx-titanium.co.kr/ja",
+      ko: "https://tube.atx.kr",
+      en: "https://tube.atx.kr/en",
+      ja: "https://tube.atx.kr/ja",
     },
   },
   robots: {

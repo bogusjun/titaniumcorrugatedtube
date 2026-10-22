@@ -4,7 +4,7 @@ import EnHeader from "@/components/layout/en/Header";
 import EnFooter from "@/components/layout/en/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.atx-titanium.co.kr"),
+  metadataBase: new URL("https://tube.atx.kr"),
   title: {
     default: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
     template: "%s | ATX Titanium",
@@ -32,18 +32,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.atx-titanium.co.kr/en",
+    url: "https://tube.atx.kr/en",
     siteName: "ATX Titanium",
     title: "ATX Titanium Corrugated Tube | Manufacturer",
     description: "High-quality titanium corrugated tubes for semiconductor, chemical, aerospace & marine industries",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX Titanium Corrugated Tube — Corrosion-Resistant Heat Exchanger Manufacturer" }],
   },
   alternates: {
-    canonical: "https://www.atx-titanium.co.kr/en",
+    canonical: "https://tube.atx.kr/en",
     languages: {
-      ko: "https://www.atx-titanium.co.kr",
-      en: "https://www.atx-titanium.co.kr/en",
-      ja: "https://www.atx-titanium.co.kr/ja",
+      ko: "https://tube.atx.kr",
+      en: "https://tube.atx.kr/en",
+      ja: "https://tube.atx.kr/ja",
     },
   },
   robots: {

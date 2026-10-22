@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = productsData.find((p) => p.slug === params.slug);
   if (!product) return {};
-  const url = `https://www.atx-titanium.co.kr/products/${product.slug}`;
+  const url = `https://tube.atx.kr/products/${product.slug}`;
   const ogImage = product.images?.[0]
     ? { url: product.images[0], width: 1200, height: 630, alt: product.name }
     : { url: "/images/og-image.jpg", width: 1200, height: 630, alt: product.name };
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: url,
       languages: {
         ko: url,
-        en: `https://www.atx-titanium.co.kr/en/products/${product.slug}`,
-        ja: `https://www.atx-titanium.co.kr/ja/products/${product.slug}`,
+        en: `https://tube.atx.kr/en/products/${product.slug}`,
+        ja: `https://tube.atx.kr/ja/products/${product.slug}`,
       },
     },
     openGraph: {
@@ -1475,7 +1475,7 @@ export default function ProductDetailPage({ params }: Props) {
     ? productsData.filter((p) => relatedSlugs[product.slug].includes(p.slug))
     : productsData.filter((p) => p.slug !== product.slug && p.category === product.category).slice(0, 3);
 
-  const productUrl = `https://www.atx-titanium.co.kr/products/${product.slug}`;
+  const productUrl = `https://tube.atx.kr/products/${product.slug}`;
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -1487,7 +1487,7 @@ export default function ProductDetailPage({ params }: Props) {
     manufacturer: {
       "@type": "Organization",
       name: "ATX Co., Ltd.",
-      url: "https://www.atx-titanium.co.kr",
+      url: "https://tube.atx.kr",
     },
     offers: {
       "@type": "Offer",
@@ -1500,8 +1500,8 @@ export default function ProductDetailPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "홈", item: "https://www.atx-titanium.co.kr" },
-      { "@type": "ListItem", position: 2, name: "제품 소개", item: "https://www.atx-titanium.co.kr/products" },
+      { "@type": "ListItem", position: 1, name: "홈", item: "https://tube.atx.kr" },
+      { "@type": "ListItem", position: 2, name: "제품 소개", item: "https://tube.atx.kr/products" },
       { "@type": "ListItem", position: 3, name: product.name, item: productUrl },
     ],
   };

@@ -11,18 +11,18 @@ export const metadata: Metadata = {
   description:
     "반도체·화학·해양·항공우주 산업의 고부식 환경 열교환기용 티타늄 주름관 전문 제조사. Grade 1/2/7 티타늄, 소량 1개부터 대량까지 맞춤 공급.",
   alternates: {
-    canonical: "https://www.atx-titanium.co.kr",
+    canonical: "https://tube.atx.kr",
     languages: {
-      ko: "https://www.atx-titanium.co.kr",
-      en: "https://www.atx-titanium.co.kr/en",
-      ja: "https://www.atx-titanium.co.kr/ja",
+      ko: "https://tube.atx.kr",
+      en: "https://tube.atx.kr/en",
+      ja: "https://tube.atx.kr/ja",
     },
   },
   openGraph: {
     title: "ATX 티타늄 주름관 | 고부식 환경 열교환 전문 제조사",
     description:
       "반도체·화학·해양·항공우주 산업의 고부식 환경 열교환기용 티타늄 주름관 전문 제조사.",
-    url: "https://www.atx-titanium.co.kr",
+    url: "https://tube.atx.kr",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX 티타늄 주름관 — 고부식 환경 열교환 전문 제조사" }],
   },
 };
@@ -31,10 +31,10 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "ATX 티타늄 주름관",
-  url: "https://www.atx-titanium.co.kr",
+  url: "https://tube.atx.kr",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://www.atx-titanium.co.kr/products?category={search_term_string}",
+    target: "https://tube.atx.kr/products?category={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };

@@ -102,7 +102,7 @@ export default function JaHeader() {
           {/* Right Actions */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+82-31-000-0000"
+              href="tel:+82-1544-1909"
               className="flex items-center gap-1.5 text-silver-200 hover:text-white text-sm transition-colors"
             >
               <Phone className="w-4 h-4" />
