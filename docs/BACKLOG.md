@@ -19,7 +19,6 @@
 
 ## 높음
 
-- [ ] **견적 폼 파일 첨부가 전송되지 않음** — 국문 폼의 「도면·파일 첨부」는 화면에서 고르기만 되고 서버로 보내지 않음. 손님은 보냈다고 생각함. Vercel Blob·Supabase Storage에 올린 뒤 링크를 메일에 넣거나, 첨부 칸을 없애고 「메일로 보내 주세요」 안내로 바꾸기. Vercel 함수 요청 본문 4.5MB 제한 주의 (2026-10-27 · `src/app/(ko)/support/ContactForm.tsx`)
 - [ ] **영문·일문 제품 상세가 「Coming Soon」** — 7개 제품 × 2개 언어 페이지가 한 줄짜리인데 sitemap·hreflang에 올라가 있음. 번역 페이지를 만들거나, 그 전까지 sitemap·hreflang에서 빼고 noindex (2026-10-27 · `src/app/en|ja/products/[slug]/page.tsx`, `src/app/sitemap.ts`)
 - [ ] **견적 문의 백업 저장·실패 알림** — Gmail SMTP 발송이 실패하면 문의가 사라지고 서버 로그에만 남음. DB나 시트에 함께 저장하고 실패 시 알림 (2026-10-23 · `src/app/api/contact/route.ts`)
 - [ ] **견적 폼 스팸 방어** — honeypot, 요청 횟수 제한, Turnstile 등이 없음. 스팸이 ATX Work를 거쳐 노션 영업 ToDo까지 들어감 (2026-10-23 · `src/app/api/contact/route.ts`)
@@ -36,6 +35,8 @@
 - [ ] **보안 헤더** — CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy 없음. `poweredByHeader: false`로 X-Powered-By 숨기기 (2026-10-23 · `next.config.mjs`)
 - [ ] **오류·가동 감시** — Sentry 같은 오류 수집이나 가동 감시가 없어 폼이 고장 나도 알 수 없음 (2026-10-23)
 - [ ] **sitemap 날짜** — `lastModified`가 배포할 때마다 그 시각으로 찍혀 변경 신호가 무의미 (2026-10-23 · `src/app/sitemap.ts`)
+- [ ] **영문·일문 견적 폼에 첨부 기능 없음** — 국문 폼만 도면·사진 첨부가 있음. 같은 규칙(`@/lib/attachments`)으로 붙이면 됨 (2026-10-27 · `src/app/en|ja/support/ContactForm.tsx`)
+- [ ] **4MB 넘는 도면 받기** — 지금은 Vercel 함수 요청 한도(4.5MB) 때문에 첨부 합계 4MB, 넘으면 메일로 안내. 큰 DWG가 자주 오면 Vercel Blob(또는 Supabase Storage)에 브라우저에서 바로 올리고 서버가 받아 메일에 붙인 뒤 지우는 방식으로 확장. Vercel에서 Blob 저장소 생성 필요 (2026-10-27 · `src/lib/attachments.ts`)
 - [ ] **Next 16 대비** — 15.5는 보안 패치만 받는 구버전 라인. `next lint`가 15.5에서 사용 중단 예고 → ESLint CLI로 전환. postcss `overrides`는 Next 16에서 정리 (2026-10-27 · `package.json`)
 
 ## 장기
@@ -48,7 +49,8 @@
 
 ## 완료
 
-- [x] Next 15.5 · React 19 · nodemailer 10 업그레이드, `npm audit` 0건 (2026-10-27 · 브랜치 `fix/security-privacy-og`)
+- [x] 견적 폼 도면·사진 첨부가 실제로 메일에 첨부되도록 수정 — 최대 3개·합계 4MB, 1MB 넘는 사진은 자동 축소, 끌어다 놓기·개별 취소, 서버 재검증, 방침 수집 항목에 첨부 파일 추가 (2026-10-27)
+- [x] Next 15.5 · React 19 · nodemailer 10 업그레이드, `npm audit` 0건 (2026-10-27 · 4b1f779)
 - [x] 개인정보처리방침(국·영·일) + 견적 폼 필수 동의, 서버 검증 (2026-10-27)
 - [x] OG 이미지 — 사이트 공통 3장, 제품별 7장 (2026-10-27)
 - [x] GA4·네이버 애널리틱스 ID를 환경변수로, 견적 접수 시 `generate_lead` 이벤트 (2026-10-27)

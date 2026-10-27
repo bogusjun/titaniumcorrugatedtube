@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { PRIVACY_EFFECTIVE_DATE } from "@/components/legal/privacy-content";
+import {
+  ATTACH_MAX_FILES,
+  ATTACH_MAX_TOTAL_BYTES,
+  formatBytes,
+  isAllowedAttachment,
+} from "@/lib/attachments";
 
 /**
  * 견적·문의 폼 → 메일
@@ -10,6 +16,7 @@ import { PRIVACY_EFFECTIVE_DATE } from "@/components/legal/privacy-content";
  * 본문(text)은 「라벨: 값」 형식이라 처리기가 그대로 읽는다 — 라벨·제목을 바꾸면 atx-worklog
  * scripts/gmail/gmail-en-inquiry-processor.js 의 TUBE_FORM 도 같이 바꿔야 한다.
  * 업체명을 「[테스트]」로 시작하면 처리기가 출처만 남기고 노션에 올리지 않는다(시험 제출).
+ * 도면·사진 첨부는 메일 첨부로 붙이고, 파일 이름 목록은 「문의내용」 끝 문단에 적는다(규칙: @/lib/attachments).
  */
 
 const RECIPIENT = "atx.lsj@gmail.com";
@@ -53,9 +60,46 @@ function siteLang(req: NextRequest): string {
   return "국문";
 }
 
+type ContactBody = {
+  company?: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  product?: string;
+  size?: string;
+  quantity?: string;
+  pressure?: string;
+  fluid?: string;
+  message?: string;
+  privacyConsent?: boolean;
+};
+
+/** 국문 폼은 첨부가 있어 multipart(payload JSON + files), 영문·일문 폼은 JSON 으로 보낸다 */
+async function readRequest(req: NextRequest): Promise<{ body: ContactBody; files: File[] }> {
+  if ((req.headers.get("content-type") || "").startsWith("multipart/form-data")) {
+    const fd = await req.formData();
+    const body = JSON.parse(String(fd.get("payload") || "{}"));
+    const files = fd.getAll("files").filter((v): v is File => typeof v !== "string" && v.size > 0);
+    return { body, files };
+  }
+  return { body: await req.json(), files: [] };
+}
+
+/** 첨부 파일 이름 — 경로·제어 문자를 빼고 길이를 줄인다 */
+function attachmentName(raw: string): string {
+  const cleaned = raw.replace(/[\\/\x00-\x1f]/g, "_").trim() || "attachment";
+  return cleaned.length > 120 ? cleaned.slice(-120) : cleaned;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    let parsed: Awaited<ReturnType<typeof readRequest>>;
+    try {
+      parsed = await readRequest(req);
+    } catch {
+      return NextResponse.json({ error: "요청 형식이 올바르지 않습니다." }, { status: 400 });
+    }
+    const { body, files } = parsed;
     const { company, name, email, phone, product, size, quantity, pressure, fluid, message, privacyConsent } = body;
 
     if (!company || !name || !email) {
@@ -70,6 +114,25 @@ export async function POST(req: NextRequest) {
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: "올바른 이메일 형식이 아닙니다." }, { status: 400 });
     }
+
+    if (files.length > ATTACH_MAX_FILES) {
+      return NextResponse.json({ error: `첨부 파일은 ${ATTACH_MAX_FILES}개까지 보낼 수 있습니다.` }, { status: 400 });
+    }
+    const rejected = files.filter((f) => !isAllowedAttachment(f.name));
+    if (rejected.length) {
+      return NextResponse.json({ error: `첨부할 수 없는 형식입니다: ${rejected.map((f) => f.name).join(", ")}` }, { status: 400 });
+    }
+    const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > ATTACH_MAX_TOTAL_BYTES) {
+      return NextResponse.json(
+        { error: `첨부 파일 합계가 ${formatBytes(ATTACH_MAX_TOTAL_BYTES)}를 넘습니다. 큰 파일은 777@atx.kr로 보내 주세요.` },
+        { status: 400 }
+      );
+    }
+    const attachments = await Promise.all(
+      files.map(async (f) => ({ filename: attachmentName(f.name), content: Buffer.from(await f.arrayBuffer()) }))
+    );
+    const attachmentSummary = attachments.map((a) => `${a.filename} (${formatBytes(a.content.length)})`);
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.gmail.com",
@@ -99,7 +162,11 @@ export async function POST(req: NextRequest) {
       `이메일: ${line(email)}`,
       `전화번호: ${line(phone) || "-"}`,
       `문의유형: 티타늄 주름관 견적 (${lang})`,
-      `문의내용: ${[spec, String(message || "").trim()].filter(Boolean).join("\n\n") || "-"}`,
+      `문의내용: ${[
+        spec,
+        String(message || "").trim(),
+        attachmentSummary.length ? `첨부 파일 ${attachmentSummary.length}개 (메일 첨부): ${attachmentSummary.join(", ")}` : "",
+      ].filter(Boolean).join("\n\n") || "-"}`,
       "",
       "-- ",
       `주름관 홈페이지(tube.atx.kr) ${lang} 견적 폼 · 접수 ${receivedAt}`,
@@ -134,6 +201,13 @@ export async function POST(req: NextRequest) {
     <h3 style="color: #374151; font-size: 14px; margin: 24px 0 16px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">추가 요청사항</h3>
     <p style="color: #374151; font-size: 14px; line-height: 1.6; white-space: pre-wrap; background: #fff; padding: 12px; border-radius: 6px; border: 1px solid #e5e7eb;">${esc(message)}</p>
     ` : ""}
+
+    ${attachmentSummary.length ? `
+    <h3 style="color: #374151; font-size: 14px; margin: 24px 0 16px; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">첨부 파일 (이 메일에 첨부됨)</h3>
+    <ul style="color: #374151; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+      ${attachmentSummary.map((s) => `<li>${esc(s)}</li>`).join("")}
+    </ul>
+    ` : ""}
   </div>
   <div style="background: #e5e7eb; padding: 12px 24px; border-radius: 0 0 8px 8px; font-size: 12px; color: #6b7280;">
     접수 시각: ${esc(receivedAt)} · 개인정보 수집·이용 동의함 (처리방침 ${PRIVACY_EFFECTIVE_DATE}판)
@@ -148,6 +222,7 @@ export async function POST(req: NextRequest) {
       subject: `${SUBJECT_PREFIX} ${line(company)} - ${line(name)}`,
       text,
       html,
+      attachments,
     });
 
     return NextResponse.json({ ok: true });

@@ -45,7 +45,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
               head: ["구분", "항목", "수집 방법"],
               rows: [
                 ["견적 문의 (필수)", "회사명, 담당자명, 이메일", "견적 문의 양식"],
-                ["견적 문의 (선택)", "연락처(전화번호), 제품 사양·수량·사용 유체 등 문의 내용", "견적 문의 양식"],
+                ["견적 문의 (선택)", "연락처(전화번호), 제품 사양·수량·사용 유체 등 문의 내용, 첨부 파일(도면·사진 등)", "견적 문의 양식"],
                 [
                   "자동 수집",
                   "유입 경로(광고 매체·캠페인·검색어, 처음 방문한 페이지, 이전 사이트 주소, 방문 시각), 접속 IP·접속 기록, 쿠키, 브라우저·기기 정보",
@@ -225,7 +225,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
               head: ["Category", "Items", "How collected"],
               rows: [
                 ["Quote request (required)", "Company name, contact person, email address", "Quote request form"],
-                ["Quote request (optional)", "Phone number; inquiry details such as specifications, quantity and fluid", "Quote request form"],
+                ["Quote request (optional)", "Phone number; inquiry details such as specifications, quantity and fluid; attached files (drawings, photos, etc.)", "Quote request form"],
                 [
                   "Collected automatically",
                   "Traffic source (ad medium, campaign, search keyword, landing page, referring site, visit time), IP address and access logs, cookies, browser and device information",
@@ -403,7 +403,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
               head: ["区分", "項目", "取得方法"],
               rows: [
                 ["お見積り依頼（必須）", "会社名、ご担当者名、メールアドレス", "お見積りフォーム"],
-                ["お見積り依頼（任意）", "電話番号、仕様・数量・使用流体などのお問い合わせ内容", "お見積りフォーム"],
+                ["お見積り依頼（任意）", "電話番号、仕様・数量・使用流体などのお問い合わせ内容、添付ファイル（図面・写真など）", "お見積りフォーム"],
                 [
                   "自動取得",
                   "流入経路（広告媒体・キャンペーン・検索語、最初に閲覧したページ、参照元サイト、訪問日時）、IPアドレス・アクセス記録、Cookie、ブラウザ・端末情報",
@@ -560,7 +560,7 @@ export const CONSENT: Record<
   ko: {
     heading: "개인정보 수집·이용 동의",
     rows: [
-      ["수집 항목", "회사명, 담당자명, 이메일, 연락처(선택), 문의 내용"],
+      ["수집 항목", "회사명, 담당자명, 이메일, 연락처(선택), 문의 내용, 첨부 파일(선택)"],
       ["이용 목적", "견적·문의 답변과 상담 연락"],
       ["보유 기간", "문의 처리 완료 후 3년"],
     ],
@@ -572,7 +572,7 @@ export const CONSENT: Record<
   en: {
     heading: "Consent to collection and use of personal information",
     rows: [
-      ["Items", "Company name, contact person, email, phone (optional), inquiry details"],
+      ["Items", "Company name, contact person, email, phone (optional), inquiry details, attached files (optional)"],
       ["Purpose", "Answering your quote request and contacting you"],
       ["Retention", "3 years after the inquiry is resolved"],
     ],
@@ -584,7 +584,7 @@ export const CONSENT: Record<
   ja: {
     heading: "個人情報の取得・利用への同意",
     rows: [
-      ["取得項目", "会社名、ご担当者名、メールアドレス、電話番号（任意）、お問い合わせ内容"],
+      ["取得項目", "会社名、ご担当者名、メールアドレス、電話番号（任意）、お問い合わせ内容、添付ファイル（任意）"],
       ["利用目的", "お見積り・お問い合わせへの回答とご連絡"],
       ["保有期間", "対応完了後3年間"],
     ],

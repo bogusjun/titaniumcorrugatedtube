@@ -1,10 +1,18 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Send, Upload, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
+import { Send, Upload, CheckCircle2, AlertCircle, ChevronDown, X } from "lucide-react";
 import productsData from "@/data/products.json";
 import PrivacyConsent from "@/components/legal/PrivacyConsent";
 import { trackLead } from "@/components/analytics/track";
+import {
+  ATTACH_EXTENSIONS,
+  ATTACH_MAX_FILES,
+  ATTACH_MAX_TOTAL_BYTES,
+  formatBytes,
+  isAllowedAttachment,
+} from "@/lib/attachments";
+import { shrinkImage } from "@/lib/shrink-image";
 
 // ────────────────────────────────────────────────────────────
 // 제품별 사양 필드 구성
@@ -298,6 +306,9 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [consent, setConsent] = useState(false);
+  const [fileError, setFileError] = useState("");
+  const [preparingFiles, setPreparingFiles] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const cfg = form.product ? PRODUCT_CONFIG[form.product] : null;
@@ -328,8 +339,51 @@ export default function ContactForm() {
     }
   };
 
+  // 첨부는 견적 메일에 그대로 붙는다 — 개수·형식·합계 용량은 서버와 같은 규칙(@/lib/attachments)
+  const addFiles = async (picked: File[]) => {
+    if (picked.length === 0) return;
+    const errors: string[] = [];
+    const allowed = picked.filter((f) => isAllowedAttachment(f.name));
+    if (allowed.length < picked.length) {
+      errors.push(`PDF·DWG·DXF·JPG·PNG만 첨부할 수 있습니다 (${picked.filter((f) => !isAllowedAttachment(f.name)).map((f) => f.name).join(", ")})`);
+    }
+
+    setPreparingFiles(true);
+    const prepared = await Promise.all(allowed.map(shrinkImage));
+    setPreparingFiles(false);
+
+    const next = [...files];
+    for (const f of prepared) {
+      if (next.some((x) => x.name === f.name && x.size === f.size)) continue;
+      if (next.length >= ATTACH_MAX_FILES) {
+        errors.push(`파일은 ${ATTACH_MAX_FILES}개까지 첨부할 수 있습니다.`);
+        break;
+      }
+      if (next.reduce((sum, x) => sum + x.size, 0) + f.size > ATTACH_MAX_TOTAL_BYTES) {
+        errors.push(`${f.name}은(는) 합계 ${formatBytes(ATTACH_MAX_TOTAL_BYTES)}를 넘어 첨부하지 못했습니다. 큰 파일은 견적 요청 후 777@atx.kr로 보내 주세요.`);
+        continue;
+      }
+      next.push(f);
+    }
+    setFiles(next);
+    setFileError(errors.join(" "));
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) setFiles(Array.from(e.target.files).slice(0, 3));
+    const picked = e.target.files ? Array.from(e.target.files) : [];
+    e.target.value = ""; // 같은 파일을 다시 고를 수 있게
+    void addFiles(picked);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setDragOver(false);
+    void addFiles(Array.from(e.dataTransfer.files));
+  };
+
+  const removeFile = (index: number) => {
+    setFiles((prev) => prev.filter((_, i) => i !== index));
+    setFileError("");
   };
 
   const buildSpecSummary = () => {
@@ -370,26 +424,30 @@ export default function ContactForm() {
     setStatus("sending");
     setErrorMsg("");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          company: form.company,
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          product: productsData.find((p) => p.id === form.product)?.name || form.product,
-          size: buildSpecSummary(),
-          quantity: form.quantity ? `${form.quantity}${form.quantityUnit}` : "",
-          pressure: cfg?.pressure === "input" && form.pressureValue ? `${form.pressureValue} ${form.pressureUnit}` : (cfg?.pressureFixed ?? ""),
-          fluid: form.fluid === "기타 (직접 입력)" ? form.fluidCustom : form.fluid,
-          message: form.message,
-          privacyConsent: consent,
-        }),
-      });
+      // 첨부 파일이 함께 가도록 multipart 로 보낸다 — 폼 값은 payload 한 칸에 JSON 으로
+      const body = new FormData();
+      body.append("payload", JSON.stringify({
+        company: form.company,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        product: productsData.find((p) => p.id === form.product)?.name || form.product,
+        size: buildSpecSummary(),
+        quantity: form.quantity ? `${form.quantity}${form.quantityUnit}` : "",
+        pressure: cfg?.pressure === "input" && form.pressureValue ? `${form.pressureValue} ${form.pressureUnit}` : (cfg?.pressureFixed ?? ""),
+        fluid: form.fluid === "기타 (직접 입력)" ? form.fluidCustom : form.fluid,
+        message: form.message,
+        privacyConsent: consent,
+      }));
+      files.forEach((f) => body.append("files", f, f.name));
+
+      const res = await fetch("/api/contact", { method: "POST", body });
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "전송 실패");
+        const data = await res.json().catch(() => ({}));
+        throw new Error(
+          data.error ||
+            (res.status === 413 ? "첨부 파일이 너무 큽니다. 파일을 빼고 보내신 뒤 777@atx.kr로 보내 주세요." : "전송 실패")
+        );
       }
       setStatus("success");
       trackLead("ko");
@@ -405,7 +463,7 @@ export default function ContactForm() {
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-ink mb-2">견적 요청이 접수되었습니다!</h3>
         <p className="text-ink-muted mb-6">영업일 기준 24시간 내에 담당자가 연락드리겠습니다.</p>
-        <button onClick={() => { setForm(initialData); setFiles([]); setConsent(false); setStatus("idle"); }} className="btn-primary">
+        <button onClick={() => { setForm(initialData); setFiles([]); setFileError(""); setConsent(false); setStatus("idle"); }} className="btn-primary">
           새 문의 작성
         </button>
       </div>
@@ -757,21 +815,59 @@ export default function ContactForm() {
       <section>
         <h3 className="text-xs font-bold text-ink uppercase tracking-widest mb-4 pb-2 border-b border-silver-100">도면·파일 첨부</h3>
         <div
+          role="button"
+          tabIndex={0}
           onClick={() => fileRef.current?.click()}
-          className="border-2 border-dashed border-silver-100 rounded-xl p-6 text-center cursor-pointer hover:border-accent hover:bg-accent/5 transition-colors"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              fileRef.current?.click();
+            }
+          }}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={handleDrop}
+          className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors ${
+            dragOver ? "border-accent bg-accent/5" : "border-silver-100 hover:border-accent hover:bg-accent/5"
+          }`}
         >
           <Upload className="w-8 h-8 text-silver-400 mx-auto mb-2" />
-          <p className="text-sm text-ink-subtle">클릭하여 파일을 선택하거나 드래그하세요</p>
-          <p className="text-xs text-ink-subtle mt-1">PDF, DWG, DXF, JPG, PNG · 최대 3개, 10MB</p>
-          {files.length > 0 && (
-            <div className="mt-3 space-y-1">
-              {files.map((f) => (
-                <div key={f.name} className="text-xs text-ink-muted font-medium">📎 {f.name}</div>
-              ))}
-            </div>
-          )}
+          <p className="text-sm text-ink-subtle">
+            {preparingFiles ? "사진 용량을 줄이는 중..." : "클릭하여 파일을 선택하거나 여기로 끌어다 놓으세요"}
+          </p>
+          <p className="text-xs text-ink-subtle mt-1">
+            PDF, DWG, DXF, JPG, PNG · 최대 {ATTACH_MAX_FILES}개, 합계 {formatBytes(ATTACH_MAX_TOTAL_BYTES)} · 큰 사진은 자동으로 줄여서 보냅니다
+          </p>
         </div>
-        <input ref={fileRef} type="file" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" onChange={handleFileChange} className="hidden" />
+        {files.length > 0 && (
+          <ul className="mt-3 space-y-2">
+            {files.map((f, i) => (
+              <li
+                key={`${f.name}-${f.size}`}
+                className="flex items-center justify-between gap-3 rounded-lg border border-silver-100 bg-white px-3 py-2 text-sm"
+              >
+                <span className="truncate text-ink-muted">📎 {f.name}</span>
+                <span className="flex items-center gap-2 flex-shrink-0">
+                  <span className="text-xs text-ink-subtle">{formatBytes(f.size)}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(i)}
+                    aria-label={`${f.name} 첨부 취소`}
+                    className="p-1 rounded text-ink-subtle hover:text-red-500 hover:bg-red-50 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {fileError && (
+          <p className="mt-2 text-xs text-red-500 flex items-start gap-1">
+            <AlertCircle className="w-3 h-3 mt-0.5 flex-shrink-0" />{fileError}
+          </p>
+        )}
+        <input ref={fileRef} type="file" multiple accept={ATTACH_EXTENSIONS.join(",")} onChange={handleFileChange} className="hidden" />
       </section>
 
       <PrivacyConsent locale="ko" checked={consent} onChange={setConsent} />
@@ -784,7 +880,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending" || !!emailError}
+        disabled={status === "sending" || preparingFiles || !!emailError}
         className="btn-primary w-full justify-center py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? (
