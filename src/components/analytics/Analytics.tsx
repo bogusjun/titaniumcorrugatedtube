@@ -3,12 +3,13 @@ import Script from "next/script";
 /**
  * 방문 분석 태그 — ID 를 넣으면 켜진다 (비어 있으면 아무것도 싣지 않는다)
  *
- * GA4_ID: Google 애널리틱스 4 측정 ID (G-XXXXXXXXXX)
- * NAVER_WA: 네이버 애널리틱스 사이트 ID — 파워링크 전환 추적(무명기획 운영)에 쓴다
- * 2026-10-21: ATX 구글 계정(ovingyou·atx.lsj)에 GA 계정이 없어 ID 미정 — 속성을 만들면 여기에 넣는다.
+ * Vercel 프로젝트 환경변수로 넣고 다시 배포하면 켜진다 (NEXT_PUBLIC_* 는 빌드할 때 박힌다).
+ * NEXT_PUBLIC_GA4_ID: Google 애널리틱스 4 측정 ID (G-XXXXXXXXXX)
+ * NEXT_PUBLIC_NAVER_WA: 네이버 애널리틱스 사이트 ID — 파워링크 전환 추적(무명기획 운영)에 쓴다
+ * 2026-10-21: ATX 구글 계정(ovingyou·atx.lsj)에 GA 계정이 없어 ID 미정.
  */
-const GA4_ID = "";
-const NAVER_WA = "";
+const GA4_ID = (process.env.NEXT_PUBLIC_GA4_ID ?? "").trim();
+const NAVER_WA = (process.env.NEXT_PUBLIC_NAVER_WA ?? "").trim();
 
 export default function Analytics() {
   return (

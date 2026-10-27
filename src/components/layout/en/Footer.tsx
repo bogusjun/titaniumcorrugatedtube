@@ -127,7 +127,7 @@ export default function EnFooter() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-silver-700">
           <p>© 2024 ATX Co., Ltd. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="/en/privacy" className="hover:text-silver-400 transition-colors">Privacy Policy</Link>
+            <Link href="/en/privacy" className="font-semibold text-silver-400 hover:text-silver-200 transition-colors">Privacy Policy</Link>
             <Link href="/en/terms"   className="hover:text-silver-400 transition-colors">Terms of Use</Link>
           </div>
         </div>

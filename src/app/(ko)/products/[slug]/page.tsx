@@ -13,7 +13,7 @@ import ProductCard from "@/components/product/ProductCard";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -21,12 +21,17 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = productsData.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const product = productsData.find((p) => p.slug === slug);
   if (!product) return {};
   const url = `https://tube.atx.kr/products/${product.slug}`;
-  const ogImage = product.images?.[0]
-    ? { url: product.images[0], width: 1200, height: 630, alt: product.name }
-    : { url: "/images/og-image.jpg", width: 1200, height: 630, alt: product.name };
+  // 공유 미리보기 카드 — scripts/generate-og.mjs 가 images[0] 이 있는 제품마다 만든다
+  const ogImage = {
+    url: product.images?.[0] ? `/images/og/products/${product.slug}.jpg` : "/images/og-image.jpg",
+    width: 1200,
+    height: 630,
+    alt: product.name,
+  };
   return {
     title: product.name,
     description: product.description,
@@ -1457,8 +1462,9 @@ function WasteHeatRecoverySection() {
   );
 }
 
-export default function ProductDetailPage({ params }: Props) {
-  const product = productsData.find((p) => p.slug === params.slug) as ProductData | undefined;
+export default async function ProductDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const product = productsData.find((p) => p.slug === slug) as ProductData | undefined;
   if (!product) notFound();
 
   const isTube = product.category === "tube";

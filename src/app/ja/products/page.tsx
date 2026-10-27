@@ -12,11 +12,12 @@ interface SearchParams {
   category?: string;
 }
 
-export default function JaProductsPage({
+export default async function JaProductsPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
+  const { category } = await searchParams;
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
       <div className="bg-ti-950 py-16">
@@ -38,7 +39,7 @@ export default function JaProductsPage({
           <Suspense fallback={null}>
             <ProductListClient
               products={productsData}
-              initialCategory={searchParams.category || "all"}
+              initialCategory={category || "all"}
             />
           </Suspense>
         </div>

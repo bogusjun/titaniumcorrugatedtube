@@ -12,6 +12,8 @@ const staticRoutes = [
   { path: "/support", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/news", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/cases", priority: 0.6, changeFrequency: "monthly" as const },
+  { path: "/privacy", priority: 0.4, changeFrequency: "yearly" as const },
+  { path: "/terms", priority: 0.4, changeFrequency: "yearly" as const },
 ];
 
 const locales = ["", "/en", "/ja"];

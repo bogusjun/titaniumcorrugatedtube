@@ -12,11 +12,12 @@ interface SearchParams {
   category?: string;
 }
 
-export default function ProductsPage({
+export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
+  const { category } = await searchParams;
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
       {/* Page Header */}
@@ -40,7 +41,7 @@ export default function ProductsPage({
           <Suspense fallback={null}>
             <ProductListClient
               products={productsData}
-              initialCategory={searchParams.category || "all"}
+              initialCategory={category || "all"}
             />
           </Suspense>
         </div>

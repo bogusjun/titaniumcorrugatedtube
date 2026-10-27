@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
+import PrivacyConsent from "@/components/legal/PrivacyConsent";
+import { trackLead } from "@/components/analytics/track";
 
 const FLUID_OPTIONS = [
   "Sea Water",
@@ -61,6 +63,7 @@ export default function EnContactForm() {
   const [emailError, setEmailError] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consent, setConsent] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -94,10 +97,12 @@ export default function EnContactForm() {
           quantity: form.quantity,
           fluid: form.fluid === "Other (please specify)" ? form.fluidCustom : form.fluid,
           message: `[Inquiry from English site]\n${form.message}`,
+          privacyConsent: consent,
         }),
       });
       if (!res.ok) throw new Error("Submission failed");
       setStatus("success");
+      trackLead("en");
     } catch {
       setStatus("error");
       setErrorMsg("Submission failed. Please try again.");
@@ -217,6 +222,8 @@ export default function EnContactForm() {
           className={`${inputCls} resize-none`}
         />
       </section>
+
+      <PrivacyConsent locale="en" checked={consent} onChange={setConsent} />
 
       {status === "error" && (
         <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">

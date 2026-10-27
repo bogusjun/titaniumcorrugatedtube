@@ -71,6 +71,8 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "ATX Co., Ltd.",
   alternateName: "ATX 티타늄 주름관",
+  legalName: "(주)에이티엑스",
+  taxID: "131-86-09143",
   url: "https://tube.atx.kr",
   logo: "https://tube.atx.kr/images/logo.png",
   contactPoint: {

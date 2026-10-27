@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "ATX チタン波管",
     title: "ATX チタン波管 | 専門メーカー",
     description: "半導体・化学・航空・海洋産業向け高品質チタン波管専門メーカー",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX チタン波管 — 耐食性熱交換専門メーカー" }],
+    images: [{ url: "/images/og-image-ja.jpg", width: 1200, height: 630, alt: "ATX チタン波管 — 耐食性熱交換専門メーカー" }],
   },
   alternates: {
     canonical: "https://tube.atx.kr/ja",

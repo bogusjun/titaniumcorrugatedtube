@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import { Send, Upload, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import productsData from "@/data/products.json";
+import PrivacyConsent from "@/components/legal/PrivacyConsent";
+import { trackLead } from "@/components/analytics/track";
 
 // ────────────────────────────────────────────────────────────
 // 제품별 사양 필드 구성
@@ -295,6 +297,7 @@ export default function ContactForm() {
   const [files, setFiles] = useState<File[]>([]);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consent, setConsent] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const cfg = form.product ? PRODUCT_CONFIG[form.product] : null;
@@ -381,6 +384,7 @@ export default function ContactForm() {
           pressure: cfg?.pressure === "input" && form.pressureValue ? `${form.pressureValue} ${form.pressureUnit}` : (cfg?.pressureFixed ?? ""),
           fluid: form.fluid === "기타 (직접 입력)" ? form.fluidCustom : form.fluid,
           message: form.message,
+          privacyConsent: consent,
         }),
       });
       if (!res.ok) {
@@ -388,6 +392,7 @@ export default function ContactForm() {
         throw new Error(data.error || "전송 실패");
       }
       setStatus("success");
+      trackLead("ko");
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "메일 전송에 실패했습니다. 다시 시도해 주세요.");
@@ -400,7 +405,7 @@ export default function ContactForm() {
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-ink mb-2">견적 요청이 접수되었습니다!</h3>
         <p className="text-ink-muted mb-6">영업일 기준 24시간 내에 담당자가 연락드리겠습니다.</p>
-        <button onClick={() => { setForm(initialData); setFiles([]); setStatus("idle"); }} className="btn-primary">
+        <button onClick={() => { setForm(initialData); setFiles([]); setConsent(false); setStatus("idle"); }} className="btn-primary">
           새 문의 작성
         </button>
       </div>
@@ -768,6 +773,8 @@ export default function ContactForm() {
         </div>
         <input ref={fileRef} type="file" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png" onChange={handleFileChange} className="hidden" />
       </section>
+
+      <PrivacyConsent locale="ko" checked={consent} onChange={setConsent} />
 
       {status === "error" && (
         <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">

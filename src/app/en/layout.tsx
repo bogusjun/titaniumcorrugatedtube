@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: "ATX Titanium",
     title: "ATX Titanium Corrugated Tube | Manufacturer",
     description: "High-quality titanium corrugated tubes for semiconductor, chemical, aerospace & marine industries",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX Titanium Corrugated Tube — Corrosion-Resistant Heat Exchanger Manufacturer" }],
+    images: [{ url: "/images/og-image-en.jpg", width: 1200, height: 630, alt: "ATX Titanium Corrugated Tube — Corrosion-Resistant Heat Exchanger Manufacturer" }],
   },
   alternates: {
     canonical: "https://tube.atx.kr/en",

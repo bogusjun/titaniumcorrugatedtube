@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { PRIVACY_EFFECTIVE_DATE } from "@/components/legal/privacy-content";
 
 /**
  * 견적·문의 폼 → 메일
@@ -55,10 +56,14 @@ function siteLang(req: NextRequest): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { company, name, email, phone, product, size, quantity, pressure, fluid, message } = body;
+    const { company, name, email, phone, product, size, quantity, pressure, fluid, message, privacyConsent } = body;
 
     if (!company || !name || !email) {
       return NextResponse.json({ error: "필수 항목이 누락되었습니다." }, { status: 400 });
+    }
+
+    if (privacyConsent !== true) {
+      return NextResponse.json({ error: "개인정보 수집·이용에 동의해 주세요." }, { status: 400 });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -131,7 +136,7 @@ export async function POST(req: NextRequest) {
     ` : ""}
   </div>
   <div style="background: #e5e7eb; padding: 12px 24px; border-radius: 0 0 8px 8px; font-size: 12px; color: #6b7280;">
-    접수 시각: ${esc(receivedAt)}
+    접수 시각: ${esc(receivedAt)} · 개인정보 수집·이용 동의함 (처리방침 ${PRIVACY_EFFECTIVE_DATE}판)
   </div>
 </div>`;
 

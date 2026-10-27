@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
+import PrivacyConsent from "@/components/legal/PrivacyConsent";
+import { trackLead } from "@/components/analytics/track";
 
 const FLUID_OPTIONS = [
   "海水 (Sea Water)",
@@ -61,6 +63,7 @@ export default function JaContactForm() {
   const [emailError, setEmailError] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consent, setConsent] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -94,10 +97,12 @@ export default function JaContactForm() {
           quantity: form.quantity,
           fluid: form.fluid === "その他（直接入力）" ? form.fluidCustom : form.fluid,
           message: `[日本語からの問い合わせ]\n${form.message}`,
+          privacyConsent: consent,
         }),
       });
       if (!res.ok) throw new Error("送信失敗");
       setStatus("success");
+      trackLead("ja");
     } catch {
       setStatus("error");
       setErrorMsg("送信に失敗しました。お手数ですが再度お試しください。");
@@ -217,6 +222,8 @@ export default function JaContactForm() {
           className={`${inputCls} resize-none`}
         />
       </section>
+
+      <PrivacyConsent locale="ja" checked={consent} onChange={setConsent} />
 
       {status === "error" && (
         <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
