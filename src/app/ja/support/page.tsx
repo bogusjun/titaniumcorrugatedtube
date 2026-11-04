@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, Download, FileText, ChevronDown } from "lucide-react";
 import JaContactForm from "./ContactForm";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/support",
   title: "お問い合わせ・サポート",
-  description: "チタン波管のお見積もり依頼、技術資料ダウンロード、FAQ。",
-};
+  description:
+    "チタン波管のお見積もり依頼、技術資料ダウンロード、FAQ。",
+});
 
 const faqs = [
   {

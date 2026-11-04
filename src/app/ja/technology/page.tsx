@@ -5,11 +5,15 @@ import {
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/technology",
   title: "技術特長",
-  description: "チタン波管の素材特性、製造工程、品質試験基準をご紹介します。",
-};
+  description:
+    "チタン波管の素材特性、製造工程、品質試験基準をご紹介します。",
+});
 
 const gradeData = [
   {

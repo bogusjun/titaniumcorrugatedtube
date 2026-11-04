@@ -11,6 +11,7 @@ const notoSansKR = Noto_Sans_KR({
   display: "swap",
 });
 
+// canonical·hreflang·og:url 은 페이지마다 pageMetadata()(@/lib/seo)로 지정한다 — 여기 두면 하위 페이지가 홈 주소를 물려받는다
 export const metadata: Metadata = {
   metadataBase: new URL("https://tube.atx.kr"),
   title: {
@@ -40,25 +41,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://tube.atx.kr",
     siteName: "ATX 티타늄 주름관",
     title: "ATX 티타늄 주름관 | 전문 제조사",
     description: "반도체·화학·항공·해양 산업용 고품질 티타늄 주름관 전문 제조",
     images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "ATX 티타늄 주름관 — 고부식 환경 열교환 전문 제조사" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ATX 티타늄 주름관",
-    description: "티타늄 주름관 전문 제조사",
-  },
-  alternates: {
-    canonical: "https://tube.atx.kr",
-    languages: {
-      ko: "https://tube.atx.kr",
-      en: "https://tube.atx.kr/en",
-      ja: "https://tube.atx.kr/ja",
-    },
-  },
+  // 제목·설명은 넣지 않는다 — 넣으면 영·일·하위 페이지에도 국문 문구가 붙는다. X(트위터)는 og 값을 대신 쓴다
+  twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,

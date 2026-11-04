@@ -5,11 +5,15 @@ import {
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/technology",
   title: "기술 특장점",
-  description: "티타늄 주름관의 소재 특성, 제조 공정, 품질 시험 기준을 소개합니다.",
-};
+  description:
+    "티타늄 주름관의 소재 특성, 제조 공정, 품질 시험 기준을 소개합니다.",
+});
 
 const gradeData = [
   {

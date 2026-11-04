@@ -18,22 +18,17 @@ import {
   Flame,
 } from "lucide-react";
 import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/products/waste-heat-recovery",
   title: "양식장 폐열회수기 | 무동력 82% 열에너지 회수",
   description:
     "버리는 폐수에서 평균 82% 열에너지 회수. 100% 티타늄 주름관 구조로 부식·막힘 없는 양식장 전기요금 절감 솔루션. KOMERI 공인 시험 완료, 특허 출원.",
-  alternates: {
-    canonical: "https://tube.atx.kr/products/waste-heat-recovery",
-  },
-  openGraph: {
-    title: "양식장 폐열회수기 | 무동력 82% 열에너지 회수 — ATX 티타늄",
-    description:
-      "버리는 폐수에서 평균 82% 열에너지 회수. 100% 티타늄 주름관 구조로 부식·막힘 없는 양식장 전기요금 절감 솔루션.",
-    url: "https://tube.atx.kr/products/waste-heat-recovery",
-    images: [{ url: "/images/og/products/waste-heat-recovery.jpg", width: 1200, height: 630, alt: "ATX 양식장 폐열회수기" }],
-  },
-};
+  ogTitle: "양식장 폐열회수기 | 무동력 82% 열에너지 회수 — ATX 티타늄",
+  ogImage: { url: "/images/og/products/waste-heat-recovery.jpg", alt: "ATX 양식장 폐열회수기" },
+});
 
 /* ─────────────────────────────────────────────
    데이터

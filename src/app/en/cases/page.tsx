@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import CasesCarousel from "@/app/(ko)/cases/CasesCarousel";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/cases",
   title: "Application Cases",
-  description: "ATX titanium tube delivery cases: chemical plants, semiconductor, electroplating, marine aquaculture, and nuclear.",
-};
+  description:
+    "ATX titanium tube delivery cases: chemical plants, semiconductor, electroplating, marine aquaculture, and nuclear.",
+});
 
 const cases = [
   {

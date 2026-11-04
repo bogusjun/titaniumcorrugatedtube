@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getLocalizedProducts } from "@/data/products-i18n";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/products",
   title: "Products",
-  description: "Titanium corrugated tube 10A · 15A specification tables and coil-type heat exchanger detailed specifications.",
-};
+  description:
+    "Titanium corrugated tube 10A · 15A specification tables and coil-type heat exchanger detailed specifications.",
+});
 
 interface SearchParams {
   category?: string;

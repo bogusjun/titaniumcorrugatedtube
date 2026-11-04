@@ -4,11 +4,15 @@ import Image from "next/image";
 import { Cpu, Factory, Rocket, HeartPulse, Ship, Fish, CheckCircle2, ArrowRight, MapPin } from "lucide-react";
 import industriesData from "@/data/industries.json";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/industries",
   title: "적용 산업",
-  description: "반도체·화학·항공우주·의료·해양·수산 산업별 티타늄 주름관 적용 사례.",
-};
+  description:
+    "반도체·화학·항공우주·의료·해양·수산 산업별 티타늄 주름관 적용 사례.",
+});
 
 const iconMap: Record<string, React.ElementType> = {
   Cpu, Factory, Rocket, HeartPulse, Ship, Fish,

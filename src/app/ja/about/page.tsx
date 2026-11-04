@@ -5,11 +5,15 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/about",
   title: "会社概要",
-  description: "ATX チタン波管 会社概要。沿革、認証、設備状況。",
-};
+  description:
+    "ATX チタン波管 会社概要。沿革、認証、設備状況。",
+});
 
 const timeline = [
   { year: "2008", event: "ATX Co., Ltd. 設立" },

@@ -5,11 +5,15 @@ import {
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/technology",
   title: "Technology",
-  description: "Material properties, manufacturing process, and quality test standards of titanium corrugated tubes.",
-};
+  description:
+    "Material properties, manufacturing process, and quality test standards of titanium corrugated tubes.",
+});
 
 const gradeData = [
   {

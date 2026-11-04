@@ -3,11 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Cpu, Factory, Rocket, HeartPulse, Ship, Fish, CheckCircle2, ArrowRight, MapPin } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/industries",
   title: "適用産業",
-  description: "半導体・化学・航空宇宙・医療・海洋・水産産業別チタン波管適用事例。",
-};
+  description:
+    "半導体・化学・航空宇宙・医療・海洋・水産産業別チタン波管適用事例。",
+});
 
 const iconMap: Record<string, React.ElementType> = {
   Cpu, Factory, Rocket, HeartPulse, Ship, Fish,

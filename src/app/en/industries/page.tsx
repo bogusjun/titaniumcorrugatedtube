@@ -3,11 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Cpu, Factory, Rocket, HeartPulse, Ship, Fish, CheckCircle2, ArrowRight, MapPin } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/industries",
   title: "Industries",
-  description: "Titanium corrugated tube application cases by industry: semiconductor, chemical, aerospace, medical, marine, and aquaculture.",
-};
+  description:
+    "Titanium corrugated tube application cases by industry: semiconductor, chemical, aerospace, medical, marine, and aquaculture.",
+});
 
 const iconMap: Record<string, React.ElementType> = {
   Cpu, Factory, Rocket, HeartPulse, Ship, Fish,

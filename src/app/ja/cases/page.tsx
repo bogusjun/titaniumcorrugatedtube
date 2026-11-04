@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import CasesCarousel from "@/app/(ko)/cases/CasesCarousel";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/cases",
   title: "導入事例",
-  description: "化学プラント、半導体、電気めっき、海洋水産、原子力などATXチタン・特殊非鉄加工納入事例。",
-};
+  description:
+    "化学プラント、半導体、電気めっき、海洋水産、原子力などATXチタン・特殊非鉄加工納入事例。",
+});
 
 const cases = [
   {

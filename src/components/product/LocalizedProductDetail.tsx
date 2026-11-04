@@ -12,6 +12,7 @@ import productsData from "@/data/products.json";
 import { localizeProduct, type ProductLocale } from "@/data/products-i18n";
 import ProductCard from "./ProductCard";
 import ProductImageGallery from "./ProductImageGallery";
+import { alternatesFor } from "@/lib/seo";
 
 const SITE = "https://tube.atx.kr";
 
@@ -134,14 +135,7 @@ export function localizedProductMetadata(slug: string, locale: ProductLocale): M
   return {
     title: product.name,
     description: product.description,
-    alternates: {
-      canonical: url,
-      languages: {
-        ko: `${SITE}/products/${slug}`,
-        en: `${SITE}/en/products/${slug}`,
-        ja: `${SITE}/ja/products/${slug}`,
-      },
-    },
+    alternates: alternatesFor(`/products/${slug}`, locale),
     openGraph: {
       type: "website",
       locale: t.ogLocale,

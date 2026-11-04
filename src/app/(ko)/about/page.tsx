@@ -5,11 +5,15 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/about",
   title: "회사 소개",
-  description: "ATX 티타늄 주름관 회사 소개. 연혁, 인증, 설비 현황.",
-};
+  description:
+    "ATX 티타늄 주름관 회사 소개. 연혁, 인증, 설비 현황.",
+});
 
 const timeline = [
   { year: "2008", event: "(주)에이티엑스 설립" },
