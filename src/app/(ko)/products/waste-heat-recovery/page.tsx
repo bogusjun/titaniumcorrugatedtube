@@ -17,22 +17,18 @@ import {
   TrendingDown,
   Flame,
 } from "lucide-react";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/products/waste-heat-recovery",
   title: "양식장 폐열회수기 | 무동력 82% 열에너지 회수",
   description:
     "버리는 폐수에서 평균 82% 열에너지 회수. 100% 티타늄 주름관 구조로 부식·막힘 없는 양식장 전기요금 절감 솔루션. KOMERI 공인 시험 완료, 특허 출원.",
-  alternates: {
-    canonical: "https://tube.atx.kr/products/waste-heat-recovery",
-  },
-  openGraph: {
-    title: "양식장 폐열회수기 | 무동력 82% 열에너지 회수 — ATX 티타늄",
-    description:
-      "버리는 폐수에서 평균 82% 열에너지 회수. 100% 티타늄 주름관 구조로 부식·막힘 없는 양식장 전기요금 절감 솔루션.",
-    url: "https://tube.atx.kr/products/waste-heat-recovery",
-    images: [{ url: "/images/og/products/waste-heat-recovery.jpg", width: 1200, height: 630, alt: "ATX 양식장 폐열회수기" }],
-  },
-};
+  ogTitle: "양식장 폐열회수기 | 무동력 82% 열에너지 회수 — ATX 티타늄",
+  ogImage: { url: "/images/og/products/waste-heat-recovery.jpg", alt: "ATX 양식장 폐열회수기" },
+});
 
 /* ─────────────────────────────────────────────
    데이터
@@ -1133,7 +1129,7 @@ function ProductContent() {
                     ["적용 규격", "맞춤 제작 (처리 수량에 따라 선택)"],
                     ["연결 방식", "고객 배관 사양에 맞춤 제작"],
                     ["인증·특허", "해양수산부 NET 신기술 인증 (제2024-0024호) / 특허 등록 제10-2832328호 / KOMERI 성능 시험 완료"],
-                    ["제조사", "(주)에이티엑스 — since 1991, 35년 티타늄 가공 기술"],
+                    ["제조사", `(주)에이티엑스 — since ${FOUNDED_YEAR}, ${YEARS_IN_BUSINESS}년 티타늄 가공 기술`],
                   ].map(([label, value]) => (
                     <tr key={label}>
                       <td className="font-semibold text-ink bg-silver-50 w-40 md:w-48 text-center">{label}</td>
@@ -1153,15 +1149,15 @@ function ProductContent() {
       <section className="section-dark border-t border-ti-800">
         <div className="container-pad">
           <div className="text-center mb-10">
-            <p className="text-silver-500 text-xs font-semibold uppercase tracking-widest mb-3">since 1991</p>
+            <p className="text-silver-500 text-xs font-semibold uppercase tracking-widest mb-3">since {FOUNDED_YEAR}</p>
             <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
-              35년 가공기술, 티타늄 가공 선두기업
+              {YEARS_IN_BUSINESS}년 가공기술, 티타늄 가공 선두기업
             </h2>
             <p className="text-accent font-black text-3xl md:text-4xl">ATX (주)</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
-              { label: "설립", value: "1991년" },
+              { label: "설립", value: `${FOUNDED_YEAR}년` },
               { label: "전문 분야", value: "티타늄 가공" },
               { label: "인증", value: "ASME / ISO" },
               { label: "주요 고객", value: "양식장·산업체" },

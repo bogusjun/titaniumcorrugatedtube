@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { Calendar, ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/news",
   title: "お知らせ・ニュース",
-  description: "ATX チタン波管 展示会参加、新製品発売、お知らせ。",
-};
+  description:
+    "ATX チタン波管 展示会参加、新製品発売、お知らせ。",
+});
 
 const news = [
   {

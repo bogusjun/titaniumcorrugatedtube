@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import productsData from "@/data/products.json";
 import ProductListClient from "./ProductListClient";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/products",
   title: "제품 소개",
-  description: "티타늄 주름관 10A·15A 규격표 및 코일형 열교환기 상세 사양.",
-};
+  description:
+    "티타늄 주름관 10A·15A 규격표 및 코일형 열교환기 상세 사양.",
+});
 
 interface SearchParams {
   category?: string;

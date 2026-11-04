@@ -1,8 +1,9 @@
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
 
 const stats = [
-  { value: 20,  suffix: "+", label: "Years in Business",      desc: "Founded in 2007" },
+  { value: YEARS_IN_BUSINESS, suffix: "", label: "Years in Business", desc: `Founded in ${FOUNDED_YEAR}` },
   { value: 500, suffix: "+", label: "Delivered Projects",     desc: "Domestic & International" },
   { value: 50,  suffix: "+", label: "Industries Served",      desc: "Diverse Applications" },
   { value: 99,  suffix: "%", label: "Repeat Order Rate",      desc: "Customer Trust" },

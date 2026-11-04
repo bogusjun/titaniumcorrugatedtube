@@ -85,7 +85,7 @@ export default function JaProductsPreview() {
                   全規格仕様表
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/ja/products/heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
+                <Link href="/ja/products?category=heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
                   応用品：コイル型熱交換器 →
                 </Link>
               </div>

@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, Download, FileText, ChevronDown } from "lucide-react";
 import EnContactForm from "./ContactForm";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/support",
   title: "Contact & Support",
-  description: "Titanium corrugated tube quote requests, technical document downloads, and FAQ.",
-};
+  description:
+    "Titanium corrugated tube quote requests, technical document downloads, and FAQ.",
+});
 
 const faqs = [
   {

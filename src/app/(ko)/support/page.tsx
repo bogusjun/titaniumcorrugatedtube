@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, Download, FileText, ChevronDown } from "lucide-react";
 import ContactForm from "./ContactForm";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/support",
   title: "고객 지원",
-  description: "티타늄 주름관 견적 요청, 기술 자료 다운로드, FAQ.",
-};
+  description:
+    "티타늄 주름관 견적 요청, 기술 자료 다운로드, FAQ.",
+});
 
 const faqs = [
   {

@@ -85,7 +85,7 @@ export default function EnProductsPreview() {
                   Full Specification Table
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/en/products/heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
+                <Link href="/en/products?category=heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
                   Application: Coil Heat Exchanger →
                 </Link>
               </div>

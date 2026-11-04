@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import productsData from "@/data/products.json";
+import { getLocalizedProducts } from "@/data/products-i18n";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ja",
+  path: "/products",
   title: "製品紹介",
-  description: "チタン波管 10A・15A 規格表およびコイル型熱交換器詳細仕様。",
-};
+  description:
+    "チタン波管 10A・15A 規格表およびコイル型熱交換器詳細仕様。",
+});
 
 interface SearchParams {
   category?: string;
@@ -38,8 +42,9 @@ export default async function JaProductsPage({
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <Suspense fallback={null}>
             <ProductListClient
-              products={productsData}
+              products={getLocalizedProducts("ja")}
               initialCategory={category || "all"}
+              locale="ja"
             />
           </Suspense>
         </div>

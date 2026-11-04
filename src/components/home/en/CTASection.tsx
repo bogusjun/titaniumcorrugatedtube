@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Phone, Mail, Download } from "lucide-react";
+import { ArrowRight, Phone, Mail } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export default function EnCTASection() {
   return (
@@ -24,14 +25,14 @@ export default function EnCTASection() {
               <span className="text-accent">Consult the Specialists</span>
             </h2>
             <p className="text-silver-500 text-lg leading-relaxed">
-              From spec selection to installation — our titanium heat exchanger experts with 20 years of experience<br className="hidden md:block" />
+              From spec selection to installation — our titanium heat exchanger experts with {YEARS_IN_BUSINESS} years of experience<br className="hidden md:block" />
               will propose the optimal solution. Drawing review and technical consultation are free.
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={150}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             <Link
               href="/en/support"
               className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-accent hover:bg-accent-dark border border-accent/50 transition-all duration-300 hover:-translate-y-1"
@@ -51,18 +52,6 @@ export default function EnCTASection() {
               <h3 className="text-silver-200 font-bold text-xl">Call Us</h3>
               <p className="text-silver-500 text-sm text-center leading-relaxed">
                 +82-1544-1909<br />Mon–Fri 09:00–18:00 KST
-              </p>
-            </a>
-
-            <a
-              href="/catalog.pdf"
-              download
-              className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-ti-900 hover:bg-ti-800 border border-ti-800 hover:border-ti-700 transition-all duration-300 hover:-translate-y-1"
-            >
-              <Download className="w-9 h-9 text-accent" />
-              <h3 className="text-silver-200 font-bold text-xl">Download Catalog</h3>
-              <p className="text-silver-500 text-sm text-center leading-relaxed">
-                Full product specs &amp; dimension tables<br />Free PDF download
               </p>
             </a>
           </div>

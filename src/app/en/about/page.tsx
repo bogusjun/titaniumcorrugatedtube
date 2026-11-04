@@ -4,14 +4,18 @@ import { Award, Factory, Globe } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "en",
+  path: "/about",
   title: "About ATX",
-  description: "ATX Titanium Corrugated Tube company overview. History, certifications, and facility details.",
-};
+  description:
+    "ATX Titanium Corrugated Tube company overview. History, certifications, and facility details.",
+});
 
 const timeline = [
-  { year: "1991", event: "Founded as Hyundai Titanium" },
   { year: "2008", event: "ATX Co., Ltd. established" },
   { year: "2013", event: "ISO 9001 certification obtained" },
   { year: "2013", event: "2 patents registered for magnetic powder recovery cluster" },
@@ -73,7 +77,7 @@ export default function EnAboutPage() {
             Company Overview
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            A specialist manufacturer dedicated exclusively to titanium piping since our founding in 1991.
+            A specialist manufacturer dedicated exclusively to titanium piping since our founding in {FOUNDED_YEAR}.
           </p>
         </div>
       </div>
@@ -118,9 +122,9 @@ export default function EnAboutPage() {
 
               <ScrollReveal delay={150}>
                 <div className="bg-ti-950 rounded-2xl px-6 py-5 flex flex-col gap-3">
-                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since 1991</p>
+                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since {FOUNDED_YEAR}</p>
                   <p className="text-silver-200 font-bold text-lg leading-snug">
-                    30+ Years of Pure Titanium Expertise —<br />Korea&apos;s Only Comprehensive Titanium Piping Specialist
+                    {YEARS_IN_BUSINESS} Years of Pure Titanium Expertise —<br />Korea&apos;s Only Comprehensive Titanium Piping Specialist
                   </p>
                   <p className="text-silver-400 text-sm leading-relaxed">
                     All processes in-house: design, forming, welding, and inspection. Supplying to major domestic and international clients including POSCO, Korea Electric Power, and PETRONAS — our technical capability is proven.
@@ -137,7 +141,7 @@ export default function EnAboutPage() {
         <div className="container-pad">
           <div className="grid grid-cols-3 gap-8">
             {[
-              { icon: Factory, value: 30, suffix: "+", label: "Years in Business" },
+              { icon: Factory, value: YEARS_IN_BUSINESS, suffix: "", label: "Years in Business" },
               { icon: Globe,   value: 500, suffix: "+", label: "Delivered Projects" },
               { icon: Award,   value: 6,   suffix: "",  label: "Certifications" },
             ].map(({ icon: Icon, value, suffix, label }) => (
@@ -159,7 +163,7 @@ export default function EnAboutPage() {
           <ScrollReveal>
             <SectionHeader
               label="History"
-              title="30 Years of Growth"
+              title={`${YEARS_IN_BUSINESS} Years of Growth`}
               subtitle="Technology and trust built step by step."
             />
           </ScrollReveal>

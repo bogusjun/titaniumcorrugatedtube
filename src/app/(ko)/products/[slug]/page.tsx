@@ -11,6 +11,7 @@ import Image from "next/image";
 import productsData from "@/data/products.json";
 import ProductCard from "@/components/product/ProductCard";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
+import { alternatesFor, OG_DEFAULTS } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -35,15 +36,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: product.name,
     description: product.description,
-    alternates: {
-      canonical: url,
-      languages: {
-        ko: url,
-        en: `https://tube.atx.kr/en/products/${product.slug}`,
-        ja: `https://tube.atx.kr/ja/products/${product.slug}`,
-      },
-    },
+    alternates: alternatesFor(`/products/${product.slug}`, "ko"),
     openGraph: {
+      type: "website",
+      locale: OG_DEFAULTS.ko.locale,
+      siteName: OG_DEFAULTS.ko.siteName,
       title: `${product.name} | ATX 티타늄 주름관`,
       description: product.description,
       url,

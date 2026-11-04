@@ -3,10 +3,12 @@ import { Suspense } from "react";
 import EnHeader from "@/components/layout/en/Header";
 import EnFooter from "@/components/layout/en/Footer";
 
+// canonical·hreflang·og:url 은 페이지마다 pageMetadata()(@/lib/seo)로 지정한다 — 여기 두면 하위 페이지가 홈 주소를 물려받는다
 export const metadata: Metadata = {
   metadataBase: new URL("https://tube.atx.kr"),
   title: {
-    default: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
+    // absolute: 루트 레이아웃의 국문 template(「| ATX 티타늄 주름관」)이 붙지 않게 한다
+    absolute: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
     template: "%s | ATX Titanium",
   },
   icons: {
@@ -32,19 +34,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://tube.atx.kr/en",
     siteName: "ATX Titanium",
     title: "ATX Titanium Corrugated Tube | Manufacturer",
     description: "High-quality titanium corrugated tubes for semiconductor, chemical, aerospace & marine industries",
     images: [{ url: "/images/og-image-en.jpg", width: 1200, height: 630, alt: "ATX Titanium Corrugated Tube — Corrosion-Resistant Heat Exchanger Manufacturer" }],
-  },
-  alternates: {
-    canonical: "https://tube.atx.kr/en",
-    languages: {
-      ko: "https://tube.atx.kr",
-      en: "https://tube.atx.kr/en",
-      ja: "https://tube.atx.kr/ja",
-    },
   },
   robots: {
     index: true,

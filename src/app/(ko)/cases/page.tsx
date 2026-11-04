@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import CasesCarousel from "./CasesCarousel";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  locale: "ko",
+  path: "/cases",
   title: "적용 사례",
-  description: "화학플랜트, 반도체, 원자력, 해양수산 등 ATX 티타늄·특수비철 가공 납품 사례.",
-};
+  description:
+    "화학플랜트, 반도체, 원자력, 해양수산 등 ATX 티타늄·특수비철 가공 납품 사례.",
+});
 
 const cases = [
   {

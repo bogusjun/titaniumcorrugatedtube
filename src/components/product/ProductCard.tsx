@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Thermometer, Gauge } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { localePrefix, productUi, type UiLocale } from "./product-ui";
 
 interface Product {
   slug: string;
@@ -15,12 +16,15 @@ interface Product {
 interface ProductCardProps {
   product: Product;
   className?: string;
+  locale?: UiLocale;
 }
 
-export default function ProductCard({ product, className }: ProductCardProps) {
+export default function ProductCard({ product, className, locale = "ko" }: ProductCardProps) {
+  const { workingPressure, temperatureRange } = product.specs;
+  const hasValue = (v?: string) => !!v && v !== "-";
   return (
     <Link
-      href={`/products/${product.slug}`}
+      href={`${localePrefix(locale)}/products/${product.slug}`}
       className={cn(
         "block bg-white border border-silver-100 rounded-xl shadow-ti-sm overflow-hidden group hover:-translate-y-0.5 transition-all duration-300",
         className
@@ -50,20 +54,26 @@ export default function ProductCard({ product, className }: ProductCardProps) {
           {product.description}
         </p>
 
-        {/* Key Specs */}
-        <div className="flex gap-3 mb-4 text-xs text-ink-subtle">
-          <div className="flex items-center gap-1">
-            <Gauge className="w-3.5 h-3.5 text-accent" />
-            {product.specs.workingPressure}
+        {/* Key Specs — 값이 「-」이면 감춘다 */}
+        {(hasValue(workingPressure) || hasValue(temperatureRange)) && (
+          <div className="flex flex-wrap gap-3 mb-4 text-xs text-ink-subtle">
+            {hasValue(workingPressure) && (
+              <div className="flex items-center gap-1">
+                <Gauge className="w-3.5 h-3.5 text-accent" />
+                {workingPressure}
+              </div>
+            )}
+            {hasValue(temperatureRange) && (
+              <div className="flex items-center gap-1">
+                <Thermometer className="w-3.5 h-3.5 text-silver-400" />
+                {temperatureRange}
+              </div>
+            )}
           </div>
-          <div className="flex items-center gap-1">
-            <Thermometer className="w-3.5 h-3.5 text-silver-400" />
-            {product.specs.temperatureRange}
-          </div>
-        </div>
+        )}
 
         <span className="flex items-center gap-1 text-accent text-sm font-semibold group-hover:gap-2 transition-all">
-          사양 보기 <ArrowRight className="w-4 h-4" />
+          {productUi[locale].viewSpecs} <ArrowRight className="w-4 h-4" />
         </span>
       </div>
     </Link>
