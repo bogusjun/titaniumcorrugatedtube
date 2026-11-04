@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Phone, Mail, Download } from "lucide-react";
+import { ArrowRight, Phone, Mail } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export default function CTASection() {
   return (
@@ -25,14 +26,14 @@ export default function CTASection() {
               <span className="text-accent">전문가와 상담</span>하세요
             </h2>
             <p className="text-silver-500 text-lg leading-relaxed">
-              규격 선택부터 설치까지 — 20년 경험의 티타늄 열교환기 전문가가<br className="hidden md:block" />
+              규격 선택부터 설치까지 — {YEARS_IN_BUSINESS}년 경험의 티타늄 열교환기 전문가가<br className="hidden md:block" />
               최적의 솔루션을 제안해 드립니다. 도면 검토 및 기술 상담 무료.
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={150}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {/* Quotation CTA */}
             <Link
               href="/support"
@@ -54,19 +55,6 @@ export default function CTASection() {
               <h3 className="text-silver-200 font-bold text-xl">전화 상담</h3>
               <p className="text-silver-500 text-sm text-center leading-relaxed">
                 1544-1909<br />평일 09:00 ~ 18:00
-              </p>
-            </a>
-
-            {/* Catalog */}
-            <a
-              href="/catalog.pdf"
-              download
-              className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-ti-900 hover:bg-ti-800 border border-ti-800 hover:border-ti-700 transition-all duration-300 hover:-translate-y-1"
-            >
-              <Download className="w-9 h-9 text-accent" />
-              <h3 className="text-silver-200 font-bold text-xl">카탈로그 다운로드</h3>
-              <p className="text-silver-500 text-sm text-center leading-relaxed">
-                전 제품 사양·규격표 포함<br />PDF 무료 제공
               </p>
             </a>
           </div>

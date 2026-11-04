@@ -4,6 +4,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "技術特長",
@@ -115,7 +116,7 @@ export default function JaTechnologyPage() {
             技術特長
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            20年のチタン加工ノウハウと精密製造技術で作られる最高品質の波管。
+            {YEARS_IN_BUSINESS}年のチタン加工ノウハウと精密製造技術で作られる最高品質の波管。
           </p>
         </div>
       </div>

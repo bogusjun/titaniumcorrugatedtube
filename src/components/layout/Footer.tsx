@@ -12,11 +12,11 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  { label: "단층 주름관 (Single Ply)",  href: "/products?category=single-ply" },
-  { label: "다층 주름관 (Multi Ply)",   href: "/products?category=multi-ply" },
-  { label: "브레이드형 주름관",          href: "/products?category=braided" },
-  { label: "열교환기 주름관",            href: "/products?category=custom" },
-  { label: "커스텀 규격 제작",           href: "/support" },
+  { label: "티타늄 주름관",     href: "/products?category=tube" },
+  { label: "열교환기 맞춤제작", href: "/products?category=heat-exchanger" },
+  { label: "폐열회수기",        href: "/products/waste-heat-recovery" },
+  { label: "주름관 소켓",       href: "/products?category=socket" },
+  { label: "커스텀 규격 제작",  href: "/support" },
 ];
 
 export default function Footer() {

@@ -12,11 +12,11 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  { label: "Single Ply Corrugated Tube", href: "/en/products?category=single-ply" },
-  { label: "Multi Ply Corrugated Tube",  href: "/en/products?category=multi-ply" },
-  { label: "Braided Corrugated Tube",    href: "/en/products?category=braided" },
-  { label: "Heat Exchanger Tube",        href: "/en/products?category=custom" },
-  { label: "Custom Specifications",      href: "/en/support" },
+  { label: "Titanium Corrugated Tube", href: "/en/products?category=tube" },
+  { label: "Custom Heat Exchangers",   href: "/en/products?category=heat-exchanger" },
+  { label: "Waste Heat Recovery",      href: "/en/products/waste-heat-recovery" },
+  { label: "Tube Sockets",             href: "/en/products?category=socket" },
+  { label: "Custom Specifications",    href: "/en/support" },
 ];
 
 export default function EnFooter() {

@@ -12,11 +12,11 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  { label: "単層波管 (Single Ply)",  href: "/ja/products?category=single-ply" },
-  { label: "多層波管 (Multi Ply)",   href: "/ja/products?category=multi-ply" },
-  { label: "ブレード型波管",          href: "/ja/products?category=braided" },
-  { label: "熱交換器用波管",          href: "/ja/products?category=custom" },
-  { label: "カスタム規格製作",        href: "/ja/support" },
+  { label: "チタン波管",             href: "/ja/products?category=tube" },
+  { label: "オーダーメイド熱交換器", href: "/ja/products?category=heat-exchanger" },
+  { label: "廃熱回収装置",           href: "/ja/products/waste-heat-recovery" },
+  { label: "波管ソケット",           href: "/ja/products?category=socket" },
+  { label: "カスタム規格製作",       href: "/ja/support" },
 ];
 
 export default function JaFooter() {

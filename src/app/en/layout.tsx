@@ -6,7 +6,8 @@ import EnFooter from "@/components/layout/en/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tube.atx.kr"),
   title: {
-    default: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
+    // absolute: 루트 레이아웃의 국문 template(「| ATX 티타늄 주름관」)이 붙지 않게 한다
+    absolute: "ATX Titanium Corrugated Tube | Titanium Flexible Hose Manufacturer",
     template: "%s | ATX Titanium",
   },
   icons: {

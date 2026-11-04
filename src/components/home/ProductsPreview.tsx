@@ -87,7 +87,7 @@ export default function ProductsPreview() {
                   전 규격 사양표
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/products/heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
+                <Link href="/products?category=heat-exchanger" className="inline-flex items-center gap-1.5 text-ink-muted text-sm font-medium hover:text-ink transition-colors">
                   응용품: 코일형 열교환기 →
                 </Link>
               </div>

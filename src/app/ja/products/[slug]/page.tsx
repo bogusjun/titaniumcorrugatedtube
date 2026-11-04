@@ -1,4 +1,26 @@
-// TODO: 일어 번역
-export default function JaProductDetailPage() {
-  return <div>準備中</div>;
+import type { Metadata } from "next";
+import LocalizedProductDetail, {
+  localizedProductMetadata,
+  localizedProductParams,
+} from "@/components/product/LocalizedProductDetail";
+
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+// products.json 에 없는 주소는 404
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return localizedProductParams();
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  return localizedProductMetadata(slug, "ja");
+}
+
+export default async function JaProductDetailPage({ params }: Props) {
+  const { slug } = await params;
+  return <LocalizedProductDetail slug={slug} locale="ja" />;
 }

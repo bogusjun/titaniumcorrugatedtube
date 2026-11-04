@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Phone, Mail, Download } from "lucide-react";
+import { ArrowRight, Phone, Mail } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export default function JaCTASection() {
   return (
@@ -24,14 +25,14 @@ export default function JaCTASection() {
               <span className="text-accent">専門家にご相談</span>ください
             </h2>
             <p className="text-silver-500 text-lg leading-relaxed">
-              規格選定から設置まで — 20年の経験を持つチタン熱交換器の専門家が<br className="hidden md:block" />
+              規格選定から設置まで — {YEARS_IN_BUSINESS}年の経験を持つチタン熱交換器の専門家が<br className="hidden md:block" />
               最適なソリューションをご提案します。図面確認・技術相談は無料。
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={150}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
             <Link
               href="/ja/support"
               className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-accent hover:bg-accent-dark border border-accent/50 transition-all duration-300 hover:-translate-y-1"
@@ -51,18 +52,6 @@ export default function JaCTASection() {
               <h3 className="text-silver-200 font-bold text-xl">お電話でのご相談</h3>
               <p className="text-silver-500 text-sm text-center leading-relaxed">
                 +82-1544-1909<br />平日 09:00 〜 18:00（韓国時間）
-              </p>
-            </a>
-
-            <a
-              href="/catalog.pdf"
-              download
-              className="group flex flex-col items-center gap-3 p-8 rounded-2xl bg-ti-900 hover:bg-ti-800 border border-ti-800 hover:border-ti-700 transition-all duration-300 hover:-translate-y-1"
-            >
-              <Download className="w-9 h-9 text-accent" />
-              <h3 className="text-silver-200 font-bold text-xl">カタログダウンロード</h3>
-              <p className="text-silver-500 text-sm text-center leading-relaxed">
-                全製品仕様・規格表収録<br />PDF 無料提供
               </p>
             </a>
           </div>

@@ -4,6 +4,7 @@ import { Award, Factory, Globe } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "회사 소개",
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 const timeline = [
-  { year: "1991", event: "현대티타늄 창립" },
   { year: "2008", event: "(주)에이티엑스 설립" },
   { year: "2013", event: "ISO 9001 인증 취득" },
   { year: "2013", event: "마그네틱 파우더 회수 클러스터 특허 2건 등록" },
@@ -73,7 +73,7 @@ export default function AboutPage() {
             회사 소개
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            1991년 창립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
+            {FOUNDED_YEAR}년 설립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
           </p>
         </div>
       </div>
@@ -120,9 +120,9 @@ export default function AboutPage() {
 
               <ScrollReveal delay={150}>
                 <div className="bg-ti-950 rounded-2xl px-6 py-5 flex flex-col gap-3">
-                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since 1991</p>
+                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since {FOUNDED_YEAR}</p>
                   <p className="text-silver-200 font-bold text-lg leading-snug">
-                    30년 이상 티타늄 한 길,<br />국내 유일의 종합 티타늄 배관 전문 제조사
+                    {YEARS_IN_BUSINESS}년 티타늄 한 길,<br />국내 유일의 종합 티타늄 배관 전문 제조사
                   </p>
                   <p className="text-silver-400 text-sm leading-relaxed">
                     설계·성형·용접·검사까지 전 공정을 자체 생산합니다. POSCO, 한국전력, PETRONAS 등 국내외 주요 수요처에 납품하며 기술력을 검증받았습니다.
@@ -139,7 +139,7 @@ export default function AboutPage() {
         <div className="container-pad">
           <div className="grid grid-cols-3 gap-8">
             {[
-              { icon: Factory, value: 30, suffix: "+", label: "업력 (년)" },
+              { icon: Factory, value: YEARS_IN_BUSINESS, suffix: "", label: "업력 (년)" },
               { icon: Globe, value: 500, suffix: "+", label: "납품 프로젝트" },
               { icon: Award, value: 6, suffix: "건", label: "보유 인증" },
             ].map(({ icon: Icon, value, suffix, label }) => (
@@ -161,7 +161,7 @@ export default function AboutPage() {
           <ScrollReveal>
             <SectionHeader
               label="연혁"
-              title="30년의 성장 역사"
+              title={`${YEARS_IN_BUSINESS}년의 성장 역사`}
               subtitle="한 걸음씩 쌓아온 기술과 신뢰."
             />
           </ScrollReveal>

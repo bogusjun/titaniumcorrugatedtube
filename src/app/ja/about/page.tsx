@@ -4,6 +4,7 @@ import { Award, Factory, Globe } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "会社概要",
@@ -11,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 const timeline = [
-  { year: "1991", event: "現代チタン創立" },
   { year: "2008", event: "ATX Co., Ltd. 設立" },
   { year: "2013", event: "ISO 9001 認証取得" },
   { year: "2013", event: "磁気粉体回収クラスター特許 2件登録" },
@@ -73,7 +73,7 @@ export default function JaAboutPage() {
             会社概要
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            1991年の創立以来、チタン配管一筋を歩んできた専門メーカー。
+            {FOUNDED_YEAR}年の設立以来、チタン配管一筋を歩んできた専門メーカー。
           </p>
         </div>
       </div>
@@ -118,9 +118,9 @@ export default function JaAboutPage() {
 
               <ScrollReveal delay={150}>
                 <div className="bg-ti-950 rounded-2xl px-6 py-5 flex flex-col gap-3">
-                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since 1991</p>
+                  <p className="text-accent text-xs font-semibold uppercase tracking-widest">Since {FOUNDED_YEAR}</p>
                   <p className="text-silver-200 font-bold text-lg leading-snug">
-                    30年以上チタン一筋、<br />国内唯一の総合チタン配管専門メーカー
+                    {YEARS_IN_BUSINESS}年チタン一筋、<br />国内唯一の総合チタン配管専門メーカー
                   </p>
                   <p className="text-silver-400 text-sm leading-relaxed">
                     設計・成形・溶接・検査まで全工程を自社生産。POSCO・韓国電力・PETRONASなど国内外の主要納入先に供給し、技術力を実証しています。
@@ -137,7 +137,7 @@ export default function JaAboutPage() {
         <div className="container-pad">
           <div className="grid grid-cols-3 gap-8">
             {[
-              { icon: Factory, value: 30, suffix: "+", label: "業歴（年）" },
+              { icon: Factory, value: YEARS_IN_BUSINESS, suffix: "", label: "業歴（年）" },
               { icon: Globe, value: 500, suffix: "+", label: "納入プロジェクト" },
               { icon: Award, value: 6, suffix: "件", label: "保有認証" },
             ].map(({ icon: Icon, value, suffix, label }) => (
@@ -159,7 +159,7 @@ export default function JaAboutPage() {
           <ScrollReveal>
             <SectionHeader
               label="沿革"
-              title="30年の成長の歴史"
+              title={`${YEARS_IN_BUSINESS}年の成長の歴史`}
               subtitle="一歩一歩積み上げてきた技術と信頼。"
             />
           </ScrollReveal>

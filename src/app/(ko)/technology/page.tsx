@@ -4,6 +4,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "기술 특장점",
@@ -116,7 +117,7 @@ export default function TechnologyPage() {
             기술 특장점
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            20년의 티타늄 가공 노하우와 정밀 제조 기술로 만들어지는 최고 품질의 주름관.
+            {YEARS_IN_BUSINESS}년의 티타늄 가공 노하우와 정밀 제조 기술로 만들어지는 최고 품질의 주름관.
           </p>
         </div>
       </div>

@@ -6,7 +6,8 @@ import JaFooter from "@/components/layout/ja/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tube.atx.kr"),
   title: {
-    default: "ATX チタン波管 | チタン製フレキシブルホース専門メーカー",
+    // absolute: 루트 레이아웃의 국문 template(「| ATX 티타늄 주름관」)이 붙지 않게 한다
+    absolute: "ATX チタン波管 | チタン製フレキシブルホース専門メーカー",
     template: "%s | ATX チタン波管",
   },
   icons: {

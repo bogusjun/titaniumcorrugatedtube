@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, ChevronDown, Shield, Award, Factory } from "lucide-react";
+import { ArrowRight, ChevronDown, Shield, Award, Factory } from "lucide-react";
 
 const slides = [
   {
@@ -105,14 +105,6 @@ export default function EnHeroSection() {
             <Link href="/en/products" className="btn-outline text-base py-4 px-8">
               View Product Catalog
             </Link>
-            <a
-              href="/catalog.pdf"
-              download
-              className="inline-flex items-center gap-2 text-silver-300 hover:text-white font-semibold text-base py-4 px-6 transition-colors border border-ti-700 rounded-lg hover:bg-ti-800/50"
-            >
-              <Download className="w-5 h-5" />
-              PDF Download
-            </a>
           </div>
         </div>
       </div>

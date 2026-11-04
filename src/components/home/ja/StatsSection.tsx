@@ -1,8 +1,9 @@
 import AnimatedNumber from "@/components/ui/AnimatedNumber";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { FOUNDED_YEAR, YEARS_IN_BUSINESS } from "@/lib/company";
 
 const stats = [
-  { value: 20,  suffix: "+", label: "業歴（年）",       desc: "2007年創立" },
+  { value: YEARS_IN_BUSINESS, suffix: "", label: "業歴（年）", desc: `${FOUNDED_YEAR}年創立` },
   { value: 500, suffix: "+", label: "納入プロジェクト", desc: "国内外累計" },
   { value: 50,  suffix: "+", label: "適用産業分野",     desc: "多様な用途" },
   { value: 99,  suffix: "%", label: "リピート率",       desc: "顧客信頼度" },

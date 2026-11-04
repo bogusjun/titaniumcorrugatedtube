@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import productsData from "@/data/products.json";
+import { getLocalizedProducts } from "@/data/products-i18n";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
 
 export const metadata: Metadata = {
@@ -38,8 +38,9 @@ export default async function JaProductsPage({
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <Suspense fallback={null}>
             <ProductListClient
-              products={productsData}
+              products={getLocalizedProducts("ja")}
               initialCategory={category || "all"}
+              locale="ja"
             />
           </Suspense>
         </div>

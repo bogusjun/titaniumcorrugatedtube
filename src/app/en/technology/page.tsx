@@ -4,6 +4,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { YEARS_IN_BUSINESS } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Technology",
@@ -115,7 +116,7 @@ export default function EnTechnologyPage() {
             Technology & Features
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            Highest-quality corrugated tubes built with 20 years of titanium processing know-how and precision manufacturing technology.
+            Highest-quality corrugated tubes built with {YEARS_IN_BUSINESS} years of titanium processing know-how and precision manufacturing technology.
           </p>
         </div>
       </div>
