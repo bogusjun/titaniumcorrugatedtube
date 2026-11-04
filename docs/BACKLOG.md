@@ -13,6 +13,7 @@
 - [ ] **이용약관 검토** — 회원가입·결제 없는 정보·견적 사이트 기준 초안. 법무 검토가 필요하면 반영 (2026-10-27 · `src/components/legal/terms-content.ts`)
 - [ ] **인증 표기 사실 확인** — 푸터 「ISO 9001:2015 · ISO 14001 · KS 인증」, 홈 히어로 「ISO 9001 · 45001 인증」(푸터와 서로 다름), 회사소개 「2013 ISO 9001 취득 · ISO 14001:2015」, 메타 설명 「ISO 9001 인증」. 실제 보유하지 않으면 표시광고법 위험 (2026-10-23, 2026-11-04 보강 · `src/components/layout/*Footer.tsx`, `src/components/home/*HeroSection.tsx`, `src/app/*/about/page.tsx`, `src/app/layout.tsx`)
 - [ ] **뉴스 내용 사실 확인·갱신** — INCHEM KOREA 2025·WEFTEC 2025 참가, Grade 9 브레이드 주름관 출시, 반도체 FAB 불산 배관 500m 공급 등이 실제 사실인지. 견본 문구면 삭제·교체. 가장 최근 글이 2025-11-05라 1년째 새 글이 없고, 「2025 INCHEM 참가 안내」·「추석 연휴 일정 안내」(2025)처럼 지난 안내가 그대로 있음 (2026-10-27, 2026-11-04 보강 · `src/app/(ko)/news/page.tsx` 외 en·ja)
+- [ ] **폐열회수기 특허 표기 불일치** — 폐열회수기 페이지 검색 설명은 「특허 출원」, 같은 페이지 본문·제품 데이터는 「특허 등록 제10-2832328호」. 등록이 맞으면 설명 문구를 고치기 (2026-11-04 · `src/app/(ko)/products/waste-heat-recovery/page.tsx`)
 - [ ] **고객지원 FAQ 사실 확인** — 「6A~100A 전 규격 맞춤 제작」(제품 라인업은 10A·15A), 「20개국 이상 수출」, 「EN 10204 3.1 밀시트 전 제품 제공」, 「MOQ 없이 1본부터 · 재고품 즉시 출고」가 실제와 맞는지 (2026-11-04 · `src/app/*/support/page.tsx`)
 - [ ] **GitHub 저장소가 공개 상태 — 지운 위치정보가 git 기록에 남아 있음** — 사진·동영상의 GPS는 현재 파일에서 지웠지만(2026-11-04) 저장소(`bogusjun/titaniumcorrugatedtube`)가 공개라 이전 커밋의 원본을 누구나 받을 수 있음. 저장소를 비공개로 바꾸는 게 가장 간단하고, 공개를 유지하려면 기록에서 원본을 지우는 작업(git filter-repo + 강제 푸시)이 필요 (2026-11-04)
 - [ ] **표준품 「공차 45mm」 확인** — `products.json`의 `bendRadius` 값이 화면에 「공차」로 나오는데, 주름관은 ±0.3mm(공차)이고 표준품은 45mm(굽힘 반경으로 보임). 표준품 값이 맞는지, 항목 이름을 나눌지 (2026-11-04 · `src/data/products.json`)
@@ -21,9 +22,7 @@
 
 ## 높음
 
-- [ ] **하위 페이지 canonical이 홈을 가리킴** — 국문 제품·기술·산업·회사소개·고객지원·뉴스·사례 7개 페이지의 canonical이 `https://tube.atx.kr`(홈), 영문·일문 같은 페이지는 `/en`·`/ja`(영·일 제품 상세 14개는 2026-11-04에 해결). 루트·언어 레이아웃의 `alternates.canonical`을 그대로 물려받아서이고, 검색엔진이 하위 페이지를 홈의 중복으로 보고 색인에서 뺄 수 있음. 페이지마다 자기 주소로 canonical·hreflang 지정 (og:url 항목과 같이 처리) (2026-11-04 · `src/app/layout.tsx`, `src/app/en|ja/layout.tsx`, 각 `page.tsx`)
 - [ ] **기술 자료 다운로드 6개가 빈 링크** — 고객지원의 「제품 카탈로그(국·영) · 규격표 · ISO 9001 인증서 · Grade별 물성표 · 설치·유지보수 가이드」가 모두 `href="#"`라 눌러도 아무 일이 없음(국·영·일). 고객지원 페이지(`/support` — 헤더 오른쪽 견적 버튼, 푸터 「견적 문의」, 홈 「무료 견적 요청」으로 들어감) 오른쪽 열 「기술 자료 다운로드」에 있음(모바일은 견적 폼 아래). 파일을 준비하거나 준비된 것만 남기고, 하나도 없으면 섹션을 감추기 (2026-11-04 · `src/app/*/support/page.tsx`)
-- [ ] **깨진 JPEG 4개 → 원본 그대로 전송** — `heat-exchanger-coil-single.jpg`(15.9MB)·`ts-coil-interior.jpg`(7.0MB)·`ts-coil-top-angled.jpg`(6.5MB)·`ts-socket-fitting-closeup.jpg`가 손상된 JPEG라 Next 이미지 최적화가 실패하고 원본을 내려보냄. 모바일 `/products` 첫 화면이 16.6MB. 다시 저장(재인코딩)하면 해결 (2026-11-04 · `public/images/products`)
 - [ ] **견적 문의 백업 저장·실패 알림** — Gmail SMTP 발송이 실패하면 문의가 사라지고 서버 로그에만 남음. DB나 시트에 함께 저장하고 실패 시 알림 (2026-10-23 · `src/app/api/contact/route.ts`)
 - [ ] **견적 폼 스팸 방어** — honeypot, 요청 횟수 제한, Turnstile 등이 없음. 스팸이 ATX Work를 거쳐 노션 영업 ToDo까지 들어감 (2026-10-23 · `src/app/api/contact/route.ts`)
 
@@ -32,7 +31,6 @@
 - [ ] **국문 페이지를 정적 페이지로** — `(ko)/layout.tsx`의 `headers()` 호출 때문에 국문 페이지만 요청마다 새로 렌더링됨(영문·일문은 미리 생성). 관리자 경로 판별용인데 `/admin`은 `(ko)` 밖이라 필요 없음. 함께 `middleware.ts`의 x-pathname 주입도 정리 (2026-10-23)
 - [ ] **영문·일문 페이지의 `<html lang="ko">`** — 루트 레이아웃이 lang을 고정함 (2026-10-23 · `src/app/layout.tsx`)
 - [ ] **커스텀 404 페이지** — 지금은 Next 기본 영문 404라 메뉴가 없음. `not-found.tsx` 추가 (2026-10-23)
-- [ ] **og:url이 모든 하위 페이지에서 홈 주소** — 자체 openGraph가 없는 국문 페이지는 루트 레이아웃의 `url: https://tube.atx.kr`을 물려받음 (2026-10-27 · `src/app/layout.tsx`)
 - [ ] **메타 키워드·설명 정리** — 「반도체 배관·화학 배관·내식성 배관」, 「플렉시블 호스」 중심 문구를 「고부식 환경 열교환」 방향으로. 영·일 홈 제목 「Titanium Flexible Hose Manufacturer」·「チタン製フレキシブルホース専門メーカー」도 함께 (2026-10-23 · `src/app/layout.tsx`, `src/app/en|ja/layout.tsx`)
 - [ ] **이미지 용량 정리** — `public` 341MB. 20~30MB 원본(KTL 시험성적서, 폐열회수기 설치 사진)과 코드에서 쓰지 않는 파일 51개(약 83MB). `hero-product-2.jpg`는 확장자만 jpg인 PNG (2026-10-23, 2026-11-04 보강 · `public/images`)
 - [ ] **영·일 제품 상세 보강** — 영·일 상세는 데이터(`products.json` + `products-i18n.ts`)에 있는 사진·설명·사양·용도·특징만 보여 줌. 국문에만 있는 섹션(주름관 소재 비교·난류 구조·직접 시공, 폐열회수기 작동 원리·인증·납품 실적·절감 계산기 등)은 번역해 옮겨야 함. 폐열회수기는 국문 전용 페이지가 따로 있어 차이가 가장 큼 (2026-11-04 · `src/components/product/LocalizedProductDetail.tsx`)
@@ -58,6 +56,8 @@
 
 ## 완료
 
+- [x] 페이지별 canonical·hreflang·og:url — 레이아웃에서 canonical을 빼고 모든 국·영·일 페이지(51개 주소)가 `pageMetadata()`(`src/lib/seo.ts`)로 자기 주소를 지정, hreflang에 x-default 추가. 홈 제목의 브랜드 중복(「… | ATX 티타늄 주름관」 두 번), 모든 페이지에 붙던 국문 twitter 제목, 폐열회수기 페이지의 hreflang 누락도 함께 해결 (2026-11-04)
+- [x] 손상된 JPEG 4장 재저장 — 회전은 픽셀에 반영, 색 프로필 유지, 긴 변 3840px(Next가 내보내는 최대 폭). 합계 34.5MB → 3.6MB, 모바일 `/products` 첫 화면 16.6MB → 0.8MB (2026-11-04 · `public/images/products`)
 - [x] 업력·창립 연도를 2008년((주)에이티엑스 설립)으로 통일 — 홈 통계·CTA, 기술, 회사소개(국·영·일), 폐열회수기 페이지. 업력은 `src/lib/company.ts`에서 「올해 − 2008」로 계산. 연혁의 「1991 현대티타늄 창립」 항목은 뺐음 (2026-11-04)
 - [x] 영·일 제품 목록·상세 — 제품 문구 번역(`src/data/products-i18n.ts`), 목록·카드·필터 영·일 표시와 영·일 상세로 연결, 「Coming Soon」 대신 데이터 기반 상세 페이지(자체 canonical·hreflang, 없는 주소는 404) (2026-11-04)
 - [x] 영·일 페이지 제목 끝의 「| ATX 티타늄 주름관」 제거 (2026-11-04 · `src/app/en|ja/layout.tsx`)
