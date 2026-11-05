@@ -66,7 +66,8 @@ export default function EnHeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+      {/* pb-24: 내용이 화면보다 긴 모바일에서 아래 슬라이드 표시(bottom-12)가 버튼과 겹치지 않게 */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-24">
         <div className="max-w-3xl">
 
           <div className="flex flex-wrap gap-2 mb-8">
