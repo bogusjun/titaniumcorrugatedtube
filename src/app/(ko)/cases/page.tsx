@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CasesCarousel from "./CasesCarousel";
 import { pageMetadata } from "@/lib/seo";
 
@@ -100,9 +101,9 @@ export default function CasesPage() {
         <p className="text-silver-500 text-sm mb-8">
           소재 선정부터 가공 사양까지, 문제 환경에 맞는 답을 찾아드립니다.
         </p>
-        <a href="/support" className="btn-primary text-base px-8 py-3">
+        <Link href="/support" className="btn-primary text-base px-8 py-3">
           기술 상담 문의
-        </a>
+        </Link>
       </div>
     </div>
   );

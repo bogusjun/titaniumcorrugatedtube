@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CasesCarousel from "@/app/(ko)/cases/CasesCarousel";
 import { pageMetadata } from "@/lib/seo";
 
@@ -98,9 +99,9 @@ export default function EnCasesPage() {
         <p className="text-silver-500 text-sm mb-8">
           From material selection to processing specifications, we find the right answer for your environment.
         </p>
-        <a href="/en/support" className="btn-primary text-base px-8 py-3">
+        <Link href="/en/support" className="btn-primary text-base px-8 py-3">
           Technical Consultation Inquiry
-        </a>
+        </Link>
       </div>
     </div>
   );

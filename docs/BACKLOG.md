@@ -46,7 +46,7 @@
 - [ ] **뉴스·사례 CMS화** — 지금은 코드 안 배열이라 글 하나에 개발·배포가 필요 (2026-10-23)
 - [ ] **제품 상세 페이지 분리** — `(ko)/products/[slug]/page.tsx`가 1,600줄 넘음 (2026-10-23)
 - [ ] **운영 문서** — README가 기본 템플릿. 환경변수, 견적 메일과 ATX Work 결합, OG 이미지 생성(`node scripts/generate-og.mjs`) 정리 (2026-10-23)
-- [ ] **테스트·CI** — 자동 테스트와 CI가 없음. 루트의 `playwright-*-audit.mjs`를 정식 테스트로 (2026-10-23)
+- [ ] **테스트·CI** — 자동 테스트와 CI가 없음. 루트의 `playwright-*-audit.mjs`를 정식 테스트로. 로컬 lint 캐시(`.next/cache/eslint`)가 오류를 가려 Vercel에서만 빌드가 실패한 적이 있음 — CI와 배포 전 확인은 `next lint --no-cache`로 (2026-10-23, 2026-11-05 보강)
 
 ## 완료
 
