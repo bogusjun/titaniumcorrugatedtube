@@ -3,6 +3,9 @@ import productsData from "@/data/products.json";
 
 const baseUrl = "https://tube.atx.kr";
 
+// lastModified 는 넣지 않는다 — 배포 시각을 찍으면 모든 주소가 매번 「수정됨」이 되어 검색엔진이 이 값을 믿지 않는다.
+// 페이지별 실제 수정일을 관리하게 되면 그때 넣는다.
+
 const staticRoutes = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },
   { path: "/products", priority: 0.9, changeFrequency: "weekly" as const },
@@ -22,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const productRoutes = productsData.flatMap((p) =>
     locales.map((locale) => ({
       url: `${baseUrl}${locale}/products/${p.slug}`,
-      lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: locale === "" ? 0.8 : 0.7,
     }))
@@ -31,7 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.flatMap(({ path, priority, changeFrequency }) =>
     locales.map((locale) => ({
       url: `${baseUrl}${locale}${path}`,
-      lastModified: new Date(),
       changeFrequency,
       priority: locale === "" ? priority : Math.max(priority - 0.1, 0.4),
     }))

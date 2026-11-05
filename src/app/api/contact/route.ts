@@ -7,6 +7,7 @@ import {
   formatBytes,
   isAllowedAttachment,
 } from "@/lib/attachments";
+import { judgeSpam, SUSPECT_SUBJECT_PREFIX } from "@/lib/spam-guard";
 
 /**
  * 견적·문의 폼 → 메일
@@ -17,6 +18,8 @@ import {
  * scripts/gmail/gmail-en-inquiry-processor.js 의 TUBE_FORM 도 같이 바꿔야 한다.
  * 업체명을 「[테스트]」로 시작하면 처리기가 출처만 남기고 노션에 올리지 않는다(시험 제출).
  * 도면·사진 첨부는 메일 첨부로 붙이고, 파일 이름 목록은 「문의내용」 끝 문단에 적는다(규칙: @/lib/attachments).
+ * 스팸 검사(규칙: @/lib/spam-guard): 숨긴 칸이 채워지면 보내지 않고 성공처럼 답하고, 너무 빨리 보낸 요청은
+ * 제목을 「[ATX 주름관 스팸의심]」으로 바꿔 보낸다 — 처리기가 노션에 올리지 않고 메일함에만 남는다.
  */
 
 const RECIPIENT = "atx.lsj@gmail.com";
@@ -72,6 +75,8 @@ type ContactBody = {
   fluid?: string;
   message?: string;
   privacyConsent?: boolean;
+  hp?: string;
+  elapsedMs?: number;
 };
 
 /** 국문 폼은 첨부가 있어 multipart(payload JSON + files), 영문·일문 폼은 JSON 으로 보낸다 */
@@ -100,6 +105,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "요청 형식이 올바르지 않습니다." }, { status: 400 });
     }
     const { body, files } = parsed;
+
+    const verdict = judgeSpam(body);
+    if (verdict.kind === "bot") {
+      console.warn("Contact spam dropped (honeypot filled)");
+      return NextResponse.json({ ok: true });
+    }
+    const suspectNote = verdict.kind === "suspect" ? `스팸 의심: ${verdict.reason}` : "";
     const { company, name, email, phone, product, size, quantity, pressure, fluid, message, privacyConsent } = body;
 
     if (!company || !name || !email) {
@@ -170,11 +182,13 @@ export async function POST(req: NextRequest) {
       "",
       "-- ",
       `주름관 홈페이지(tube.atx.kr) ${lang} 견적 폼 · 접수 ${receivedAt}`,
+      ...(suspectNote ? [suspectNote] : []),
       src ? `유입정보: ${src}` : "",
     ].filter((x, i, arr) => x !== "" || i < arr.length - 1).join("\n");
 
     const html = `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+  ${suspectNote ? `<p style="background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin: 0 0 12px;">⚠ ${esc(suspectNote)} — 자동 접수(노션 등록)에서 제외됨. 진짜 문의면 직접 처리해 주세요.</p>` : ""}
   <div style="background: #1a1a2e; padding: 24px; border-radius: 8px 8px 0 0;">
     <h2 style="color: #e63946; margin: 0; font-size: 20px;">새 견적·문의 요청</h2>
     <p style="color: #9ca3af; margin: 4px 0 0; font-size: 13px;">ATX 티타늄 주름관 홈페이지 (${esc(lang)}) 접수</p>
@@ -219,7 +233,7 @@ export async function POST(req: NextRequest) {
       to: RECIPIENT,
       cc: CC,
       replyTo: line(email),
-      subject: `${SUBJECT_PREFIX} ${line(company)} - ${line(name)}`,
+      subject: `${verdict.kind === "suspect" ? SUSPECT_SUBJECT_PREFIX : SUBJECT_PREFIX} ${line(company)} - ${line(name)}`,
       text,
       html,
       attachments,

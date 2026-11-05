@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import PrivacyConsent from "@/components/legal/PrivacyConsent";
 import { trackLead } from "@/components/analytics/track";
+import { HoneypotField, useSpamGuard } from "@/components/forms/SpamGuard";
 
 const FLUID_OPTIONS = [
   "海水 (Sea Water)",
@@ -64,6 +65,7 @@ export default function JaContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [consent, setConsent] = useState(false);
+  const { hp, setHp, spamFields, resetSpamGuard } = useSpamGuard();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -98,6 +100,7 @@ export default function JaContactForm() {
           fluid: form.fluid === "その他（直接入力）" ? form.fluidCustom : form.fluid,
           message: `[日本語からの問い合わせ]\n${form.message}`,
           privacyConsent: consent,
+          ...spamFields(),
         }),
       });
       if (!res.ok) throw new Error("送信失敗");
@@ -116,7 +119,7 @@ export default function JaContactForm() {
         <h3 className="text-2xl font-bold text-ink mb-2">お見積もり依頼を受け付けました！</h3>
         <p className="text-ink-muted mb-6">営業日24時間以内に担当者よりご連絡いたします。</p>
         <button
-          onClick={() => setStatus("idle")}
+          onClick={() => { resetSpamGuard(); setStatus("idle"); }}
           className="btn-primary"
         >
           新しいお問い合わせ
@@ -127,6 +130,7 @@ export default function JaContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <HoneypotField value={hp} onChange={setHp} />
 
       {/* 企業情報 */}
       <section>

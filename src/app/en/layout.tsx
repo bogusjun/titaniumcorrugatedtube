@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import EnHeader from "@/components/layout/en/Header";
+import EnHeader, { EnHeaderBase } from "@/components/layout/en/Header";
 import EnFooter from "@/components/layout/en/Footer";
 
 // canonical·hreflang·og:url 은 페이지마다 pageMetadata()(@/lib/seo)로 지정한다 — 여기 두면 하위 페이지가 홈 주소를 물려받는다
@@ -53,7 +53,7 @@ export default function EnLayout({
 }) {
   return (
     <>
-      <Suspense fallback={null}>
+      <Suspense fallback={<EnHeaderBase query={null} />}>
         <EnHeader />
       </Suspense>
       <main>{children}</main>

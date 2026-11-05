@@ -18,7 +18,7 @@ ATX 사이트 대장(`bogusjun/ATX_website` `00_운영관제/사이트-대장.md
 - [ ] **GA4 측정 ID 발급** — GA4 속성을 만들어 측정 ID(G-…)를 Vercel 환경변수 `NEXT_PUBLIC_GA4_ID`에 넣고 재배포. GA에서 `generate_lead`를 주요 이벤트로 지정, 데이터 보관 기간을 14개월로 설정. 대장 할 일 4 — 2026-11-05 운영 사이트 HTML에 GA4 스크립트 없음(아직 미설정). www의 GA4는 글로임이 관리하는 GTM을 거치므로 ATX 본인 구글 계정에서 새 속성으로 만드는 것을 권장 (2026-10-27 · `src/components/analytics/Analytics.tsx`)
 - [ ] **네이버 애널리틱스 ID 받기** — 파워링크 대행사(무명기획)에서 프리미엄 로그분석 공통 스크립트의 `wa` 값을 받아 `NEXT_PUBLIC_NAVER_WA`에 넣기. 전환(견적 신청) 스크립트 형식도 받아서 `trackLead()`에 추가. 대장 할 일 4 — 2026-11-05 운영 사이트에 네이버 스크립트 없음 (2026-10-27 · `src/components/analytics/track.ts`)
 - [ ] **GitHub 저장소가 공개 상태 — 지운 위치정보가 git 기록에 남아 있음** — 사진·동영상의 GPS는 현재 파일에서 지웠지만(2026-11-04) 저장소(`bogusjun/titaniumcorrugatedtube`)가 공개라 이전 커밋의 원본을 누구나 받을 수 있음. 이 목록과 문의 받는 메일 주소도 공개돼 있음. 저장소를 비공개로 바꾸는 게 가장 간단하고, 공개를 유지하려면 기록에서 원본을 지우는 작업(git filter-repo + 강제 푸시)이 필요. 대장 할 일 7 — 전환 전 확인: Vercel 플랜이 Hobby면 비공개 저장소는 커밋 작성자가 Vercel 계정 주인일 때만 배포됨. 이 저장소에는 「Claude」 작성 커밋 7개(PR #1)가 있으므로 PR은 머지 커밋 방식으로 넣고 rebase 머지는 피하기. 클라우드 세션(claude.ai/code)도 비공개 저장소 접근 권한이 필요. 코드·Actions에서 GitHub 주소를 직접 읽는 곳 없음, fork 0 (2026-11-04)
-- [ ] **관리자 페이지(/admin) 존폐** — 관리자는 Supabase를 고치는데 공개 사이트는 `products.json`을 읽어서, 관리자 수정이 홈페이지에 반영되지 않음. 주문·결제 테이블도 B2B 견적 사이트와 맞지 않음. 안 쓰면 제거, 쓰면 인증 보강(고정 토큰 쿠키·Secure 없음·로그인 시도 제한 없음). 대장 할 일 3·4-5 — 2026-11-05 확인: 운영 사이트에서 `/admin/login` 화면이 열림, Supabase를 쓰는 파일은 `src/app/admin`·`src/app/api/admin`·`src/lib/supabase.ts`뿐, 마지막 수정 2026-07-13. API는 라우트마다 쿠키를 확인함. 약점 3개 그대로 — 세션 쿠키 값이 `ADMIN_SESSION_SECRET` 고정값(`src/lib/admin-auth.ts`), Secure 없음, 로그인 시도 제한·상수 시간 비교 없음. 추천은 제거(제거하면 아래 「국문 페이지를 정적 페이지로」도 함께 풀림) (2026-10-23 · `src/app/admin`, `src/app/api/admin`, `middleware.ts`)
+- [ ] **관리자 페이지(/admin) 존폐** — 관리자는 Supabase를 고치는데 공개 사이트는 `products.json`을 읽어서, 관리자 수정이 홈페이지에 반영되지 않음. 주문·결제 테이블도 B2B 견적 사이트와 맞지 않음. 안 쓰면 제거, 쓰면 인증 보강(고정 토큰 쿠키·Secure 없음·로그인 시도 제한 없음). 대장 할 일 3·4-5 — 2026-11-05 확인: 운영 사이트에서 `/admin/login` 화면이 열림, Supabase를 쓰는 파일은 `src/app/admin`·`src/app/api/admin`·`src/lib/supabase.ts`뿐, 마지막 수정 2026-07-13. API는 라우트마다 쿠키를 확인함. 약점 3개 그대로 — 세션 쿠키 값이 `ADMIN_SESSION_SECRET` 고정값(`src/lib/admin-auth.ts`), Secure 없음, 로그인 시도 제한·상수 시간 비교 없음. 추천은 제거(제거하면 지금 `/admin`에만 도는 `middleware.ts`도 지울 수 있음) (2026-10-23 · `src/app/admin`, `src/app/api/admin`, `middleware.ts`)
 
 ### 그 밖
 
@@ -28,29 +28,23 @@ ATX 사이트 대장(`bogusjun/ATX_website` `00_운영관제/사이트-대장.md
 - [ ] **폐열회수기 특허 표기 불일치** — 폐열회수기 페이지 검색 설명은 「특허 출원」, 같은 페이지 본문·제품 데이터는 「특허 등록 제10-2832328호」. 등록이 맞으면 설명 문구를 고치기. 10-2832328은 등록번호 형식(출원번호는 「10-연도-일련번호」)이라 「등록」이 맞을 가능성이 높음(추정, 2026-11-05) (2026-11-04 · `src/app/(ko)/products/waste-heat-recovery/page.tsx`)
 - [ ] **고객지원 FAQ 사실 확인** — 「6A~100A 전 규격 맞춤 제작」(제품 라인업은 10A·15A), 「20개국 이상 수출」, 「EN 10204 3.1 밀시트 전 제품 제공」, 「MOQ 없이 1본부터 · 재고품 즉시 출고」가 실제와 맞는지 (2026-11-04 · `src/app/*/support/page.tsx`)
 - [ ] **표준품 「공차 45mm」 확인** — `products.json`의 `bendRadius` 값이 화면에 「공차」로 나오는데, 주름관은 ±0.3mm(공차)이고 표준품은 45mm(굽힘 반경으로 보임). 표준품 값이 맞는지, 항목 이름을 나눌지 (2026-11-04 · `src/data/products.json`)
+- [ ] **스팸 의심 메일이 노션에 안 올라가는지 확인** — 폼을 연 지 3초 안에 보냈거나 폼을 거치지 않은 요청은 제목이 「[ATX 주름관 스팸의심]」으로 온다. ATX Work 처리기(atx-worklog `gmail-en-inquiry-processor.js`)가 이 제목을 집지 않는지 배포 후 확인. 정상 문의는 업체명을 「[테스트]」로 시작해 한 번 보내 보기 (2026-11-05 · `src/lib/spam-guard.ts`)
 - [ ] **13개 언어 다국어 작업 병합 여부** — `git stash`에 보관 중(「WIP: 13개 언어 i18n…」). 9bcc9de 이전 기준이라 충돌 정리가 필요하고, `locales.ts`의 SITE_URL이 옛 도메인, `LocalizedFooter`에 개인정보처리방침·이용약관 링크가 없음. ko/ru/th 메시지 일부가 영문 그대로 (2026-10-23)
 
 ## 높음
 
 - [ ] **기술 자료 다운로드 6개가 빈 링크** — 고객지원의 「제품 카탈로그(국·영) · 규격표 · ISO 9001 인증서 · Grade별 물성표 · 설치·유지보수 가이드」가 모두 `href="#"`라 눌러도 아무 일이 없음(국·영·일). 고객지원 페이지(`/support` — 헤더 오른쪽 견적 버튼, 푸터 「견적 문의」, 홈 「무료 견적 요청」으로 들어감) 오른쪽 열 「기술 자료 다운로드」에 있음(모바일은 견적 폼 아래). 파일을 준비하거나 준비된 것만 남기고, 하나도 없으면 섹션을 감추기 (2026-11-04 · `src/app/*/support/page.tsx`)
 - [ ] **견적 문의 백업 저장·실패 알림** — Gmail SMTP 발송이 실패하면 문의가 사라지고 서버 로그에만 남음. DB나 시트에 함께 저장하고 실패 시 알림. 사이트 대장(2026-11-04)에서 넘어옴 — 2026-11-05 확인: 그대로. 손님 화면에는 「메일 전송에 실패했습니다」와 777@atx.kr 안내가 뜨지만 내용은 저장되지 않음 (2026-10-23 · `src/app/api/contact/route.ts`)
-- [ ] **견적 폼 스팸 방어** — honeypot, 요청 횟수 제한, Turnstile 등이 없음. 스팸이 ATX Work를 거쳐 노션 영업 ToDo까지 들어감. 사이트 대장(2026-11-04)에서 넘어옴 — 2026-11-05 확인: 그대로 (2026-10-23 · `src/app/api/contact/route.ts`)
 
 ## 보통
 
-- [ ] **국문 페이지를 정적 페이지로** — `(ko)/layout.tsx`의 `headers()` 호출 때문에 국문 페이지만 요청마다 새로 렌더링됨(영문·일문은 미리 생성). 관리자 경로 판별용인데 `/admin`은 `(ko)` 밖이라 필요 없음. 함께 `middleware.ts`의 x-pathname 주입도 정리 (2026-10-23)
 - [ ] **영문·일문 페이지의 `<html lang="ko">`** — 루트 레이아웃이 lang을 고정함 (2026-10-23 · `src/app/layout.tsx`)
-- [ ] **커스텀 404 페이지** — 지금은 Next 기본 영문 404라 메뉴가 없음. `not-found.tsx` 추가 (2026-10-23)
 - [ ] **메타 키워드·설명 정리** — 「반도체 배관·화학 배관·내식성 배관」, 「플렉시블 호스」 중심 문구를 「고부식 환경 열교환」 방향으로. 영·일 홈 제목 「Titanium Flexible Hose Manufacturer」·「チタン製フレキシブルホース専門メーカー」도 함께 (2026-10-23 · `src/app/layout.tsx`, `src/app/en|ja/layout.tsx`)
 - [ ] **이미지 용량 정리** — `public` 341MB. 20~30MB 원본(KTL 시험성적서, 폐열회수기 설치 사진)과 코드에서 쓰지 않는 파일 51개(약 83MB). `hero-product-2.jpg`는 확장자만 jpg인 PNG (2026-10-23, 2026-11-04 보강 · `public/images`)
 - [ ] **영·일 제품 상세 보강** — 영·일 상세는 데이터(`products.json` + `products-i18n.ts`)에 있는 사진·설명·사양·용도·특징만 보여 줌. 국문에만 있는 섹션(주름관 소재 비교·난류 구조·직접 시공, 폐열회수기 작동 원리·인증·납품 실적·절감 계산기 등)은 번역해 옮겨야 함. 폐열회수기는 국문 전용 페이지가 따로 있어 차이가 가장 큼 (2026-11-04 · `src/components/product/LocalizedProductDetail.tsx`)
-- [ ] **주름관 굽힘 동영상이 HEVC** — `tube-bending.mp4`(국문 주름관 상세)가 HEVC(H.265)라 Firefox와 하드웨어 지원이 없는 Chrome에서 재생되지 않음. H.264로 변환하고 `poster` 지정 (2026-11-04 · `src/app/(ko)/products/[slug]/page.tsx`)
-- [ ] **모바일 홈 히어로 슬라이드 표시가 버튼과 겹침** — 아이폰 크기에서 슬라이드 점이 「제품 카탈로그 보기」 버튼 글자 위에 겹침 (2026-11-04 · `src/components/home/*HeroSection.tsx`)
-- [ ] **푸터 저작권 연도 「© 2024」 고정** — 올해 연도로 자동 표시 (2026-11-04 · `src/components/layout/*Footer.tsx`)
 - [ ] **쉘앤튜브형 대표 사진이 표준품 사진과 같은 파일** — `heat-exchanger-square-2.jpg`와 `ts-dual-outlet-front.jpg`가 완전히 같음 (2026-10-27 · `src/data/products.json`)
-- [ ] **보안 헤더** — CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy 없음. `poweredByHeader: false`로 X-Powered-By 숨기기 (2026-10-23 · `next.config.mjs`)
+- [ ] **CSP(콘텐츠 보안 정책)** — 기본 보안 헤더는 넣었고 CSP만 남음. GA·네이버 애널리틱스·Vimeo·Next 인라인 스크립트를 허용 목록에 넣어 `Content-Security-Policy-Report-Only`로 먼저 시험한 뒤 적용 (2026-11-05 · `next.config.mjs`)
 - [ ] **오류·가동 감시** — Sentry 같은 오류 수집이나 가동 감시가 없어 폼이 고장 나도 알 수 없음 (2026-10-23)
-- [ ] **sitemap 날짜** — `lastModified`가 배포할 때마다 그 시각으로 찍혀 변경 신호가 무의미 (2026-10-23 · `src/app/sitemap.ts`)
 - [ ] **영문·일문 견적 폼에 첨부 기능 없음** — 국문 폼만 도면·사진 첨부가 있음. 같은 규칙(`@/lib/attachments`)으로 붙이면 됨 (2026-10-27 · `src/app/en|ja/support/ContactForm.tsx`)
 - [ ] **4MB 넘는 도면 받기** — 지금은 Vercel 함수 요청 한도(4.5MB) 때문에 첨부 합계 4MB, 넘으면 메일로 안내. 큰 DWG가 자주 오면 Vercel Blob(또는 Supabase Storage)에 브라우저에서 바로 올리고 서버가 받아 메일에 붙인 뒤 지우는 방식으로 확장. Vercel에서 Blob 저장소 생성 필요 (2026-10-27 · `src/lib/attachments.ts`)
 - [ ] **Next 16 대비** — 15.5는 보안 패치만 받는 구버전 라인. `next lint`가 15.5에서 사용 중단 예고 → ESLint CLI로 전환. postcss `overrides`는 Next 16에서 정리 (2026-10-27 · `package.json`)
@@ -62,12 +56,19 @@ ATX 사이트 대장(`bogusjun/ATX_website` `00_운영관제/사이트-대장.md
 - [ ] **뉴스·사례 CMS화** — 지금은 코드 안 배열이라 글 하나에 개발·배포가 필요 (2026-10-23)
 - [ ] **제품 상세 페이지 분리** — `(ko)/products/[slug]/page.tsx`가 1,600줄 넘음 (2026-10-23)
 - [ ] **운영 문서** — README가 기본 템플릿. 환경변수, 견적 메일과 ATX Work 결합, OG 이미지 생성(`node scripts/generate-og.mjs`) 정리 (2026-10-23)
-- [ ] **테스트·CI** — 자동 테스트와 CI가 없음. 루트의 `playwright-*-audit.mjs`를 정식 테스트로 (2026-10-23)
+- [ ] **테스트·CI** — 자동 테스트와 CI가 없음. 루트의 `playwright-*-audit.mjs`를 정식 테스트로. 로컬 lint 캐시(`.next/cache/eslint`)가 오류를 가려 Vercel에서만 빌드가 실패한 적이 있음 — CI와 배포 전 확인은 `next lint --no-cache`로 (2026-10-23, 2026-11-05 보강)
 
 ## 완료
 
 - [x] 창립 연도를 1991년으로 되돌림(사이트 대장 4-1 확정값, 2026-11-05 결정) — PR #1(2026-11-04)이 2008로 정한 것과 대장 확정값 1991이 충돌해 1991로 정함. `src/lib/company.ts`의 `FOUNDED_YEAR = 1991`로 업력이 35년(2026년 기준)으로 자동 계산되고(홈 통계·CTA, 기술, 회사소개, 폐열회수기, 국·영·일), 연혁에 「1991 현대티타늄 창립」을 되살림. 「2008 (주)에이티엑스 설립」은 연혁에 그대로 두고, 1991을 가리키는 문구는 「설립」 대신 「창립」으로(회사소개 국·일 첫 문장, 폐열회수기 회사 정보 칸). 대장 고칠 곳 3·4·5 해당 (2026-11-05 · `src/lib/company.ts`, `src/app/*/about/page.tsx`)
 - [x] 인증 표기를 사이트 대장 확정값에 맞춤 — 푸터·회사소개 인증 목록(국·영·일)에서 「KS 인증」·「KS B 2334」·「ISO 14001」을 빼고 보유 중인 ISO 45001을 넣음. 홈 히어로 「ISO 9001 · 45001」과 이제 일치. ASME 「대응」 표현은 대장 4-2대로 유지하고 그 줄에 주석. 남은 확인(ISO 45001 발급 기관, 산업 페이지 KS, 폐열회수기 「인증: ASME / ISO」)은 위 「사이트 대장에서 넘어옴」 (2026-11-05 · `src/components/layout/*Footer.tsx`, `src/app/*/about/page.tsx`)
+- [x] 견적 폼 스팸 방어(국·영·일) — 숨긴 입력칸이 채워지면 보내지 않고 성공처럼 응답, 3초 안 제출·폼 밖 요청은 제목 「[ATX 주름관 스팸의심]」으로 보내 노션 등록에서 제외(메일함에는 남음). 요청 횟수 제한·Turnstile은 스팸이 실제로 오면 추가 (2026-11-05 · `src/lib/spam-guard.ts`, `src/components/forms/SpamGuard.tsx`)
+- [x] 언어별 404 페이지 — 헤더·푸터가 있는 국·영·일 404, 없는 주소는 언어별 `[...missing]` 경로가 받음(응답 404, noindex). 404만 동적 렌더링이라 스크립트를 끈 브라우저에서는 빈 화면(Next 15 동작) (2026-11-05)
+- [x] 보안 헤더 — X-Frame-Options·nosniff·Referrer-Policy·Permissions-Policy, X-Powered-By 끔. CSP는 별도 항목 (2026-11-05 · `next.config.mjs`)
+- [x] 주름관 굽힘 동영상 H.264 720p로 변환(소리 제거, 첫 장면 이미지) — 8.4MB → 2.2MB, 모든 브라우저 재생 (2026-11-05)
+- [x] 모바일 홈 히어로 슬라이드 표시 겹침, 푸터 저작권 연도 자동, 사이트맵 lastModified 제거 (2026-11-05)
+- [x] 국문 페이지 정적화 — 국문 레이아웃의 `headers()` 제거, 미들웨어는 `/admin`에만 실행. 제품 목록(국·영·일)도 분류를 브라우저에서 읽어 정적. 공개 페이지 전부 미리 생성 (2026-11-05)
+- [x] 헤더가 정적 페이지의 서버 HTML에 없던 문제 — `useSearchParams` 때문에 메뉴가 브라우저에서만 그려지던 것(영·일은 원래부터). Suspense 대체 화면으로 같은 헤더를 그려 서버 HTML에 메뉴 링크 포함 (2026-11-05 · `src/components/layout/*Header.tsx`)
 - [x] 페이지별 canonical·hreflang·og:url — 레이아웃에서 canonical을 빼고 모든 국·영·일 페이지(51개 주소)가 `pageMetadata()`(`src/lib/seo.ts`)로 자기 주소를 지정, hreflang에 x-default 추가. 홈 제목의 브랜드 중복(「… | ATX 티타늄 주름관」 두 번), 모든 페이지에 붙던 국문 twitter 제목, 폐열회수기 페이지의 hreflang 누락도 함께 해결 (2026-11-04)
 - [x] 손상된 JPEG 4장 재저장 — 회전은 픽셀에 반영, 색 프로필 유지, 긴 변 3840px(Next가 내보내는 최대 폭). 합계 34.5MB → 3.6MB, 모바일 `/products` 첫 화면 16.6MB → 0.8MB (2026-11-04 · `public/images/products`)
 - [x] 업력·창립 연도를 2008년((주)에이티엑스 설립)으로 통일 — 홈 통계·CTA, 기술, 회사소개(국·영·일), 폐열회수기 페이지. 업력은 `src/lib/company.ts`에서 「올해 − 2008」로 계산. 연혁의 「1991 현대티타늄 창립」 항목은 뺐음 (2026-11-04) → 2026-11-05 사이트 대장 확정값에 맞춰 1991로 되돌림(위 항목)

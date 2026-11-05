@@ -5,6 +5,7 @@ import { Send, Upload, CheckCircle2, AlertCircle, ChevronDown, X } from "lucide-
 import productsData from "@/data/products.json";
 import PrivacyConsent from "@/components/legal/PrivacyConsent";
 import { trackLead } from "@/components/analytics/track";
+import { HoneypotField, useSpamGuard } from "@/components/forms/SpamGuard";
 import {
   ATTACH_EXTENSIONS,
   ATTACH_MAX_FILES,
@@ -306,6 +307,7 @@ export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [consent, setConsent] = useState(false);
+  const { hp, setHp, spamFields, resetSpamGuard } = useSpamGuard();
   const [fileError, setFileError] = useState("");
   const [preparingFiles, setPreparingFiles] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -438,6 +440,7 @@ export default function ContactForm() {
         fluid: form.fluid === "기타 (직접 입력)" ? form.fluidCustom : form.fluid,
         message: form.message,
         privacyConsent: consent,
+        ...spamFields(),
       }));
       files.forEach((f) => body.append("files", f, f.name));
 
@@ -463,7 +466,7 @@ export default function ContactForm() {
         <CheckCircle2 className="w-16 h-16 text-accent mx-auto mb-4" />
         <h3 className="text-2xl font-bold text-ink mb-2">견적 요청이 접수되었습니다!</h3>
         <p className="text-ink-muted mb-6">영업일 기준 24시간 내에 담당자가 연락드리겠습니다.</p>
-        <button onClick={() => { setForm(initialData); setFiles([]); setFileError(""); setConsent(false); setStatus("idle"); }} className="btn-primary">
+        <button onClick={() => { setForm(initialData); setFiles([]); setFileError(""); setConsent(false); resetSpamGuard(); setStatus("idle"); }} className="btn-primary">
           새 문의 작성
         </button>
       </div>
@@ -472,6 +475,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <HoneypotField value={hp} onChange={setHp} />
 
       {/* ── 기업 정보 ── */}
       <section>

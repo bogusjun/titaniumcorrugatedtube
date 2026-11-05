@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CasesCarousel from "@/app/(ko)/cases/CasesCarousel";
 import { pageMetadata } from "@/lib/seo";
 
@@ -98,9 +99,9 @@ export default function JaCasesPage() {
         <p className="text-silver-500 text-sm mb-8">
           素材選定から加工仕様まで、問題環境に合った答えを見つけます。
         </p>
-        <a href="/ja/support" className="btn-primary text-base px-8 py-3">
+        <Link href="/ja/support" className="btn-primary text-base px-8 py-3">
           技術相談のお問い合わせ
-        </a>
+        </Link>
       </div>
     </div>
   );

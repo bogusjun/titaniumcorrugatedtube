@@ -742,6 +742,8 @@ function TubeInstallSection() {
           <div className="rounded-2xl overflow-hidden bg-black aspect-video">
             <video
               src="/images/products/tube-bending.mp4"
+              poster="/images/products/tube-bending-poster.jpg"
+              aria-label="티타늄 주름관을 손으로 구부리는 영상"
               autoPlay
               loop
               muted
