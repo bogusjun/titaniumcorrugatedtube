@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import PrivacyConsent from "@/components/legal/PrivacyConsent";
 import { trackLead } from "@/components/analytics/track";
+import { HoneypotField, useSpamGuard } from "@/components/forms/SpamGuard";
 
 const FLUID_OPTIONS = [
   "Sea Water",
@@ -64,6 +65,7 @@ export default function EnContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [consent, setConsent] = useState(false);
+  const { hp, setHp, spamFields, resetSpamGuard } = useSpamGuard();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -98,6 +100,7 @@ export default function EnContactForm() {
           fluid: form.fluid === "Other (please specify)" ? form.fluidCustom : form.fluid,
           message: `[Inquiry from English site]\n${form.message}`,
           privacyConsent: consent,
+          ...spamFields(),
         }),
       });
       if (!res.ok) throw new Error("Submission failed");
@@ -116,7 +119,7 @@ export default function EnContactForm() {
         <h3 className="text-2xl font-bold text-ink mb-2">Quote Request Received!</h3>
         <p className="text-ink-muted mb-6">Our team will get back to you within 24 business hours.</p>
         <button
-          onClick={() => setStatus("idle")}
+          onClick={() => { resetSpamGuard(); setStatus("idle"); }}
           className="btn-primary"
         >
           New Inquiry
@@ -127,6 +130,7 @@ export default function EnContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      <HoneypotField value={hp} onChange={setHp} />
 
       {/* Company Information */}
       <section>
