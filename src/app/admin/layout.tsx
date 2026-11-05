@@ -1,22 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: {
-    default: 'ATX Admin',
-    template: '%s | ATX Admin',
-  },
+  title: { absolute: "ATX 주름관 관리자" },
   robots: { index: false, follow: false },
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      style={{ fontFamily: "'Pretendard', 'Noto Sans KR', sans-serif" }}
-      className="min-h-screen bg-[#F8F7F4]"
-    >
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen bg-silver-50 text-ink">{children}</div>;
 }

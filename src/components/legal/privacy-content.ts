@@ -7,7 +7,8 @@
 
 import type { LegalLocale, PolicyDoc } from "./types";
 
-export const PRIVACY_EFFECTIVE_DATE = "2026-10-27";
+// 2026-11-12: 온라인 구매(결제·배송) 항목·위탁사 추가
+export const PRIVACY_EFFECTIVE_DATE = "2026-11-12";
 
 export const PRIVACY_PATH: Record<LegalLocale, string> = {
   ko: "/privacy",
@@ -19,7 +20,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
   ko: {
     eyebrow: "Privacy Policy",
     title: "개인정보처리방침",
-    lead: "견적 문의로 받은 개인정보를 어떻게 쓰고 보호하는지 안내합니다.",
+    lead: "견적 문의와 온라인 구매로 받은 개인정보를 어떻게 쓰고 보호하는지 안내합니다.",
     intro:
       "(주)에이티엑스(ATX Co., Ltd., 이하 「회사」)는 「개인정보 보호법」에 따라 정보주체의 개인정보를 보호하고 관련 고충을 신속하게 처리하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다. 이 방침은 티타늄 주름관 홈페이지(tube.atx.kr)에 적용됩니다.",
     effectiveLabel: "시행일",
@@ -32,6 +33,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
             ul: [
               "견적·제품 문의 접수와 답변: 문의 내용 확인, 견적서 작성·발송, 담당자 연락",
               "문의 이력 관리: 후속 상담과 거래 진행을 위한 문의 기록 관리",
+              "온라인 구매 처리: 주문 확인, 결제·취소·환불, 제품 배송과 송장 안내, 교환·반품과 고객 응대, 결제창 반복 열기 같은 부정 이용 방지",
               "홈페이지 이용 통계와 유입 경로 분석: 홈페이지 개선과 광고 효과 측정",
             ],
           },
@@ -46,14 +48,17 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
               rows: [
                 ["견적 문의 (필수)", "회사명, 담당자명, 이메일", "견적 문의 양식"],
                 ["견적 문의 (선택)", "연락처(전화번호), 제품 사양·수량·사용 유체 등 문의 내용, 첨부 파일(도면·사진 등)", "견적 문의 양식"],
+                ["온라인 구매 (필수)", "주문자 이름·휴대폰 번호·이메일, 받는 분 이름·연락처·주소, 주문 제품·수량·금액, 결제 수단·결제 일시", "결제 화면"],
+                ["온라인 구매 (선택)", "회사명, 배송 요청사항", "결제 화면"],
                 [
                   "자동 수집",
-                  "유입 경로(광고 매체·캠페인·검색어, 처음 방문한 페이지, 이전 사이트 주소, 방문 시각), 접속 IP·접속 기록, 쿠키, 브라우저·기기 정보",
+                  "유입 경로(광고 매체·캠페인·검색어, 처음 방문한 페이지, 이전 사이트 주소, 방문 시각), 접속 IP·접속 기록, 쿠키, 브라우저·기기 정보, 주문 남용 방지를 위한 접속 IP 암호화 값(원본 IP는 저장하지 않음)",
                   "홈페이지 이용 시 자동 생성",
                 ],
               ],
             },
           },
+          { p: "카드번호 등 결제 정보는 결제대행사가 직접 처리하며 회사는 저장하지 않습니다." },
         ],
       },
       {
@@ -62,6 +67,8 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
           {
             ul: [
               "견적 문의 정보: 문의 처리 완료 후 3년간 보관한 뒤 파기합니다. 거래로 이어진 경우에는 상법·국세기본법 등 관계 법령에서 정한 기간 동안 보관합니다.",
+              "온라인 구매 정보: 「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 계약·청약철회 기록과 대금 결제·재화 공급 기록은 5년, 소비자 불만·분쟁 처리 기록은 3년 보관합니다.",
+              "결제가 끝나지 않은 주문(결제 시간 만료·실패): 주문을 시도한 날부터 1년이 지나면 파기합니다.",
               "유입 경로 쿠키: 이용자의 브라우저에 최대 90일간 저장됩니다.",
               "방문 통계: 분석 도구에 설정한 보관 기간(최대 14개월)이 지나면 삭제됩니다.",
             ],
@@ -72,7 +79,13 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
         title: "개인정보의 제3자 제공",
         blocks: [
           {
-            p: "회사는 정보주체의 개인정보를 제1항의 목적 범위에서만 처리하며, 정보주체의 동의나 법률의 특별한 규정 등 「개인정보 보호법」 제17조·제18조에 해당하는 경우 외에는 제3자에게 제공하지 않습니다.",
+            p: "회사는 정보주체의 개인정보를 제1항의 목적 범위에서만 처리하며, 정보주체의 동의나 법률의 특별한 규정 등 「개인정보 보호법」 제17조·제18조에 해당하는 경우 외에는 제3자에게 제공하지 않습니다. 온라인 구매 제품을 배송하기 위해 구매자의 동의를 받아 다음과 같이 제공합니다.",
+          },
+          {
+            table: {
+              head: ["제공받는 자", "목적", "항목", "보유 기간"],
+              rows: [["출고 때 이용하는 택배사(CJ대한통운·우체국택배·롯데택배·한진택배·로젠택배·경동택배 중)", "제품 배송", "받는 분 이름·연락처·주소, 배송 요청사항", "배송 완료 후 택배사의 법정 보관 기간까지"]],
+            },
           },
         ],
       },
@@ -84,8 +97,11 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
             table: {
               head: ["수탁자 (연락처)", "국가", "위탁 업무", "이전 항목"],
               rows: [
-                ["Vercel Inc. (vercel.com)", "미국", "홈페이지 호스팅, 견적 문의 양식 전송 처리", "견적 문의 정보, 접속 기록"],
-                ["Google LLC (google.com)", "미국", "문의 메일 수신·보관(Gmail), 방문 통계 분석(Google 애널리틱스)", "견적 문의 정보, 유입 경로·이용 기록"],
+                ["Vercel Inc. (vercel.com)", "미국", "홈페이지 호스팅, 견적 문의 양식·주문 처리", "견적 문의 정보, 온라인 구매 정보, 접속 기록"],
+                ["Google LLC (google.com)", "미국", "문의·주문 메일 발송·수신·보관(Gmail), 방문 통계 분석(Google 애널리틱스)", "견적 문의 정보, 온라인 구매 정보, 유입 경로·이용 기록"],
+                ["Supabase, Inc. (supabase.com)", "미국 (데이터는 서울 리전에 저장)", "온라인 구매 주문·재고 정보 저장(데이터베이스)", "온라인 구매 정보"],
+                ["(주)코리아포트원 (portone.io)", "대한민국", "온라인 결제 연동과 결제 내역 관리", "주문자 이름·연락처·이메일, 주문 금액, 결제 정보"],
+                ["포트원과 연동된 결제대행사(PG)", "대한민국", "카드·간편결제 승인과 취소", "주문자 정보, 결제 정보"],
                 ["Notion Labs, Inc. (notion.com)", "미국", "영업 문의 내역 기록·관리", "견적 문의 정보, 유입 경로"],
                 ["NAVER Corp. (navercorp.com)", "대한민국", "방문 통계 분석(네이버 애널리틱스)", "이용 기록, 쿠키"],
               ],
@@ -93,7 +109,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
           },
           {
             ul: [
-              "이전 시기와 방법: 견적 문의 양식을 보내거나 홈페이지를 이용할 때 암호화된 네트워크로 전송됩니다.",
+              "이전 시기와 방법: 견적 문의 양식을 보내거나 주문·결제하거나 홈페이지를 이용할 때 암호화된 네트워크로 전송됩니다.",
               "보유·이용 기간: 위탁 계약이 끝나거나 제3항의 보유 기간이 지날 때까지입니다.",
               "국외 이전을 원하지 않으면 양식 대신 전화(1544-1909)로 문의할 수 있으며, 이로 인한 불이익은 없습니다.",
             ],
@@ -212,6 +228,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
             ul: [
               "Receiving and answering quote and product inquiries: reviewing your request, preparing and sending quotations, contacting you",
               "Inquiry records: keeping a record of inquiries for follow-up and transactions",
+              "Online purchases on the Korean site (standard tubes and sockets): order confirmation, payment and refunds, delivery, returns and customer support. Details such as items collected, retention (5 years for contract and payment records under the Korean e-commerce act), delivery companies and processors (PortOne and its payment gateways, Supabase) are set out in the Korean version, which prevails",
               "Website statistics and traffic-source analysis: improving the website and measuring advertising performance",
             ],
           },
@@ -390,6 +407,7 @@ export const PRIVACY_POLICY: Record<LegalLocale, PolicyDoc> = {
             ul: [
               "お見積り・製品に関するお問い合わせの受付と回答：内容の確認、見積書の作成・送付、ご担当者様へのご連絡",
               "お問い合わせ履歴の管理：その後のご相談・お取引のための記録管理",
+              "韓国語サイトでのオンライン購入（標準品・ソケット）：注文確認、決済・返金、配送、返品・お客様対応。収集項目、保有期間（韓国電子商取引法により契約・決済記録は5年）、配送会社、委託先（ポートワンと連動決済代行会社、Supabase）の詳細は韓国語版によるものとし、韓国語版が優先します",
               "ウェブサイトの利用統計と流入経路の分析：サイトの改善と広告効果の測定",
             ],
           },

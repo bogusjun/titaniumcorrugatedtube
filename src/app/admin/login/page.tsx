@@ -1,77 +1,57 @@
-'use client';
+"use client";
 
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Lock } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    setError('');
     setLoading(true);
-
+    setError("");
     try {
-      const res = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
-
-      if (res.ok) {
-        router.push('/admin');
-        router.refresh();
-      } else {
-        const data = await res.json() as { error?: string };
-        setError(data.error ?? '로그인에 실패했습니다.');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(data.error ?? "로그인하지 못했습니다.");
+        return;
       }
-    } catch {
-      setError('네트워크 오류가 발생했습니다.');
+      router.push("/admin/orders");
+      router.refresh();
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F7F4] flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <div className="mb-10 text-center">
-          <p className="text-xs tracking-widest uppercase text-[#999] mb-2">ATX Admin</p>
-          <h1 className="text-xl font-semibold text-[#1a1a1a]">관리자 로그인</h1>
-        </div>
-
-        <form onSubmit={handleSubmit} className="bg-white border border-[#E8E4DC] rounded-lg p-8">
-          <div className="mb-5">
-            <label className="block text-xs tracking-widest uppercase text-[#999] mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="관리자 비밀번호 입력"
-              required
-              autoFocus
-              className="w-full border border-[#E8E4DC] rounded px-3 py-2.5 text-sm text-[#1a1a1a] placeholder-[#bbb] focus:outline-none focus:border-[#1a1a1a] transition-colors"
-            />
-          </div>
-
-          {error && (
-            <p className="text-sm text-red-500 mb-4">{error}</p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#1a1a1a] text-white text-sm font-medium py-2.5 rounded hover:bg-[#333] disabled:opacity-50 transition-colors"
-          >
-            {loading ? '확인 중...' : '로그인'}
-          </button>
-        </form>
-      </div>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <form onSubmit={submit} className="w-full max-w-sm bg-white rounded-2xl border border-silver-100 p-8">
+        <Lock className="w-8 h-8 text-accent mb-4" />
+        <h1 className="text-xl font-bold mb-1">관리자 로그인</h1>
+        <p className="text-sm text-ink-muted mb-6">ATX 티타늄 주름관 온라인 구매 관리</p>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="비밀번호"
+          autoFocus
+          className="w-full px-4 py-2.5 rounded-lg border border-silver-100 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
+        />
+        {error && <p className="text-sm text-red-500 mb-3">{error}</p>}
+        <button type="submit" disabled={loading || !password} className="btn-primary w-full justify-center disabled:opacity-50">
+          {loading ? "확인 중…" : "로그인"}
+        </button>
+      </form>
     </div>
   );
 }

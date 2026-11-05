@@ -5,7 +5,8 @@ export type PolicyBlock =
   | { ul: string[] }
   | { table: { head: string[]; rows: string[][] } };
 
-export type PolicySection = { title: string; blocks: PolicyBlock[] };
+/** id: 다른 페이지에서 #id 로 바로 가는 앵커 (예: 이용약관 #purchase) */
+export type PolicySection = { title: string; id?: string; blocks: PolicyBlock[] };
 
 export type PolicyDoc = {
   eyebrow: string;

@@ -1,69 +1,39 @@
-export const dynamic = 'force-dynamic';
-import { NextRequest, NextResponse } from 'next/server';
-import { checkAdminAuth } from '@/lib/admin-auth';
-import { supabaseAdmin } from '@/lib/supabase';
+import { NextRequest, NextResponse } from "next/server";
+import { checkAdminAuth } from "@/lib/admin-auth";
+import { listOrders, updateOrderByAdmin } from "@/lib/shop/orders";
+import { errorResponse } from "@/lib/shop/http";
 
-const PAGE_SIZE = 20;
+const LIMIT = 20;
 
-export async function GET(req: NextRequest): Promise<NextResponse> {
-  if (!(await checkAdminAuth(req))) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+export async function GET(req: NextRequest) {
+  if (!checkAdminAuth(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const { searchParams } = new URL(req.url);
-  const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10));
-  const status = searchParams.get('status');
-
-  const from = (page - 1) * PAGE_SIZE;
-  const to = from + PAGE_SIZE - 1;
-
-  let query = supabaseAdmin
-    .from('orders')
-    .select('*', { count: 'exact' })
-    .order('created_at', { ascending: false })
-    .range(from, to);
-
-  if (status) {
-    query = query.eq('status', status);
+  try {
+    const sp = req.nextUrl.searchParams;
+    const page = Math.max(1, parseInt(sp.get("page") ?? "1") || 1);
+    const { data, total } = await listOrders({
+      status: sp.get("status") ?? "active",
+      q: sp.get("q") ?? "",
+      page,
+      limit: LIMIT,
+    });
+    return NextResponse.json({ data, total, page, limit: LIMIT });
+  } catch (err) {
+    return errorResponse(err);
   }
-
-  const { data, error, count } = await query;
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json({
-    data,
-    total: count ?? 0,
-    page,
-    pageSize: PAGE_SIZE,
-    totalPages: Math.ceil((count ?? 0) / PAGE_SIZE),
-  });
 }
 
-export async function PATCH(req: NextRequest): Promise<NextResponse> {
-  if (!(await checkAdminAuth(req))) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+// 배송 상태·송장·메모 변경: { id, status?, courier?, trackingNumber?, adminMemo? }
+export async function PATCH(req: NextRequest) {
+  if (!checkAdminAuth(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  const { id, status } = await req.json() as { id: string; status: string };
-
-  const validStatuses = ['paid', 'preparing', 'shipped', 'delivered', 'cancelled'];
-  if (!id || !status || !validStatuses.includes(status)) {
-    return NextResponse.json({ error: '유효하지 않은 요청입니다.' }, { status: 400 });
+  try {
+    const { id, status, courier, trackingNumber, adminMemo } = await req.json();
+    const order = await updateOrderByAdmin(String(id), { status, courier, trackingNumber, adminMemo });
+    return NextResponse.json(order);
+  } catch (err) {
+    return errorResponse(err);
   }
-
-  const { data, error } = await supabaseAdmin
-    .from('orders')
-    .update({ status })
-    .eq('id', id)
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json(data);
 }

@@ -1,57 +1,40 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
-  { href: '/admin', label: 'Dashboard', exact: true },
-  { href: '/admin/products', label: '상품 관리' },
-  { href: '/admin/inventory', label: '재고 관리' },
-  { href: '/admin/orders', label: '주문 목록' },
+const items = [
+  { href: "/admin/orders", label: "주문 관리" },
+  { href: "/admin/items", label: "판매 품목·재고" },
 ];
 
 export default function AdminNav() {
   const pathname = usePathname();
   const router = useRouter();
-
-  async function handleLogout() {
-    await fetch('/api/admin/login', { method: 'DELETE' });
-    router.push('/admin/login');
-    router.refresh();
-  }
-
+  const logout = async () => {
+    await fetch("/api/admin/login", { method: "DELETE" });
+    router.push("/admin/login");
+  };
   return (
-    <header className="bg-white border-b border-[#E8E4DC] sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-6 flex items-center h-14 gap-6">
-        <span className="text-xs tracking-widest uppercase font-semibold text-[#1a1a1a] shrink-0">
-          ATX Admin
-        </span>
-
-        <nav className="flex items-center gap-1 flex-1">
-          {NAV_ITEMS.map(({ href, label, exact }) => {
-            const active = exact ? pathname === href : pathname.startsWith(href);
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={`px-3 py-1.5 rounded text-sm transition-colors ${
-                  active
-                    ? 'bg-[#1a1a1a] text-white'
-                    : 'text-[#666] hover:text-[#1a1a1a] hover:bg-[#F8F7F4]'
-                }`}
-              >
-                {label}
-              </Link>
-            );
-          })}
+    <header className="bg-ti-950 text-silver-200">
+      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-6">
+        <span className="font-bold text-sm">ATX 주름관 관리자</span>
+        <nav className="flex gap-1">
+          {items.map((i) => (
+            <Link
+              key={i.href}
+              href={i.href}
+              className={cn("px-3 py-1.5 rounded-md text-sm", pathname.startsWith(i.href) ? "bg-ti-800 text-white" : "text-silver-400 hover:text-white")}
+            >
+              {i.label}
+            </Link>
+          ))}
         </nav>
-
-        <button
-          onClick={handleLogout}
-          className="text-xs text-[#999] hover:text-[#1a1a1a] transition-colors"
-        >
-          로그아웃
-        </button>
+        <div className="ml-auto flex items-center gap-4 text-sm">
+          <Link href="/" className="text-silver-400 hover:text-white" target="_blank">사이트 보기</Link>
+          <button onClick={logout} className="text-silver-400 hover:text-white">로그아웃</button>
+        </div>
       </div>
     </header>
   );
