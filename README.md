@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ATX 티타늄 주름관 홈페이지 (tube.atx.kr)
 
-## Getting Started
+Next.js 15 · 국문/영문/일문 · Vercel 배포
 
-First, run the development server:
+- 제품 소개·기술·적용 사례·견적 문의 (견적 메일 → ATX Work → 노션 영업 ToDo)
+- 국문 홈페이지에서 **표준품·소켓 온라인 구매** (Supabase + 포트원 V2) — 설정: [docs/SHOP_SETUP.md](docs/SHOP_SETUP.md)
+- 관리자 `/admin`: 주문 관리(발송·송장·취소/환불) · 판매 품목 가격·재고
+- 개선 리스트: [docs/BACKLOG.md](docs/BACKLOG.md)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+cp .env.example .env.local   # 값 채우기
+npm run dev                  # http://localhost:3005
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 제품 소개 문구·사진: `src/data/products.json` (영·일 번역 `src/data/products-i18n.ts`)
+- 공유 미리보기(OG) 이미지 다시 만들기: `node scripts/generate-og.mjs`
+- 배포 전 확인: `npx tsc --noEmit`, `npx next lint --no-cache`, `npm run build`
+- 온라인 구매 통합 검사: [tests/README.md](tests/README.md)
