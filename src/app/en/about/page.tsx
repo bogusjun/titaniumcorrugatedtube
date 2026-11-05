@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const timeline = [
+  // 사이트 대장 4-1 확정값(2026-11-04): 설립 1991년 — PR #1 에서 뺐던 항목을 되살림
+  { year: "1991", event: "Founded as Hyundai Titanium" },
   { year: "2008", event: "ATX Co., Ltd. established" },
   { year: "2013", event: "ISO 9001 certification obtained" },
   { year: "2013", event: "2 patents registered for magnetic powder recovery cluster" },

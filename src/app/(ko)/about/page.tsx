@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const timeline = [
+  // 사이트 대장 4-1 확정값(2026-11-04): 설립 1991년 — PR #1 에서 뺐던 항목을 되살림
+  { year: "1991", event: "현대티타늄 창립" },
   { year: "2008", event: "(주)에이티엑스 설립" },
   { year: "2013", event: "ISO 9001 인증 취득" },
   { year: "2013", event: "마그네틱 파우더 회수 클러스터 특허 2건 등록" },
@@ -79,7 +81,7 @@ export default function AboutPage() {
             회사 소개
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            {FOUNDED_YEAR}년 설립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
+            {FOUNDED_YEAR}년 창립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
           </p>
         </div>
       </div>

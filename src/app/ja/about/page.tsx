@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const timeline = [
+  // 사이트 대장 4-1 확정값(2026-11-04): 설립 1991년 — PR #1 에서 뺐던 항목을 되살림
+  { year: "1991", event: "現代チタン創立" },
   { year: "2008", event: "ATX Co., Ltd. 設立" },
   { year: "2013", event: "ISO 9001 認証取得" },
   { year: "2013", event: "磁気粉体回収クラスター特許 2件登録" },
@@ -79,7 +81,7 @@ export default function JaAboutPage() {
             会社概要
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            {FOUNDED_YEAR}年の設立以来、チタン配管一筋を歩んできた専門メーカー。
+            {FOUNDED_YEAR}年の創立以来、チタン配管一筋を歩んできた専門メーカー。
           </p>
         </div>
       </div>
