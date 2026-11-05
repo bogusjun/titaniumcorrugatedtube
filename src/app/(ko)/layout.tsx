@@ -1,24 +1,16 @@
 import { Suspense } from "react";
-import Header from "@/components/layout/Header";
+import Header, { HeaderBase } from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { headers } from "next/headers";
 
-export default async function KoLayout({
+// 요청 정보(headers 등)를 읽지 않아야 국문 페이지가 영·일처럼 미리 만들어진다(정적). /admin 은 이 그룹 밖이라 따로 가를 필요가 없다
+export default function KoLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") ?? "";
-  const isAdmin = pathname.startsWith("/admin");
-
-  if (isAdmin) {
-    return <>{children}</>;
-  }
-
   return (
     <>
-      <Suspense fallback={null}>
+      <Suspense fallback={<HeaderBase query={null} />}>
         <Header />
       </Suspense>
       <main>{children}</main>

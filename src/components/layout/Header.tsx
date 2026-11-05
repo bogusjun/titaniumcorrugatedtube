@@ -20,11 +20,13 @@ const navItems = [
   { label: "회사 소개",  href: "/about" },
 ];
 
-export default function Header() {
+/** 주소의 ?category= 처럼 메뉴 강조에 쓰는 쿼리 — 없으면(null) 쿼리 메뉴는 강조하지 않는다 */
+type QueryLike = { get(key: string): string | null };
+
+export function HeaderBase({ query }: { query: QueryLike | null }) {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname     = usePathname();
-  const searchParams = useSearchParams();
   const isHome       = pathname === "/";
 
   const isActive = (href: string) => {
@@ -32,7 +34,7 @@ export default function Header() {
     if (pathname !== hrefPath) return false;
     if (!hrefQuery) return true;
     const [key, val] = hrefQuery.split("=");
-    return searchParams.get(key) === val;
+    return query?.get(key) === val;
   };
 
   useEffect(() => {
@@ -166,4 +168,14 @@ export default function Header() {
       )}
     </header>
   );
+}
+
+/**
+ * useSearchParams 는 정적 페이지에서 가장 가까운 Suspense 까지를 브라우저 렌더링으로 미룬다.
+ * 그래서 레이아웃은 <Suspense fallback={<HeaderBase query={null} />}><Header /></Suspense> 로 써서
+ * 서버 HTML 에도 헤더(메뉴 링크)가 들어가게 하고, 쿼리 메뉴 강조만 브라우저에서 갱신한다.
+ */
+export default function Header() {
+  const searchParams = useSearchParams();
+  return <HeaderBase query={searchParams} />;
 }
