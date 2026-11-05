@@ -6,7 +6,11 @@
     "dev": "next dev -p 3005",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:clean": "next lint --no-cache",
+    "typecheck": "tsc --noEmit",
+    "check:site": "node scripts/check-site.mjs",
+    "test:shop": "bash tests/run.sh"
   },
   "dependencies": {
     "@portone/browser-sdk": "^0.1.8",
