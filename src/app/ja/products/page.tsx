@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getLocalizedProducts } from "@/data/products-i18n";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
 import { pageMetadata } from "@/lib/seo";
@@ -12,16 +11,8 @@ export const metadata: Metadata = pageMetadata({
     "チタン波管 10A・15A 規格表およびコイル型熱交換器詳細仕様。",
 });
 
-interface SearchParams {
-  category?: string;
-}
-
-export default async function JaProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  const { category } = await searchParams;
+// 정적 페이지 — 분류(?category=)는 ProductListClient 가 브라우저에서 읽는다
+export default function JaProductsPage() {
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
       <div className="bg-ti-950 py-16">
@@ -40,13 +31,7 @@ export default async function JaProductsPage({
 
       <div className="container-pad py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <Suspense fallback={null}>
-            <ProductListClient
-              products={getLocalizedProducts("ja")}
-              initialCategory={category || "all"}
-              locale="ja"
-            />
-          </Suspense>
+          <ProductListClient products={getLocalizedProducts("ja")} locale="ja" />
         </div>
       </div>
     </div>

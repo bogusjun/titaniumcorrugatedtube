@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getLocalizedProducts } from "@/data/products-i18n";
 import ProductListClient from "@/app/(ko)/products/ProductListClient";
 import { pageMetadata } from "@/lib/seo";
@@ -12,16 +11,8 @@ export const metadata: Metadata = pageMetadata({
     "Titanium corrugated tube 10A · 15A specification tables and coil-type heat exchanger detailed specifications.",
 });
 
-interface SearchParams {
-  category?: string;
-}
-
-export default async function EnProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  const { category } = await searchParams;
+// 정적 페이지 — 분류(?category=)는 ProductListClient 가 브라우저에서 읽는다
+export default function EnProductsPage() {
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
       <div className="bg-ti-950 py-16">
@@ -40,13 +31,7 @@ export default async function EnProductsPage({
 
       <div className="container-pad py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <Suspense fallback={null}>
-            <ProductListClient
-              products={getLocalizedProducts("en")}
-              initialCategory={category || "all"}
-              locale="en"
-            />
-          </Suspense>
+          <ProductListClient products={getLocalizedProducts("en")} locale="en" />
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import productsData from "@/data/products.json";
 import ProductListClient from "./ProductListClient";
 import { pageMetadata } from "@/lib/seo";
@@ -12,16 +11,8 @@ export const metadata: Metadata = pageMetadata({
     "티타늄 주름관 10A·15A 규격표 및 코일형 열교환기 상세 사양.",
 });
 
-interface SearchParams {
-  category?: string;
-}
-
-export default async function ProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  const { category } = await searchParams;
+// 정적 페이지 — 분류(?category=)는 ProductListClient 가 브라우저에서 읽는다
+export default function ProductsPage() {
   return (
     <div className="pt-20 min-h-screen bg-silver-50">
       {/* Page Header */}
@@ -42,12 +33,7 @@ export default async function ProductsPage({
       {/* Content */}
       <div className="container-pad py-12">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <Suspense fallback={null}>
-            <ProductListClient
-              products={productsData}
-              initialCategory={category || "all"}
-            />
-          </Suspense>
+          <ProductListClient products={productsData} />
         </div>
       </div>
     </div>
