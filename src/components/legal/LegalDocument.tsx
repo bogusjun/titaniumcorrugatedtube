@@ -76,7 +76,7 @@ export default function LegalDocument({
           </div>
 
           {doc.sections.map((section, i) => (
-            <section key={section.title} className="space-y-3">
+            <section key={section.title} id={section.id} className="space-y-3 scroll-mt-28">
               <h2 className="text-lg font-bold text-ink">
                 {headingFormat.replace("{n}", String(i + 1)).replace("{title}", section.title)}
               </h2>

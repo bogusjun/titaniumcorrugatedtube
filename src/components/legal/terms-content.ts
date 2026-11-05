@@ -1,13 +1,18 @@
 /**
  * 홈페이지 이용약관 (ko/en/ja)
  *
- * 회원가입·결제가 없는 B2B 정보·견적 문의 사이트 기준이다. 국문이 기준본 — 내용을 바꾸면 영문·일문도 고치고
+ * 회원가입 없는 B2B 정보·견적 문의 사이트 + 일부 제품(표준품·소켓) 비회원 온라인 구매(국문만) 기준이다.
+ * 구매 조항의 배송비·무료 기준은 @/lib/shop/config 값을 그대로 쓴다. 국문이 기준본 — 내용을 바꾸면 영문·일문도 고치고
  * TERMS_EFFECTIVE_DATE 와 부칙 날짜를 새 시행일로 올린다(이용자에게 불리한 변경은 30일 전 공지).
  */
 
 import type { LegalLocale, PolicyDoc } from "./types";
+import { FREE_SHIPPING_THRESHOLD, SHIPPING_FEE, SHOP_CONTACT } from "@/lib/shop/config";
 
-export const TERMS_EFFECTIVE_DATE = "2026-10-27";
+const won = (n: number) => n.toLocaleString("ko-KR");
+
+// 2026-11-12: 온라인 구매 조항 신설 (공지 7일)
+export const TERMS_EFFECTIVE_DATE = "2026-11-12";
 
 export const TERMS: Record<LegalLocale, PolicyDoc> = {
   ko: {
@@ -22,7 +27,7 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
       {
         title: "목적",
         blocks: [
-          { p: "이 약관은 회사가 홈페이지에서 제공하는 정보와 견적 문의 기능의 이용 조건, 회사와 이용자의 권리·의무 및 책임을 정하는 것을 목적으로 합니다." },
+          { p: "이 약관은 회사가 홈페이지에서 제공하는 정보와 견적 문의 기능, 일부 제품의 온라인 구매에 관한 이용 조건, 회사와 이용자의 권리·의무 및 책임을 정하는 것을 목적으로 합니다." },
         ],
       },
       {
@@ -32,6 +37,7 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
             ul: [
               "「이용자」란 홈페이지에 접속하여 이 약관에 따라 회사가 제공하는 정보와 기능을 이용하는 개인 또는 법인을 말합니다.",
               "「견적 문의」란 이용자가 견적 문의 양식, 이메일 또는 전화로 제품 견적이나 기술 상담을 요청하는 것을 말합니다.",
+              "「온라인 구매」란 이용자가 홈페이지에서 회사가 온라인 판매로 표시한 제품을 골라 결제하는 것을 말하며, 이때의 이용자를 「구매자」라 합니다.",
             ],
           },
         ],
@@ -54,10 +60,11 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
             ul: [
               "제품·기술·적용 사례 등 회사와 제품에 관한 정보 제공",
               "견적 문의 접수와 상담",
+              "티타늄 주름관 표준품·주름관 소켓 등 일부 제품의 온라인 판매(국문 홈페이지)",
               "그 밖에 회사가 정하는 기능",
             ],
           },
-          { p: "홈페이지는 회원가입 없이 무료로 이용할 수 있습니다." },
+          { p: "홈페이지는 회원가입 없이 무료로 이용할 수 있으며, 온라인 구매도 회원가입 없이 합니다." },
         ],
       },
       {
@@ -68,6 +75,27 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
               "견적 문의는 계약의 청약이 아니며, 회사의 답변은 별도로 표시하지 않는 한 참고를 위한 안내입니다.",
               "실제 거래 조건(사양, 수량, 가격, 납기, 대금 지급 등)은 회사가 발행한 견적서와 당사자가 합의한 계약서 또는 발주서에 따릅니다.",
               "이용자가 견적 문의와 함께 보낸 도면·기술 정보는 견적과 상담 목적으로만 사용합니다.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "온라인 구매",
+        id: "purchase",
+        blocks: [
+          {
+            ul: [
+              "대상: 회사가 온라인 판매로 표시한 제품(재고 표준품·소켓 등)만 구매할 수 있습니다. 그 밖의 제품과 대량·맞춤 사양은 제5조의 견적 문의로 거래합니다.",
+              "계약 성립: 구매자가 결제를 마치면 계약이 성립합니다. 재고 부족, 가격·표시 오류 등으로 공급할 수 없으면 회사는 지체 없이 알리고 결제 금액 전액을 환불합니다.",
+              `가격과 배송비: 표시 가격은 부가가치세를 포함합니다. 배송비는 주문당 ${won(SHIPPING_FEE)}원이며, 제품 금액이 ${won(FREE_SHIPPING_THRESHOLD)}원 이상이면 무료입니다.`,
+              "결제: 신용카드·간편결제로 하며 결제대행사(포트원과 연동된 결제대행사)를 통해 처리됩니다. 회사는 카드번호를 저장하지 않습니다. 카드 결제분은 카드 매출전표가 증빙이 되며, 같은 거래에 세금계산서를 따로 발행하지 않습니다.",
+              "배송: 결제 확인 후 영업일 기준 1~2일 안에 국내 택배로 출고하고, 출고하면 송장번호를 이메일로 알립니다. 재고 사정 등으로 늦어지면 미리 알립니다.",
+              "청약철회(교환·반품): 제품을 받은 날부터 7일 안에 할 수 있습니다. 다만 제품을 사용했거나 절단·가공·조립하여 가치가 현저히 줄어든 경우, 구매자의 요청에 따라 따로 제작한 경우 등 「전자상거래 등에서의 소비자보호에 관한 법률」 제17조제2항에 해당하면 청약철회가 제한됩니다.",
+              "표시·광고와 다른 경우: 제품이 표시·광고 내용과 다르거나 계약과 다르게 이행된 경우에는 받은 날부터 3개월 안에, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 안에 청약철회할 수 있습니다.",
+              "반품 비용: 단순 변심에 따른 반품 배송비는 구매자가, 제품 하자·오배송에 따른 반품·교환 비용은 회사가 부담합니다.",
+              "환불: 반품된 제품을 받은 날부터 3영업일 안에 결제를 취소합니다. 카드 결제 취소가 실제로 반영되기까지는 카드사에 따라 며칠 걸릴 수 있습니다. 출고 전 주문은 바로 취소할 수 있습니다.",
+              `주문 조회와 신청: 주문 상태와 송장번호는 「주문 조회」 화면에서 주문번호와 휴대폰 번호로 확인할 수 있고, 취소·교환·반품은 ${SHOP_CONTACT.phone} 또는 ${SHOP_CONTACT.email}로 신청합니다.`,
+              "분쟁 처리: 회사는 구매자의 불만과 분쟁을 성실히 처리하며, 해결되지 않으면 구매자는 한국소비자원 등 분쟁조정기관에 조정을 신청할 수 있습니다.",
             ],
           },
         ],
@@ -145,7 +173,7 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
         ],
       },
     ],
-    closing: "부칙 — 이 약관은 2026년 10월 27일부터 시행합니다.",
+    closing: "부칙 — 이 약관은 2026년 11월 12일부터 시행합니다(제6조 온라인 구매 신설). 종전 약관은 2026년 10월 27일부터 시행되었습니다.",
   },
 
   en: {
@@ -207,6 +235,20 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
               "A quote request is not an offer to contract, and the Company's reply is for guidance only unless stated otherwise.",
               "Actual terms of trade (specifications, quantity, price, delivery, payment, etc.) are governed by the quotation issued by the Company and the contract or purchase order agreed by the parties.",
               "Drawings and technical information sent with a quote request are used only for quotation and consultation.",
+            ],
+          },
+        ],
+      },
+      {
+        title: "Online purchase (Korean site)",
+        id: "purchase",
+        blocks: [
+          {
+            ul: [
+              "Some ready-stock products (standard corrugated tubes, sockets) can be bought online on the Korean-language site with domestic (Korean) delivery and card payment in KRW. Other products, bulk orders and custom specifications are handled through quote requests.",
+              "A purchase contract is formed when payment is completed. If the Company cannot supply the product (e.g., out of stock or a pricing error), it will notify the buyer and refund the full amount without delay.",
+              `Prices include VAT. Shipping is KRW ${won(SHIPPING_FEE)} per order and free for product totals of KRW ${won(FREE_SHIPPING_THRESHOLD)} or more. Orders ship within 1–2 business days after payment.`,
+              "Buyers may withdraw (return) within 7 days of receipt, except where withdrawal is restricted under the Korean Act on Consumer Protection in Electronic Commerce (e.g., products used, cut or processed, or made to the buyer's request). The full purchase terms in the Korean version prevail.",
             ],
           },
         ],
@@ -284,7 +326,7 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
         ],
       },
     ],
-    closing: "Addendum — These Terms take effect on October 27, 2026.",
+    closing: "Addendum — These Terms take effect on November 12, 2026 (online purchase article added). The previous version took effect on October 27, 2026.",
   },
 
   ja: {
@@ -346,6 +388,20 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
               "お見積り依頼は契約の申込みではなく、当社の回答は別途明示しない限り参考のためのご案内です。",
               "実際の取引条件（仕様・数量・価格・納期・支払いなど）は、当社が発行する見積書と当事者が合意した契約書または発注書によります。",
               "お見積り依頼とともにお送りいただいた図面・技術情報は、見積りとご相談の目的にのみ使用します。",
+            ],
+          },
+        ],
+      },
+      {
+        title: "オンライン購入（韓国語サイト）",
+        id: "purchase",
+        blocks: [
+          {
+            ul: [
+              "一部の在庫品（波管標準品・ソケット）は、韓国語サイトで韓国国内配送・ウォン建てカード決済によりオンラインで購入できます。その他の製品、大量注文、特注仕様はお見積り依頼で承ります。",
+              "決済が完了した時点で売買契約が成立します。在庫不足や価格表示の誤り等で供給できない場合、当社は遅滞なく通知し、決済金額の全額を返金します。",
+              `表示価格は付加価値税込みです。送料は1注文あたり${won(SHIPPING_FEE)}ウォンで、製品金額${won(FREE_SHIPPING_THRESHOLD)}ウォン以上は無料です。決済確認後、営業日1〜2日以内に出荷します。`,
+              "受領日から7日以内であれば申込みの撤回（返品）ができます。ただし、使用・切断・加工した製品、購入者の依頼で製作した製品など、韓国「電子商取引等における消費者保護に関する法律」により撤回が制限される場合を除きます。購入条件の詳細は韓国語版が優先します。",
             ],
           },
         ],
@@ -423,6 +479,6 @@ export const TERMS: Record<LegalLocale, PolicyDoc> = {
         ],
       },
     ],
-    closing: "附則 — 本規約は2026年10月27日から施行します。",
+    closing: "附則 — 本規約は2026年11月12日から施行します（オンライン購入の条項を新設）。従前の規約は2026年10月27日から施行されました。",
   },
 };
