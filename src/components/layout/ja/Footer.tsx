@@ -105,7 +105,13 @@ export default function JaFooter() {
               認証取得状況
             </h4>
             <div className="space-y-2 mb-6">
-              {["ISO 9001:2015", "ISO 14001", "KS 認証", "ASME 対応"].map((cert) => (
+              {[
+                "ISO 9001:2015",
+                // 사이트 대장 4-1 확정값(2026-11-04): ISO 14001·KS 인증 미보유 → 삭제, 보유 중인 ISO 45001(~2029-06-29)로 교체
+                "ISO 45001",
+                // 사이트 대장 4-2 확인된 차이(2026-11-04): ASME U Stamp 만료 — 인증 보유가 아니라 기준 대응 표현으로 유지
+                "ASME 対応",
+              ].map((cert) => (
                 <div key={cert} className="flex items-center gap-2 text-sm text-silver-600">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                   {cert}

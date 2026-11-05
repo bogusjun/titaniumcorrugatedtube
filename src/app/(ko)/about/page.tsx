@@ -48,8 +48,10 @@ const timeline = [
 
 const certs = [
   { name: "ISO 9001:2015", org: "품질경영시스템", body: "KR / TÜV" },
-  { name: "ISO 14001:2015", org: "환경경영시스템", body: "KR" },
-  { name: "KS B 2334", org: "가스켓 관련 KS 인증", body: "국가기술표준원" },
+  // 사이트 대장 4-1 확정값(2026-11-04): ISO 14001·KS B 2334 미보유 → 삭제, 보유 중인 ISO 45001(~2029-06-29)로 교체
+  // 발급 기관은 미확인 — 바꾸기 전 ISO 14001 행의 값(KR)을 그대로 둠. 인증서로 확인 필요(docs/BACKLOG.md)
+  { name: "ISO 45001:2018", org: "안전보건경영시스템", body: "KR" },
+  // 사이트 대장 4-2 확인된 차이(2026-11-04): ASME U Stamp 만료 — 인증 보유가 아니라 기준 대응 표현으로 유지
   { name: "ASME 대응", org: "미국기계학회 기준 설계·제조", body: "ASME" },
   { name: "ASTM B265", org: "티타늄 판재 규격 준수", body: "ASTM" },
   { name: "RoHS 준수", org: "환경 유해물질 제한", body: "EU" },
