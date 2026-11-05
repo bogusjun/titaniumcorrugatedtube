@@ -40,3 +40,6 @@ next-env.d.ts
 /audit-screenshots/
 /dev-server*.log
 /.claude/
+
+# 통합 검사 도구 의존성
+/tests/node_modules/
