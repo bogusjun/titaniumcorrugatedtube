@@ -1157,7 +1157,7 @@ function ProductContent() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
-              { label: "설립", value: `${FOUNDED_YEAR}년` },
+              { label: "창립", value: `${FOUNDED_YEAR}년` },
               { label: "전문 분야", value: "티타늄 가공" },
               { label: "인증", value: "ASME / ISO" },
               { label: "주요 고객", value: "양식장·산업체" },

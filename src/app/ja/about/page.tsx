@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const timeline = [
+  // 사이트 대장 4-1 확정값(2026-11-04): 설립 1991년 — PR #1 에서 뺐던 항목을 되살림
+  { year: "1991", event: "現代チタン創立" },
   { year: "2008", event: "ATX Co., Ltd. 設立" },
   { year: "2013", event: "ISO 9001 認証取得" },
   { year: "2013", event: "磁気粉体回収クラスター特許 2件登録" },
@@ -48,8 +50,10 @@ const timeline = [
 
 const certs = [
   { name: "ISO 9001:2015", org: "品質マネジメントシステム", body: "KR / TÜV" },
-  { name: "ISO 14001:2015", org: "環境マネジメントシステム", body: "KR" },
-  { name: "KS B 2334", org: "ガスケット関連KS認証", body: "国家技術標準院" },
+  // 사이트 대장 4-1 확정값(2026-11-04): ISO 14001·KS B 2334 미보유 → 삭제, 보유 중인 ISO 45001(~2029-06-29)로 교체
+  // 발급 기관은 미확인 — 바꾸기 전 ISO 14001 행의 값(KR)을 그대로 둠. 인증서로 확인 필요(docs/BACKLOG.md)
+  { name: "ISO 45001:2018", org: "労働安全衛生マネジメントシステム", body: "KR" },
+  // 사이트 대장 4-2 확인된 차이(2026-11-04): ASME U Stamp 만료 — 인증 보유가 아니라 기준 대응 표현으로 유지
   { name: "ASME 対応", org: "米国機械学会基準 設計・製造", body: "ASME" },
   { name: "ASTM B265", org: "チタン板材規格準拠", body: "ASTM" },
   { name: "RoHS 準拠", org: "環境有害物質制限", body: "EU" },
@@ -77,7 +81,7 @@ export default function JaAboutPage() {
             会社概要
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            {FOUNDED_YEAR}年の設立以来、チタン配管一筋を歩んできた専門メーカー。
+            {FOUNDED_YEAR}年の創立以来、チタン配管一筋を歩んできた専門メーカー。
           </p>
         </div>
       </div>

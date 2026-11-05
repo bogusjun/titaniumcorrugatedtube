@@ -16,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const timeline = [
+  // 사이트 대장 4-1 확정값(2026-11-04): 설립 1991년 — PR #1 에서 뺐던 항목을 되살림
+  { year: "1991", event: "현대티타늄 창립" },
   { year: "2008", event: "(주)에이티엑스 설립" },
   { year: "2013", event: "ISO 9001 인증 취득" },
   { year: "2013", event: "마그네틱 파우더 회수 클러스터 특허 2건 등록" },
@@ -48,8 +50,10 @@ const timeline = [
 
 const certs = [
   { name: "ISO 9001:2015", org: "품질경영시스템", body: "KR / TÜV" },
-  { name: "ISO 14001:2015", org: "환경경영시스템", body: "KR" },
-  { name: "KS B 2334", org: "가스켓 관련 KS 인증", body: "국가기술표준원" },
+  // 사이트 대장 4-1 확정값(2026-11-04): ISO 14001·KS B 2334 미보유 → 삭제, 보유 중인 ISO 45001(~2029-06-29)로 교체
+  // 발급 기관은 미확인 — 바꾸기 전 ISO 14001 행의 값(KR)을 그대로 둠. 인증서로 확인 필요(docs/BACKLOG.md)
+  { name: "ISO 45001:2018", org: "안전보건경영시스템", body: "KR" },
+  // 사이트 대장 4-2 확인된 차이(2026-11-04): ASME U Stamp 만료 — 인증 보유가 아니라 기준 대응 표현으로 유지
   { name: "ASME 대응", org: "미국기계학회 기준 설계·제조", body: "ASME" },
   { name: "ASTM B265", org: "티타늄 판재 규격 준수", body: "ASTM" },
   { name: "RoHS 준수", org: "환경 유해물질 제한", body: "EU" },
@@ -77,7 +81,7 @@ export default function AboutPage() {
             회사 소개
           </h1>
           <p className="text-silver-500 text-lg max-w-2xl">
-            {FOUNDED_YEAR}년 설립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
+            {FOUNDED_YEAR}년 창립 이래 티타늄 배관 한 길을 걸어온 전문 제조사.
           </p>
         </div>
       </div>

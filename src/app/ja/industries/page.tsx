@@ -80,6 +80,8 @@ const industriesData = [
       "塩酸(HCl)移送: Grade 7 (Pd合金) 適用",
       "高温高圧スチーム配管",
       "海水冷却水系統",
+      // 사이트 대장 4-2 확인된 차이(2026-11-04): ASME U Stamp 만료 — 인증 보유가 아니라 기준 대응 표현으로 유지
+      // KS 부분은 미보유라 문구 결정 대기(사이트 대장 고칠 곳 8, docs/BACKLOG.md)
       "ASME/KS認証対応",
     ],
     cases: [
