@@ -15,3 +15,14 @@ export function trackLead(siteLang: "ko" | "en" | "ja") {
     /* 통계 전송이 실패해도 폼 동작은 막지 않는다 */
   }
 }
+
+/**
+ * 온라인 결제 완료 → GA4 권장 이벤트 purchase (같은 주문은 transaction_id 로 한 번만 집계된다)
+ */
+export function trackPurchase(orderNo: string, totalWon: number) {
+  try {
+    window.gtag?.("event", "purchase", { transaction_id: orderNo, value: totalWon, currency: "KRW" });
+  } catch {
+    /* 통계 전송이 실패해도 결제 화면은 막지 않는다 */
+  }
+}

@@ -11,11 +11,17 @@ import Image from "next/image";
 import productsData from "@/data/products.json";
 import ProductCard from "@/components/product/ProductCard";
 import ProductImageGallery from "@/components/product/ProductImageGallery";
+import PurchaseBox from "@/components/shop/PurchaseBox";
+import { getSellableItems } from "@/lib/shop/catalog";
 import { alternatesFor, OG_DEFAULTS } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+// 표준품·소켓은 구매 상자에 가격·재고가 들어간다. 관리자 저장·주문 때 바로 다시 만들고(revalidateStorefront),
+// 혹시 놓친 경우를 대비해 10분마다도 새로 만든다.
+export const revalidate = 600;
 
 export async function generateStaticParams() {
   return productsData.map((p) => ({ slug: p.slug }));
@@ -1471,6 +1477,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const isHeatExchangerCorrugated = product.slug === "heat-exchanger-corrugated";
   const isWasteHeatRecovery = product.slug === "waste-heat-recovery";
   const variants = isTube && !isStandard ? (product as ProductData & { variants?: Variant[] }).variants ?? [] : [];
+  const shopItems = await getSellableItems(product.slug);
 
   const relatedSlugs: Record<string, string[]> = {
     "tube": ["socket", "heat-exchanger-corrugated"],
@@ -1494,12 +1501,21 @@ export default async function ProductDetailPage({ params }: Props) {
       name: "ATX Co., Ltd.",
       url: "https://tube.atx.kr",
     },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      priceCurrency: "KRW",
-      seller: { "@type": "Organization", name: "ATX Co., Ltd." },
-    },
+    // 가격이 있는 온라인 판매 품목만 offers 를 넣는다(가격 없는 Offer 는 구조화 데이터 오류)
+    ...(shopItems.length
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            priceCurrency: "KRW",
+            lowPrice: Math.min(...shopItems.map((i) => i.price)),
+            highPrice: Math.max(...shopItems.map((i) => i.price)),
+            offerCount: shopItems.length,
+            availability: shopItems.some((i) => i.stock > 0) ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            url: productUrl,
+            seller: { "@type": "Organization", name: "ATX Co., Ltd." },
+          },
+        }
+      : {}),
   };
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -1585,6 +1601,9 @@ export default async function ProductDetailPage({ params }: Props) {
                 ))}
               </div>
             </div>
+
+            {/* 온라인 구매 (표준품·소켓, 판매 중인 품목이 있을 때만) */}
+            {shopItems.length > 0 && <PurchaseBox items={shopItems} />}
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3">

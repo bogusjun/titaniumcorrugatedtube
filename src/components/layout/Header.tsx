@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import LanguageSwitcher from "./LanguageSwitcher";
+import CartButton from "@/components/shop/CartButton";
 
 const productItems = [
   { label: "티타늄 주름관",   href: "/products?category=tube" },
@@ -105,6 +106,7 @@ export function HeaderBase({ query }: { query: QueryLike | null }) {
 
           {/* Right Actions */}
           <div className="hidden lg:flex items-center gap-4">
+            <CartButton />
             <a
               href="tel:1544-1909"
               className="flex items-center gap-1.5 text-silver-200 hover:text-white text-sm transition-colors"
@@ -119,12 +121,16 @@ export function HeaderBase({ query }: { query: QueryLike | null }) {
           </div>
 
           {/* Mobile Toggle */}
+          <div className="lg:hidden flex items-center gap-1">
+          <CartButton />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-silver-300 p-2 rounded-md hover:bg-ti-800 transition-colors"
+            className="text-silver-300 p-2 rounded-md hover:bg-ti-800 transition-colors"
+            aria-label="메뉴"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
+          </div>
         </div>
       </div>
 

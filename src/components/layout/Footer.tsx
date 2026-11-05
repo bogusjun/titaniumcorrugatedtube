@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SELLER } from "@/lib/shop/config";
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
 const quickLinks = [
@@ -126,10 +127,16 @@ export default function Footer() {
       <div className="border-t border-ti-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-silver-700">
           <p>© {new Date().getFullYear()} ATX Co., Ltd. All rights reserved.</p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="font-semibold text-silver-400 hover:text-silver-200 transition-colors">개인정보처리방침</Link>
             <Link href="/terms"   className="hover:text-silver-400 transition-colors">이용약관</Link>
-            <span>사업자등록번호: 131-86-09143</span>
+            <Link href="/orders"  className="hover:text-silver-400 transition-colors">주문 조회</Link>
+            <span>
+              {SELLER.legalName}
+              {SELLER.representative && ` · 대표 ${SELLER.representative}`}
+              {` · 사업자등록번호 ${SELLER.businessNo}`}
+              {SELLER.mailOrderNo && ` · 통신판매업신고 ${SELLER.mailOrderNo}`}
+            </span>
           </div>
         </div>
       </div>
